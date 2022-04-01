@@ -1,0 +1,106 @@
+body {
+  font-family: monospace;
+  margin: 0;
+  width: 100%;
+  height: 100vh;
+}
+
+ul{margin:0; padding:0;}
+li{list-style: none;}
+img{
+  width:100%;
+}
+
+figure{
+  padding:0;
+  margin:0;
+}
+
+
+#sketch {
+  width: calc(100vw - 350px);
+  position: fixed;
+  top: 0;
+  left: 350px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+canvas {
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+  cursor: -webkit-grab;
+  width: 50vw !important;
+  height: 50vw !important;
+}
+
+#gui {
+  z-index: 10000;
+  min-height: 100vh;
+  width: 350px;
+  background: #efefef;
+}
+
+.gui-wrapper {
+  margin: 10px 0;
+  width: 100%;
+  display: flex;
+  align-items: center;
+}
+
+.gui-group {
+  padding: 15px;
+  border-bottom: 1px solid #000000;
+}
+
+.gui-group h1, 
+.gui-group h2, 
+.gui-group h3, 
+.gui-group h4{
+  margin-top:0;
+}
+
+.gui-group .gui-input{
+  display: inline-block;
+}
+
+/* SAVE BUTTONS */
+.save-buttons{
+  position: fixed; 
+  z-index: 100;
+  top: 0;
+  right:0;
+  padding: 10px;
+}
+
+.save-buttons > div{
+  border: 1px solid #000;
+  background: #FFF; 
+  padding: 10px;
+  margin-bottom: 10px;
+  cursor: pointer;
+}
+
+/* POETRY WALL */
+.wall main{
+  padding: 40px;
+}
+
+.poetry-wall{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+}
+
+.poetry-wall li{
+  border: 1px solid #000;
+  max-width: calc(33% - 20px);
+  flex: 0 0 auto;
+  margin-right: 20px;
+  margin-bottom: 20px;
+}
+
+
+
