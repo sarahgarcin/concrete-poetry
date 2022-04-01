@@ -14,7 +14,7 @@
   <main>
     <h1>
       <a href="index.html" title="Retour">
-        Générateur de poèmes
+        <---------- Générateur de poèmes
       </a>
     </h1>
     <ul class="poetry-wall">

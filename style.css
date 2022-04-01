@@ -3,6 +3,8 @@ body {
   margin: 0;
   width: 100%;
   height: 100vh;
+  font-size: 16px;
+  line-height: 1.2;
 }
 
 ul{margin:0; padding:0;}
@@ -26,6 +28,8 @@ figure{
   justify-content: center;
   align-items: center;
   height: 100vh;
+  /*background: #000;*/
+  background: #8A8A8A;
 }
 
 canvas {
@@ -33,6 +37,7 @@ canvas {
   cursor: -webkit-grab;
   width: 50vw !important;
   height: 50vw !important;
+  background: #FFF;
 }
 
 #gui {
@@ -40,6 +45,7 @@ canvas {
   min-height: 100vh;
   width: 350px;
   background: #efefef;
+  font-family: sans-serif;
 }
 
 .gui-wrapper {
@@ -52,6 +58,7 @@ canvas {
 .gui-group {
   padding: 15px;
   border-bottom: 1px solid #000000;
+  position: relative;
 }
 
 .gui-group h1, 
@@ -61,8 +68,71 @@ canvas {
   margin-top:0;
 }
 
+.gui-group h4{
+  text-transform: uppercase; 
+  font-size: 0.8em;
+  margin-bottom: 0;
+}
+
+.gui-group h2{
+  font-size: 1.2em;
+  margin-bottom: 10px;
+}
+
+.gui-group.header p{
+  margin:0;
+}
+
+.gui-group a{
+  color: red; 
+  font-size: 0.8em;
+  /*text-decoration: none;*/
+}
+
 .gui-group .gui-input{
   display: inline-block;
+}
+
+.gui-group.click-btn button{
+  font-size: 0.8em;
+  border: 1px solid red;
+  background: #FFF;
+  text-transform: uppercase;
+  box-shadow: none;
+  margin:0 5px 5px 0;
+  padding: 5px 10px;
+  cursor: pointer;
+}
+
+.gui-group.click-btn button:hover{
+  color: red;
+}
+
+.gui-group.click-btn button.active{
+  background: red;
+  color: #FFF;
+}
+
+
+.gui-group.submit-btn button{
+  font-size: 0.8em;
+  border: 1px solid red;
+  background: #FFF;
+  text-transform: uppercase;
+  box-shadow: none;
+  margin:10px 5px 5px 0;
+  padding: 5px 10px;
+  cursor: pointer;
+}
+
+.gui-group.submit-btn button:hover{
+  color: red;
+}
+
+.gui-group input{
+  border: 1px solid red;
+  box-shadow: none;
+  padding: 5px 10px;
 }
 
 /* SAVE BUTTONS */
@@ -80,9 +150,27 @@ canvas {
   padding: 10px;
   margin-bottom: 10px;
   cursor: pointer;
+  font-size: 0.8em;
+  text-align: center;
+}
+
+.save-buttons > div:hover{
+  color: red;
 }
 
 /* POETRY WALL */
+.wall h1{
+  font-family: sans-serif;
+  text-transform: uppercase;
+  font-size: 1em;
+  margin-top:0;
+}
+
+.wall h1 a{
+  color: #000;
+  text-decoration: none;
+}
+
 .wall main{
   padding: 40px;
 }
@@ -95,7 +183,7 @@ canvas {
 }
 
 .poetry-wall li{
-  border: 1px solid #000;
+  /*border: 1px solid #000;*/
   max-width: calc(33% - 20px);
   flex: 0 0 auto;
   margin-right: 20px;

@@ -18,7 +18,7 @@ function setup() {
   var canvas = createCanvas(900, 900);
   canvas.parent("sketch"); // The poster is a PGraphics-element
 
-  // poster = createGraphics(586, 810);
+  //poster = createGraphics(586, 810);
   // manipulateImage();
   // busy = false; // gui.js
 
@@ -26,6 +26,10 @@ function setup() {
 
   $('#export-btn').on('click', function(){
     saveCanvas(canvas, 'Concrete Poetry', 'jpg');
+  }); 
+
+  $('#delete-poem').on('click', function(){
+    effacer();
   }); 
 
 }
@@ -258,6 +262,15 @@ function fillShape(shape){
 
 function changeDirection(newDirection){
   direction = newDirection;
+  if(direction == 'haut'){
+    $("#haut").addClass('active');
+    $("#bas").removeClass('active');
+  }
+  else{
+    $("#bas").addClass('active');
+    $("#haut").removeClass('active');
+  }
+
 }
 
 
@@ -282,14 +295,14 @@ function buildUI() {
   var markup = `
   <div id="gui">
 
-  <div class="gui-group">
+  <div class="gui-group header">
 
   	<h4>Générateur de poèmes</h4>
     <p>
       <a href='wall.php'>Voir les créations</a>
     </p>
   </div>
-  <div class="gui-group">
+  <div class="gui-group click-btn">
     <h2>Choisir un mot</h2>
     <div class="gui-input">
       <button onclick="addWordButton('RESPIRER')">Respirer</button>
@@ -312,11 +325,11 @@ function buildUI() {
     <div class="gui-input">
       <button onclick="addWordButton('BRUT')">Brut</button>
     </div>
-    <div class="gui-input">
+    <!-- <div class="gui-input delete-btn">
       <button onclick="effacer()">Effacer</button>
-    </div>
+    </div> -->
   </div>
-  <div class="gui-group">
+  <div class="gui-group submit-btn">
     <h2>Remplacer une lettre</h2>
     <div class="gui-input">
       <input id="replaced-letter-val" type="text" placeholder="lettre à remplacer">
@@ -324,11 +337,11 @@ function buildUI() {
     <div class="gui-input">
       <input id="replace-letter-val" type="text" placeholder="lettre de remplacement">
     </div>
-    <div class="gui-input">
+    <div class="gui-input ok-btn">
       <button onclick="replaceLetter()">Ok</button>
     </div>
   </div>
-  <div class="gui-group">
+  <div class="gui-group submit-btn">
     <h2>Répéter une lettre</h2>
     <div class="gui-input">
       <input id="repeated-letter-val" type="text" placeholder="lettre à répéter">
@@ -336,16 +349,16 @@ function buildUI() {
     <div class="gui-input">
       <input id="repeated-letter-nb" type="number" placeholder="nombre de répétition">
     </div>
-    <div class="gui-input">
+    <div class="gui-input ok-btn">
       <button onclick="repeatLetter()">Ok</button>
     </div>
   </div>
-  <div class="gui-group">
+  <div class="gui-group submit-btn">
     <h2>Répéter le mot</h2>
     <div class="gui-input">
       <input id="repeated-word-nb" type="number" placeholder="nombre de répétition" min="2" max="15">
     </div>
-    <div class="gui-input">
+    <div class="gui-input ok-btn">
       <button onclick="repeatWord()">Ok</button>
     </div>
   </div>
@@ -373,7 +386,7 @@ function buildUI() {
       <input id="font-size-slider" min="20" max="800" step="1" type="range" value="500"/>
     </div>
   </div> -->
-  <div class="gui-group">
+  <div class="gui-group click-btn">
     <h2>Remplir une forme</h2>
     <div class="gui-input">
       <button onclick="fillShape('02')">Cercle</button>
@@ -402,9 +415,11 @@ function buildUI() {
     <div class="gui-input">
       <button onclick="fillShape('09')">Zigouigouis</button>
     </div>
+    <br>
+    <br>
     <h2>Choisir le sens</h2>
-    <button onclick="changeDirection('haut')">Haut</button>
-    <button onclick="changeDirection('bas')">Bas</button>
+    <button onclick="changeDirection('haut')" id="haut">Haut</button>
+    <button onclick="changeDirection('bas')" id="bas" class="active">Bas</button>
   </div>
   
 	`;
