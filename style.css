@@ -65,6 +65,20 @@ canvas {
   position: relative;
 }
 
+.gui-group.mode{
+  display: none;
+}
+
+
+.gui-group.mode.active{
+  display: block;
+}
+
+.gui-group.click-btn .mode-btn.active button{
+  background: red; 
+  color: #FFF;
+}
+
 .gui-group h1, 
 .gui-group h2, 
 .gui-group h3, 

@@ -39,6 +39,21 @@
       effacer();
     }); 
 
+    $('.mode-btn').on('click', function(){
+      var mode = $(this).attr('data-mode');
+      if($(this).hasClass('active')){
+        $(this).removeClass('active');
+        $('#'+mode).remove('active');
+      }
+      else{
+        $('.mode-btn').removeClass('active');
+        $('.mode').removeClass('active');
+        $(this).addClass('active');
+        $('#'+mode).addClass('active');
+      }
+      
+    })
+
   }
 
   function draw() {
@@ -118,17 +133,20 @@
   function abstraction(){
     background(255);
     var textAbstraction = $('#abstraction-text').val();
-    mot =  textAbstraction;
+    mot = textAbstraction;
+    var fontSize = 40;
+    var lineHeight = fontSize * 1.2;
     if(mot == undefined){
       errorMessage();
     }
     else{
       // textWrap(CHAR);
-      textLeading(35);
-      textSize(30);
+      textLeading(lineHeight);
+      textSize(fontSize);
+      textFont(monoFont);
       newText = mot.replace(/.{2}/g, '$&\n')
-      console.log(newText);
-      text(newText, width/2, height/2, width - 80, height - 80);
+      text(newText, 100, 100);
+      // text(newText, width/2, height/2, width - 80, height - 80);
     }
   }
 
@@ -210,9 +228,7 @@
     var wordRepet = $('#repetitiontwo-word').val();
     mot = wordRepet;
     // calcul la taille du mot 
-    var chars = mot.split('');
-    var charsLength = chars.length;
-    var wordWidth = charsLength * (fontSize/1.6);
+    var wordWidth = textWidth(mot)
 
     var blockW = fontSize * 20;
     var blockH = fontSize * 10;
@@ -257,6 +273,56 @@
       var charsWidth = fontSize*2 + randomX;
       textSize(fontSize);
       text(chars[i], i * charsWidth, randomY);
+    }
+
+  }
+
+  function permutation(){
+    background(255);
+    // translate(200, 400);
+    var fontSize = 30; 
+    var textPermutation = $('#permutation-text').val();
+    var words = textPermutation.split(' ');
+    var permutations = getArrayMutations(words);
+    var yPos = 0;
+    var xPos = 80;
+    textSize(fontSize);
+    for(var i = 0; i<permutations.length; i++){
+      for(var ii= 0; ii<permutations[i].length; ii++){
+        var sentence = permutations[i].join(' ');
+        text(sentence, xPos, yPos + 80);
+      }
+      if(yPos > height - 150){
+        yPos = 0; 
+        xPos += textWidth(textPermutation) + 50; 
+      }
+      else{
+        yPos += fontSize * 1.2;
+      }
+      
+    }
+
+
+    // for(var i=0; i<chars.length; i++){
+    //   var randomX = random(0, 50);
+    //   var randomY = random(-100, 100);
+    //   var charsWidth = fontSize*2 + randomX;
+    //   textSize(fontSize);
+    //   text(chars[i], i * charsWidth, randomY);
+    // }
+
+    function getArrayMutations(arr, perms = [], len = arr.length) {
+      if (len === 1) perms.push(arr.slice(0))
+
+      for (let i = 0; i < len; i++) {
+        getArrayMutations(arr, perms, len - 1)
+
+        len % 2 // parity dependent adjacent elements swap
+          ? [arr[0], arr[len - 1]] = [arr[len - 1], arr[0]]
+          : [arr[i], arr[len - 1]] = [arr[len - 1], arr[i]]
+      }
+
+      return perms
     }
 
   }
@@ -497,46 +563,46 @@
     </div>
     <div class="gui-group click-btn mode-selection">
       <h2>Choisir un mode</h2>
-      <div class="gui-input">
-        <button onclick="showConstellation()">Constellation</button>
+      <div class="gui-input mode-btn" data-mode="constellation-mode">
+        <button>Constellation</button>
       </div>
-      <div class="gui-input">
-        <button onclick="showReseau()">Réseau</button>
+      <div class="gui-input mode-btn" data-mode="network-mode">
+        <button>Réseau</button>
       </div>
-      <div class="gui-input">
-        <button onclick="showRepetition()">Répétition</button>
+      <div class="gui-input mode-btn" data-mode="repetition-mode">
+        <button>Répétition</button>
       </div>
-      <div class="gui-input">
-        <button onclick="showRepetitionTwo()">Répétition 2</button>
+      <div class="gui-input mode-btn" data-mode="repetitiontwo-mode">
+        <button>Répétition 2</button>
       </div>
-      <div class="gui-input">
-        <button onclick="showAbstraction()">Abstraction</button>
+      <div class="gui-input mode-btn" data-mode="abstraction-mode">
+        <button>Abstraction</button>
       </div>
-      <div class="gui-input">
-        <button onclick="showEspacement()">Espacement</button>
+      <div class="gui-input mode-btn" data-mode="espacement-mode">
+        <button>Espacement</button>
       </div>
-      <div class="gui-input">
-        <button onclick="showGrille()">Grille</button>
+      <div class="gui-input mode-btn" data-mode="grille-mode">
+        <button>Grille</button>
       </div>
-      <div class="gui-input">
-        <button onclick="showPermutation()">Permutation</button>
+      <div class="gui-input mode-btn" data-mode="permutation-mode">
+        <button>Permutation</button>
       </div>
-      <div class="gui-input">
-        <button onclick="showSoleil()">Soleil ?</button>
+      <div class="gui-input mode-btn" data-mode="soleil-mode">
+        <button>Soleil ?</button>
       </div>
     </div>
 
-    <div class="gui-group submit-btn permutation-mode">
-      <h2>Écrire un mot de moins de 9 lettres</h2>
+    <div class="gui-group submit-btn mode" id="permutation-mode">
+      <h2>Écrire des mots (maximum 5)</h2>
       <div class="gui-input">
-        <input id="repetition-word" type="text" placeholder="écrire ici">
+        <textarea id="permutation-text" type="text" placeholder="écrire ici"></textarea>
       </div>
       <div class="gui-input ok-btn">
-        <button onclick="squareRepetition()">Ok</button>
+        <button onclick="permutation()">Ok</button>
       </div>
     </div>
 
-    <div class="gui-group submit-btn constellation-mode">
+    <div class="gui-group submit-btn mode" id="constellation-mode">
       <h2>Écrire un texte (constellation)</h2>
       <div class="gui-input">
         <textarea id="constellation-text" placeholder="écrire ici"></textarea>
@@ -553,7 +619,7 @@
       </div>
     </div>
 
-    <div class="gui-group submit-btn repetition-mode">
+    <div class="gui-group submit-btn mode" id="repetition-mode">
       <h2>Écrire un mot de moins de 9 lettres</h2>
       <div class="gui-input">
         <input id="repetition-word" type="text" placeholder="écrire ici">
@@ -563,7 +629,7 @@
       </div>
     </div> 
 
-    <div class="gui-group submit-btn repetitiontwo-mode">
+    <div class="gui-group submit-btn mode" id="repetitiontwo-mode">
       <h2>Écrire un mot</h2>
       <div class="gui-input">
         <input id="repetitiontwo-word" type="text" placeholder="écrire ici">
@@ -573,7 +639,7 @@
       </div>
     </div> 
 
-    <div class="gui-group submit-btn espacement-mode">
+    <div class="gui-group submit-btn mode" id="espacement-mode">
       <h2>Écrire un texte (espacement)</h2>
       <div class="gui-input">
         <textarea id="espacement-text" placeholder="écrire ici"></textarea>
@@ -583,7 +649,7 @@
       </div>
     </div> 
 
-    <div class="gui-group submit-btn abstraction-mode">
+    <div class="gui-group submit-btn mode" id="abstraction-mode">
       <h2>Écrire un texte (abstraction)</h2>
       <div class="gui-input">
         <textarea id="abstraction-text" placeholder="écrire ici"></textarea>
@@ -593,7 +659,7 @@
       </div>
     </div>
 
-    <div class="gui-group submit-btn abstraction-mode">
+    <div class="gui-group submit-btn mode" id="grille-mode">
       <h2>Écrire un texte (grille)</h2>
       <div class="gui-input">
         <textarea id="grille-text" placeholder="écrire ici"></textarea>
