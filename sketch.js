@@ -1,11 +1,38 @@
-  var mot; 
-  var font;
-  var img;
-  let edge;
+let textInput; 
+let textInputField; 
+var font;
+var img;
+var canvas;
+var margin = 80;
+var originalText = "Écrire un texte ici";
 
-  // direction du remplissage des formes
-  var direction = "bas";
+var mouseOffsetX = 0,
+    mouseOffsetY = 0,
+    dragging = false,
+    rollover = false,
+    moveMode = false;
 
+var repetitionMode = false,
+    abstractionMode = false;
+
+/* =========================================
+    STATE
+    This object stores the values that are 
+    manipulated through the GUI
+   =========================================
+   */
+
+var State = {
+    text: originalText,
+    fontSize: 50,
+    lineHeight: 50,
+    textX: margin,
+    textY: margin, 
+    textFont: "",
+    textWrap: "WORD", 
+    background: 255,
+    textColor: 0
+}
 
   function preload() {
     font = loadFont("fonts/automatico.otf");
@@ -17,19 +44,33 @@
     imageMode(CENTER);
     rectMode(CENTER); // Create canvas
 
-    var canvas = createCanvas(1170, 827);
+    canvas = createCanvas(windowWidth, windowHeight);
     canvas.parent("sketch"); // The poster is a PGraphics-element
 
-    edge = height/6;
-
-    textFont(font);
+    State.textFont = font;
+    textFont(State.textFont);
     textAlign(LEFT);
-    textLeading(100);
+    textLeading(State.lineHeight);
+    textSize(State.fontSize);
+
+    fill(State.textColor);
+    background(State.background);
     //poster = createGraphics(586, 810);
     // manipulateImage();
     // busy = false; // gui.js
 
-    buildUI();
+
+    // Write text - display input text field
+    // textInputField = createInput(State.text);
+    textInputField = createElement("textarea", State.text);
+    textInputField.position(margin, margin);
+    textInputField.size(windowWidth - (margin*2));
+    textInputField.input(writingText);
+    textInputField.id('text-input');
+
+    // $('#text-input').draggable();
+
+    // buildUI();
 
     $('#export-btn').on('click', function(){
       saveCanvas(canvas, 'Concrete Poetry', 'jpg');
@@ -51,52 +92,174 @@
         $(this).addClass('active');
         $('#'+mode).addClass('active');
       }
-      
     })
+
+    $('#general-mode .ok-btn').on('click', function(){
+      $('.mode-selection').addClass('active');
+    });
+
+    // $('.gui-group').on('click', function(){
+    //   if(!$(this).hasClass('active')){
+    //     $('.gui-group').removeClass('active');
+    //     $(this).addClass('active');
+    //   }
+    // });
 
   }
 
   function draw() {
-    // $('#font-size-slider').change(function(){
-    //   var fontSizeVal = $(this).val()
-    //   console.log(fontSizeVal);
-    //   fillCircle(fontSizeVal)
-    //   // textSize(fontSizeVal);
-    // });
+    background(State.background);
+    displayText();
 
-    // $('#circle-size-slider').change(function(){
-    //   var circleSizeVal = $(this).val()
-    //   console.log(circleSizeVal);
-    //   createCircle(circleSizeVal)
-    // });
+    if(moveMode){
+      mouseDragText();
+    }
+    if(repetitionMode){
+      repetition();
+    }
+    if(abstractionMode){
+      abstraction();
+    }
+
+    
   }
 
-  function addWordButton(word){
+  // responsive canvas onresize 
+  function windowResized() {
+    canvas = resizeCanvas(windowWidth, windowHeight);
+    background(State.background);
+  }
+
+  function writingText() {
+    originalText = this.value();
+    console.log('you are typing: ', this.value());
+  }
+
+  function moveText(){
+    console.log("Move Text");
+    textInputField.hide();
+    moveMode = true;
+  }
+
+  function editText(){
+    console.log("Edit Text");
+    moveMode = false;
+    textInputField.position(State.textX, State.textY);
+    textInputField.show();
+  }
+
+  function displayText(){
+    textAlign(LEFT, TOP);
+    rectMode(CORNER);
+    textWrap(State.textWrap);
+    textFont(State.textFont);
+    textSize(State.fontSize);
+    textLeading(State.lineHeight);
+    fill(State.textColor);
+    push();
+    translate(State.textX, State.textY);
+    text(State.text, 0, 0, width - (margin*2), height - margin);
+    pop(); // Text
+  }
+
+  function dayNight(){
+    console.log("mode nuit");
+    if($('.day-night').hasClass('night')){
+      State.background = 255; 
+      State.textColor = 0;
+      $('.day-night').removeClass('night');
+    }
+    else{
+      State.background = 0; 
+      State.textColor = 255;
+      $('.day-night').addClass('night');
+    }
+  }
+
+  function changeColorRed(){
+    console.log("couleur rouge");
+    if($('.change-color').hasClass('red')){ 
+      State.textColor = 0;
+      $('.change-color').removeClass('red');
+    }
+    else{ 
+      State.textColor = "#FF0000";
+      $('.change-color').addClass('red');
+    }
+  }
+
+  function changeFont(){
+    console.log("changer la typo");
+    if($('.change-font').hasClass('mono')){ 
+      State.textFont = font;
+      $('.change-font').removeClass('mono');
+    }
+    else{ 
+      State.textFont = monoFont;
+      $('.change-font').addClass('mono');
+    }
+  }
+
+  function changeSize(){
+    console.log("changer la taille du texte");
+    if($('.change-size').hasClass('big')){ 
+      State.fontSize = 50;
+      State.lineHeight = 50;
+      $('.change-size').removeClass('big');
+    }
+    else{ 
+      State.fontSize = 100;
+      State.lineHeight = 100;
+      $('.change-size').addClass('big');
+    }
+  }
+
+/*
+=========================================
+ Mouse
+=========================================
+*/
+
+
+  function mousePressed() {
+    // Did I click on the rectangle?
+    if (rollover) {
+      dragging = true; // If so, keep track of relative location of click to corner of rectangle
+    }
+
+    mouseOffsetX = State.textX - mouseX;
+    mouseOffsetY = State.textY - mouseY;
+  }
+
+  function mouseReleased() {
+    // Quit dragging
+    dragging = false;
+  }
+
+  function mouseDragText() {
+    // Is mouse over object
+    if (mouseX > 0 && mouseX < 900 && mouseY > 0 && mouseY < 900) {
+      rollover = true;
+    } else {
+      rollover = false;
+    }
+
+    if (dragging) {
+      State.textX = mouseX + mouseOffsetX;
+      State.textY = mouseY + mouseOffsetY;
+    }
+  }
+
+  function general(){
     background(255);
-    mot = word; 
-    textSize(100);
-    textFont(font);
-    textAlign(LEFT);
-    textWrap(CHAR);
-    textLeading(100);
-    text(mot, width/2, height/2, width - 80, height - 80);
-  }
-
-  function addLetter(letter, x, y){
-    textSize(100);
-    textFont(font);
-    textAlign(LEFT);
-    textWrap(CHAR);
-    textLeading(100);
-    text(letter, x, y);
+    textInput = $('#general-text').val();
+    text(textInput, width/2, height/2, width - 80, height - 80);
   }
 
   // nouvelle fonction qui permet d'écrire un texte en répartissant les lettres sur une grille
   function grille(){
     background(255);
-    var textGrille = $('#grille-text').val().toUpperCase();
-    mot =  textGrille;
-    if(mot == undefined){
+    if(textInput == undefined){
       errorMessage();
     }
     else{
@@ -105,7 +268,7 @@
       translate(margin * 2, margin * 3);
 
       // séparer le texte en lettres
-      var textNoSpace = mot.replaceAll(" ", "");
+      var textNoSpace = textInput.replaceAll(" ", "");
       var chars = textNoSpace.split('');
       // calculer la taille de la typo
       let fontSize = 0.52*sqrt(((width - 100) * (height - 130))/chars.length);;
@@ -130,43 +293,50 @@
   }
 
   // nouvelle fonction permet d'écrire un texte dans une colonne étroite
+  function activateAbstraction(){
+    abstractionMode = true;
+    textInputField.hide();
+  }
+
   function abstraction(){
-    background(255);
-    var textAbstraction = $('#abstraction-text').val();
-    mot = textAbstraction;
-    var fontSize = 40;
-    var lineHeight = fontSize * 1.2;
-    if(mot == undefined){
-      errorMessage();
-    }
-    else{
-      // textWrap(CHAR);
-      textLeading(lineHeight);
-      textSize(fontSize);
-      textFont(monoFont);
-      newText = mot.replace(/.{2}/g, '$&\n')
-      text(newText, 100, 100);
-      // text(newText, width/2, height/2, width - 80, height - 80);
-    }
+    console.log("Mode Abstraction", originalText)
+    // background(255);
+    // var fontSize = 40;
+    // var lineHeight = fontSize * 1.2;
+    // if(textInput == undefined){
+    //   errorMessage();
+    // }
+    // else{
+    //   // textWrap(CHAR);
+    //   textLeading(lineHeight);
+    //   textSize(fontSize);
+    //   textFont(monoFont);
+      State.text = originalText.replace(/.{2}/g, '$&\n');
+      State.textWrap = "CHAR";
+      console.log(State.text, repetitionMode);
+      abstractionMode = false;
+
+      // text(newText, 100, 100);
+      // textInput = newText;
+    // }
   }
 
   // nouvelle fonction permet d'écrire un texte avec un inter-mot aléatoire
   function espacement(){
     background(255);
     textLeading(80);
-    var textEspacement = $('#espacement-text').val();
-    mot = textEspacement;
-    if(mot == undefined){
+    if(textInput == undefined){
       errorMessage();
     }
     else{
       var min = 0;
       var max = 40;
-      var newText = mot.replace(/\s/g, function() {
+      var newText = textInput.replace(/\s/g, function() {
         return " ".repeat(parseInt(Math.random() * (max - min) + min))
       });
       textSize(50);
       text(newText, width/2, height/2, width - 80, height - 80);
+      // textInput = newText;
     }
   }
 
@@ -174,14 +344,12 @@
   function squareRepetition(){
     background(255);
     textSize(17);
-    var wordRepet = $('#repetition-word').val().toUpperCase();
-    mot = wordRepet;
-    if(mot == undefined){
+    if(textInput == undefined){
       errorMessage();
     }
     else{
       // addWordButton(mot);
-      var chars = mot.split('');
+      var chars = textInput.split('');
       var count = 0;
       var squarePosX = 0;
       var squarePosY = 0;
@@ -198,59 +366,51 @@
           }
           count ++;
         }
-      }
-      // var add = 0;
-      // for(var x=1; x<width/; x++){
-      //   for(var y=1; y<4; y++){
-      //     rect(x * 200, y * 200, 200, 200);
-        
-      //   }
-      // }
-      // for(var i=0; i<chars.length; i++){
-      //   for(var x=0; x<100; x++){
-      //     for(var y=0; y<100; y++){
-      //       text(chars[i], x + 10, y + 10);
-      //     }
-      //   }
-
-      //   // console.log(chars[i]);
-      // }
-      
+      }      
     }
   }
 
-  // nouvelle fonction permet de réaliser un carré de 9 carrés avec les lettres du mot
+  // nouvelle fonction permet de répéter le mot un certain nombre de fois
+  function activateRepetition(){
+    repetitionMode = true;
+    textInputField.hide();
+  }
+
   function repetition(){
-    background(255);
-    var fontSize = 30;
-    textSize(fontSize);
-    textFont(monoFont);
-    var wordRepet = $('#repetitiontwo-word').val();
-    mot = wordRepet;
+    console.log('Répétition Mode', originalText);
+    State.textFont = monoFont;
+    var newArr = [];
+    for (let i = 0; i < 10; i++) {
+      newArr.push(originalText);
+    }
+    State.text = newArr.join("");
+    State.textWrap = "CHAR";
+    repetitionMode = false;
+
+    // State.text.repeat(10);
+    // State.text = Array(11).join(State.text);
+    // displayText();
+
+    // textSize(State.fontSize);
+    // textFont(monoFont);
     // calcul la taille du mot 
-    var wordWidth = textWidth(mot)
+    // var wordWidth = textWidth(State.text)
 
-    var blockW = fontSize * 20;
-    var blockH = fontSize * 10;
+    // var blockW = State.fontSize * 20;
+    // var blockH = State.fontSize * 10;
 
-    if(mot == undefined){
-      errorMessage();
-    }
-    else{
-      for(var x= 0; x<blockW; x+=wordWidth){
-        for(var y= 0; y<blockH; y+=fontSize){
-          text(mot, x + 80, y + 80);
-        }
-      }
-    }
+    // for(var x= 0; x<blockW; x+=wordWidth){
+    //   for(var y= 0; y<blockH; y+=fontSize){
+    //     text(textInput, x + 80, y + 80);
+    //   }
+    // }
   }
 
   function constellation(){
     background(255);
     translate(200, 400);
     var fontSize = 30; 
-    var strConstellation = $('#constellation-text').val();
-    var words = strConstellation.split(' ');
+    var words = textInput.split(' ');
     textSize(fontSize);
     for(var i=0; i<words.length; i++){
       var randomX = random(-100, 100);
@@ -265,8 +425,7 @@
     background(255);
     translate(200, 400);
     var fontSize = 70; 
-    var wordConstellation = $('#constellation-word').val();
-    var chars = wordConstellation.split('');
+    var chars = textInput.split('');
     for(var i=0; i<chars.length; i++){
       var randomX = random(0, 50);
       var randomY = random(-100, 100);
@@ -281,8 +440,7 @@
     background(255);
     // translate(200, 400);
     var fontSize = 30; 
-    var textPermutation = $('#permutation-text').val();
-    var words = textPermutation.split(' ');
+    var words = textInput.split(' ');
     var permutations = getArrayMutations(words);
     var yPos = 0;
     var xPos = 80;
@@ -302,15 +460,6 @@
       
     }
 
-
-    // for(var i=0; i<chars.length; i++){
-    //   var randomX = random(0, 50);
-    //   var randomY = random(-100, 100);
-    //   var charsWidth = fontSize*2 + randomX;
-    //   textSize(fontSize);
-    //   text(chars[i], i * charsWidth, randomY);
-    // }
-
     function getArrayMutations(arr, perms = [], len = arr.length) {
       if (len === 1) perms.push(arr.slice(0))
 
@@ -323,211 +472,6 @@
       }
 
       return perms
-    }
-
-  }
-
-  function replaceLetter(){
-    var replacedLetter = $('#replaced-letter-val').val().toUpperCase();
-    var replaceLetter = $('#replace-letter-val').val().toUpperCase();
-    // console.log(replacedLetter, replaceLetter, mot);
-    if(mot == undefined){
-      errorMessage();
-    }
-    else{
-      var newWord = mot.replaceAll(replacedLetter, replaceLetter);
-      addWordButton(newWord);
-      mot = newWord;
-
-    }
-
-  }
-
-  // function repeatLetter(){
-  //   var repeatedLetter = $('#repeated-letter-val').val().toUpperCase();
-  //   var repeatedLetterNb = $('#repeated-letter-nb').val();
-  //   console.log(repeatedLetter, repeatedLetterNb, mot);
-  //   if(mot == undefined){
-  //     errorMessage();
-  //   }
-  //   else{
-  //     for(var x = 0; x < repeatedLetterNb*40; x=x+60){
-  //       console.log(x);
-  //       addLetter(repeatedLetter, x + 100, 100);
-  //     }
-  //   }
-  // }
-
-  function repeatLetter(){
-    var repeatedLetter = $('#repeated-letter-val').val().toUpperCase();
-    var repeatedLetterNb = $('#repeated-letter-nb').val();
-    console.log(repeatedLetter, repeatedLetterNb, mot);
-    if(mot == undefined){
-      errorMessage();
-    }
-    else{
-      var newLetter = repeatedLetter; 
-      for(var i= 0; i<repeatedLetterNb-1; i++){
-        newLetter = newLetter + repeatedLetter;
-      }
-      var newWord = mot.replaceAll(repeatedLetter, newLetter);
-      addWordButton(newWord);
-      mot = newWord;
-    }
-  }
-
-  function repeatWord(){
-    var repeatedWordNb = $('#repeated-word-nb').val();
-    console.log(repeatedWordNb);
-    if(mot == undefined){
-      errorMessage();
-    }
-    else{ 
-      for(var i= 0; i<repeatedWordNb-1; i++){
-        mot = mot + " " + mot;
-      }
-      // console.log(mot);
-      addWordButton(mot);
-    }
-  }
-
-  function createCircle(rayon){
-    background(255);
-    if(mot == undefined){
-      errorMessage();
-    }
-    else{
-      var motArray = mot.split("");
-      console.log(motArray);
-      let r = rayon;
-      let theta = 0;
-      translate(width / 2, height / 2);
-      let x = r * cos(theta);
-      let y = r * sin(theta);
-    
-      for (let i = 0; i < motArray.length; i++) {
-        rotate(QUARTER_PI / 1.25);
-        text(motArray[i], x, y);
-      }
-    }
-  }
-
-  function fillCircle(fontSize, circleSize){
-    var words = mot.split("");
-    var wordCounter = 0;
-    
-    // typo
-    // textSize(int(fontSize));
-    // var tsize = int(fontSize);
-    textSize(60);
-    var tsize = 60;
-    
-    // ellipse position and size
-    var cornerX = 0;
-    var cornerY = 0;
-    // var w = circleSize;
-    // var h = circleSize;
-    var w = width;
-    var h = height;
-    // translate(width / 2, height / 2);
-
-    // draw
-    background(255);
-
-    // display circle
-    ellipseMode(CORNER);
-    //stroke(0); 
-    noFill();
-    noStroke();
-    ellipse(cornerX, cornerY, w, h);
-    //rect(cornerX, cornerY, w, h);
-    fill(0);
-    // display the text
-    for (var i = 1; i < 30; i++) {
-      if (wordCounter >= words.length) break;
-      var a = asin((0.5*h-tsize*i)/(0.5*h));
-      // max length for this line
-      var maxlen = 0.9*pow(cos(a), 1.9)*w;
-      // min start coordinates for this line
-      var x = cornerX + 0.5*(w-maxlen);
-      var y = cornerY + tsize*(i-0.5);
-      // how much words fit in this space?
-      var linetext = words[wordCounter];
-      if (textWidth(linetext) <= maxlen) {
-        var nbWords = 0;
-        while ((textWidth(linetext) < maxlen) && (wordCounter+nbWords < words.length - 1)) {
-          nbWords++;
-          linetext = linetext + " " + words[wordCounter+nbWords];
-          console.log(linetext + " : " + textWidth(linetext) + " / " + maxlen);
-        }
-       linetext = words[wordCounter];
-       for (var j = 0; j < nbWords-1; j++) {
-         wordCounter++;
-         linetext = linetext + " " + words[wordCounter];
-       }
-       wordCounter++;
-       text(linetext, x, y+tsize);
-      }
-    }
-  }
-
-  function fillShape(shape){
-    
-
-    if(mot == undefined){
-      errorMessage();
-    }
-    else{
-
-      background(255);
-
-      var words = mot.split("");
-      var letterCounter = 0;
-      var fontSize = 25;
-
-      textSize(fontSize);
-      
-      imageMode(CENTER);
-
-      img = loadImage("assets/shape-" + shape + ".png", function () {
-        console.log(shape + " loaded");
-      
-        img.loadPixels();
-        
-        // on passe sur tous les pixels de l'image
-        for(var x = 0; x < img.width; x+=fontSize){
-          for(var y = 0; y < img.height; y+=fontSize){
-            var pix = img.get(x, y);
-            // on remplit la forme avec la couleur du pixels + on fait varier cette couleur suivant la position de la souris
-            //fill(pix);
-            // on redessine le pixel
-            if(pix[3] === 255){
-              if(letterCounter < words.length){
-                if(direction == "bas"){
-                  text(words[letterCounter], x, y); 
-                }
-                else{
-                  text(words[letterCounter], y, x); 
-                }
-                
-                letterCounter ++;
-              }
-            }
-          }
-        }
-      });
-    }
-  }
-
-  function changeDirection(newDirection){
-    direction = newDirection;
-    if(direction == 'haut'){
-      $("#haut").addClass('active');
-      $("#bas").removeClass('active');
-    }
-    else{
-      $("#bas").addClass('active');
-      $("#haut").removeClass('active');
     }
 
   }
@@ -561,206 +505,45 @@
         <a href='wall.php'>Voir les créations</a>
       </p>
     </div>
+    <div class="gui-group submit-btn" id="general-mode">
+      <h2>Écrire un texte</h2>
+      <div class="gui-input">
+        <textarea id="general-text" type="text" placeholder="écrire ici"></textarea>
+      </div>
+      <div class="gui-input ok-btn">
+        <button onclick="general()">Ok</button>
+      </div>
+    </div>
     <div class="gui-group click-btn mode-selection">
       <h2>Choisir un mode</h2>
       <div class="gui-input mode-btn" data-mode="constellation-mode">
-        <button>Constellation</button>
+        <button onclick="constellation()">Constellation</button>
       </div>
       <div class="gui-input mode-btn" data-mode="network-mode">
         <button>Réseau</button>
       </div>
       <div class="gui-input mode-btn" data-mode="repetition-mode">
-        <button>Répétition</button>
+        <button onclick="squareRepetition()">Répétition</button>
       </div>
       <div class="gui-input mode-btn" data-mode="repetitiontwo-mode">
-        <button>Répétition 2</button>
+        <button onclick="repetition()">Répétition 2</button>
       </div>
       <div class="gui-input mode-btn" data-mode="abstraction-mode">
-        <button>Abstraction</button>
+        <button onclick="abstraction()">Abstraction</button>
       </div>
       <div class="gui-input mode-btn" data-mode="espacement-mode">
-        <button>Espacement</button>
+        <button onclick="espacement()"">Espacement</button>
       </div>
       <div class="gui-input mode-btn" data-mode="grille-mode">
-        <button>Grille</button>
+        <button onclick="grille()"">Grille</button>
       </div>
       <div class="gui-input mode-btn" data-mode="permutation-mode">
-        <button>Permutation</button>
+        <button onclick="permutation()"">Permutation</button>
       </div>
       <div class="gui-input mode-btn" data-mode="soleil-mode">
         <button>Soleil ?</button>
       </div>
     </div>
-
-    <div class="gui-group submit-btn mode" id="permutation-mode">
-      <h2>Écrire des mots (maximum 5)</h2>
-      <div class="gui-input">
-        <textarea id="permutation-text" type="text" placeholder="écrire ici"></textarea>
-      </div>
-      <div class="gui-input ok-btn">
-        <button onclick="permutation()">Ok</button>
-      </div>
-    </div>
-
-    <div class="gui-group submit-btn mode" id="constellation-mode">
-      <h2>Écrire un texte (constellation)</h2>
-      <div class="gui-input">
-        <textarea id="constellation-text" placeholder="écrire ici"></textarea>
-      </div>
-      <div class="gui-input ok-btn">
-        <button onclick="constellation()">Ok</button>
-      </div>
-      <h2>Écrire un mot (constellation)</h2>
-      <div class="gui-input">
-        <input id="constellation-word" placeholder="écrire ici">
-      </div>
-      <div class="gui-input ok-btn">
-        <button onclick="constellationWord()">Ok</button>
-      </div>
-    </div>
-
-    <div class="gui-group submit-btn mode" id="repetition-mode">
-      <h2>Écrire un mot de moins de 9 lettres</h2>
-      <div class="gui-input">
-        <input id="repetition-word" type="text" placeholder="écrire ici">
-      </div>
-      <div class="gui-input ok-btn">
-        <button onclick="squareRepetition()">Ok</button>
-      </div>
-    </div> 
-
-    <div class="gui-group submit-btn mode" id="repetitiontwo-mode">
-      <h2>Écrire un mot</h2>
-      <div class="gui-input">
-        <input id="repetitiontwo-word" type="text" placeholder="écrire ici">
-      </div>
-      <div class="gui-input ok-btn">
-        <button onclick="repetition()">Ok</button>
-      </div>
-    </div> 
-
-    <div class="gui-group submit-btn mode" id="espacement-mode">
-      <h2>Écrire un texte (espacement)</h2>
-      <div class="gui-input">
-        <textarea id="espacement-text" placeholder="écrire ici"></textarea>
-      </div>
-      <div class="gui-input ok-btn">
-        <button onclick="espacement()">Ok</button>
-      </div>
-    </div> 
-
-    <div class="gui-group submit-btn mode" id="abstraction-mode">
-      <h2>Écrire un texte (abstraction)</h2>
-      <div class="gui-input">
-        <textarea id="abstraction-text" placeholder="écrire ici"></textarea>
-      </div>
-      <div class="gui-input ok-btn">
-        <button onclick="abstraction()">Ok</button>
-      </div>
-    </div>
-
-    <div class="gui-group submit-btn mode" id="grille-mode">
-      <h2>Écrire un texte (grille)</h2>
-      <div class="gui-input">
-        <textarea id="grille-text" placeholder="écrire ici"></textarea>
-      </div>
-      <div class="gui-input ok-btn">
-        <button onclick="grille()">Ok</button>
-      </div>
-    </div> 
-
-    <!-- <div class="gui-group click-btn">
-      <h2>Choisir un mot</h2>
-      <div class="gui-input">
-        <button onclick="addWordButton('RESPIRER')">Respirer</button>
-      </div>
-      <div class="gui-input">
-        <button onclick="addWordButton('PRÉSENCE')">Présence</button>
-      </div>
-      <div class="gui-input">
-        <button onclick="addWordButton('ABSENCE')">Absence</button>
-      </div>
-      <div class="gui-input">
-        <button onclick="addWordButton('DEMAIN')">Demain</button>
-      </div>
-      <div class="gui-input">
-        <button onclick="addWordButton('SILENCE')">Silence</button>
-      </div>
-      <div class="gui-input">
-        <button onclick="addWordButton('CONCRET')">Concret</button>
-      </div>
-      <div class="gui-input">
-        <button onclick="addWordButton('BRUT')">Brut</button>
-      </div>
-    </div> -->
-    <!-- <div class="gui-group submit-btn">
-      <h2>Remplacer une lettre</h2>
-      <div class="gui-input">
-        <input id="replaced-letter-val" type="text" placeholder="lettre à remplacer">
-      </div>
-      <div class="gui-input">
-        <input id="replace-letter-val" type="text" placeholder="lettre de remplacement">
-      </div>
-      <div class="gui-input ok-btn">
-        <button onclick="replaceLetter()">Ok</button>
-      </div>
-    </div>
-    <div class="gui-group submit-btn">
-      <h2>Répéter une lettre</h2>
-      <div class="gui-input">
-        <input id="repeated-letter-val" type="text" placeholder="lettre à répéter">
-      </div>
-      <div class="gui-input">
-        <input id="repeated-letter-nb" type="number" placeholder="nombre de répétition">
-      </div>
-      <div class="gui-input ok-btn">
-        <button onclick="repeatLetter()">Ok</button>
-      </div>
-    </div>
-    <div class="gui-group submit-btn">
-      <h2>Répéter le mot</h2>
-      <div class="gui-input">
-        <input id="repeated-word-nb" type="number" placeholder="nombre de répétition" min="2" max="15">
-      </div>
-      <div class="gui-input ok-btn">
-        <button onclick="repeatWord()">Ok</button>
-      </div>
-    </div>
-    <div class="gui-group click-btn">
-      <h2>Remplir une forme</h2>
-      <div class="gui-input">
-        <button onclick="fillShape('02')">Cercle</button>
-      </div>
-      <div class="gui-input">
-        <button onclick="fillShape('01')">Triangle</button>
-      </div>
-      <div class="gui-input">
-        <button onclick="fillShape('03')">Z</button>
-      </div>
-      <div class="gui-input">
-        <button onclick="fillShape('04')">Burger</button>
-      </div>
-      <div class="gui-input">
-        <button onclick="fillShape('05')">Carl</button>
-      </div>
-      <div class="gui-input">
-        <button onclick="fillShape('06')">Triangles</button>
-      </div>
-      <div class="gui-input">
-        <button onclick="fillShape('07')">Enchaînement</button>
-      </div>
-      <div class="gui-input">
-        <button onclick="fillShape('08')">Cadre</button>
-      </div>
-      <div class="gui-input">
-        <button onclick="fillShape('09')">Zigouigouis</button>
-      </div>
-      <br>
-      <br>
-      <h2>Choisir le sens</h2>
-      <button onclick="changeDirection('haut')" id="haut">Haut</button>
-      <button onclick="changeDirection('bas')" id="bas" class="active">Bas</button>
-    </div> -->
     
   	`;
     $("#guiWrapper").html(markup);

@@ -6,8 +6,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Générateur de poèmes</title>
   
+  <link rel="stylesheet" type="text/css" href="js/jquery-ui.min.css">
   <link rel="stylesheet" type="text/css" href="style.css">
   <script src="js/jquery-3.4.1.min.js" type="text/javascript"></script>
+  <script src="js/jquery-ui.min.js" type="text/javascript"></script>
   <script src="js/p5.js"></script>
   <script src="js/p5.gui.js"></script>
   <script src="js/quicksettings.js"></script>
@@ -21,12 +23,38 @@
 <body>
 
     <div id="sketch"></div>
-    <div id="guiWrapper"></div>
-    <div class="save-buttons">
+    <div id="guiWrapper">
+      <div class="gui-group day-night" onclick="dayNight()">
+        ◐
+      </div>
+      <div class="gui-group change-font" onclick="changeFont()">
+        F
+      </div>
+      <div class="gui-group change-size" onclick="changeSize()">
+        A
+      </div>
+      <div class="gui-group change-color" onclick="changeColorRed()">
+        <div class="red-btn"></div>
+      </div>
+      <div class="gui-group edit-text active" onclick="editText()">
+        T
+      </div>
+      <div class="gui-group move-text" onclick="moveText()"">
+        ☞
+      </div>
+      <div class="gui-group repetitiontwo-mode" onclick="activateRepetition()">
+        répétition
+      </div>
+       <div class="gui-group abstraction-mode" onclick="activateAbstraction()">
+        abstraction
+      </div>
+    </div>
+
+    <!-- <div class="save-buttons">
       <div id="save-to-server-btn">Enregistrer l'image</div>
       <div id="export-btn">Télécharger l'image</div>
       <div id="delete-poem">Effacer</div>
-    </div>
+    </div> -->
 
 </body>
 

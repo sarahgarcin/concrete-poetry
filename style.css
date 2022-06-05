@@ -23,7 +23,7 @@ textarea{
 }
 
 
-#sketch {
+/*#sketch {
   width: calc(100vw - 350px);
   position: fixed;
   top: 0;
@@ -32,45 +32,93 @@ textarea{
   justify-content: center;
   align-items: center;
   height: 100vh;
-  /*background: #000;*/
   background: #8A8A8A;
-}
+}*/
 
-canvas {
+/*canvas {
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
   cursor: -webkit-grab;
   width: 56vw !important;
   height: 40vw !important;
   background: #FFF;
+}*/
+
+#text-input{
+  border: none;
+  font-size: 80px;
 }
 
-#gui {
+#text-input:focus { outline: none; }
+
+/*#gui {
   z-index: 10000;
   min-height: 100vh;
   width: 350px;
   background: #efefef;
   font-family: sans-serif;
+}*/
+
+#guiWrapper{
+  position: fixed;
+  width: 100%;
+  top: 0;
+  left:0;
+  display: flex;
 }
 
+
 .gui-wrapper {
-  margin: 10px 0;
+/*  margin: 10px 0;
   width: 100%;
   display: flex;
-  align-items: center;
+  align-items: center;*/
 }
 
 .gui-group {
-  padding: 15px;
-  border-bottom: 1px solid #000000;
-  position: relative;
+  padding: 10px 15px;
+  border: 1px solid #000000;
+  /*display: inline-block;*/
+  cursor: pointer;
+  background: #FFF;
 }
 
-.gui-group.mode{
+.gui-group:hover, .gui-group.active {
+  background: #FFB6AF;
+}
+
+.red-btn{
+  width: 17px;
+  height: 17px;
+  background: red;
+}
+
+.change-color.red .red-btn{
+  background: #000;
+}
+
+.change-font{
+  font-family: sans-serif;
+}
+
+.change-font.mono{
+  font-family: monospace;
+}
+
+.change-size{
+  font-size: 1em;
+}
+
+.change-size.big{
+  font-size: 2em;
+  padding: 0px 10px;
+}
+
+.gui-group.mode, .gui-group.mode-selection{
   display: none;
 }
 
 
-.gui-group.mode.active{
+.gui-group.mode.active, .gui-group.mode-selection.active{
   display: block;
 }
 
