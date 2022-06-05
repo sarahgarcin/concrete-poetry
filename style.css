@@ -44,11 +44,13 @@ textarea{
 }*/
 
 #text-input{
-  border: none;
+  /*border: none;*/
   font-size: 80px;
+  height: calc(100vh - 70px);
+  background: #FFF;
 }
 
-#text-input:focus { outline: none; }
+/*#text-input:focus { outline: none; }*/
 
 /*#gui {
   z-index: 10000;

@@ -13,7 +13,10 @@ var mouseOffsetX = 0,
     moveMode = false;
 
 var repetitionMode = false,
-    abstractionMode = false;
+    abstractionMode = false,
+    espacementMode = false,
+    permutationMode = false,
+    writingMode = true;
 
 /* =========================================
     STATE
@@ -30,8 +33,9 @@ var State = {
     textY: margin, 
     textFont: "",
     textWrap: "WORD", 
-    background: 255,
-    textColor: 0
+    background: "#FFF",
+    textColor: "#000", 
+    textUppercase : false
 }
 
   function preload() {
@@ -63,7 +67,7 @@ var State = {
     // Write text - display input text field
     // textInputField = createInput(State.text);
     textInputField = createElement("textarea", State.text);
-    textInputField.position(margin, margin);
+    textInputField.position(State.textX, State.textY);
     textInputField.size(windowWidth - (margin*2));
     textInputField.input(writingText);
     textInputField.id('text-input');
@@ -98,6 +102,16 @@ var State = {
       $('.mode-selection').addClass('active');
     });
 
+    $('.move-text').on('click', function(){
+      $('.edit-text').removeClass('active');
+      $('.move-text').addClass('active');
+    });
+
+    $('.edit-text').on('click', function(){
+      $('.edit-text').addClass('active');
+      $('.move-text').removeClass('active');
+    });
+
     // $('.gui-group').on('click', function(){
     //   if(!$(this).hasClass('active')){
     //     $('.gui-group').removeClass('active');
@@ -111,6 +125,13 @@ var State = {
     background(State.background);
     displayText();
 
+    if(writingMode){
+      displayTextarea();
+    }
+    else{
+      textInputField.hide();
+    }
+
     if(moveMode){
       mouseDragText();
     }
@@ -119,6 +140,13 @@ var State = {
     }
     if(abstractionMode){
       abstraction();
+    }
+    if(espacementMode){
+      espacement();
+    }
+
+    if(permutationMode){
+      permutation();
     }
 
     
@@ -132,20 +160,23 @@ var State = {
 
   function writingText() {
     originalText = this.value();
+    State.text = originalText;
     console.log('you are typing: ', this.value());
   }
 
   function moveText(){
     console.log("Move Text");
-    textInputField.hide();
+    // textInputField.hide();
+    writingMode = false;
     moveMode = true;
   }
 
   function editText(){
     console.log("Edit Text");
     moveMode = false;
-    textInputField.position(State.textX, State.textY);
-    textInputField.show();
+    // textInputField.position(State.textX, State.textY);
+    // textInputField.show();
+    writingMode = true;
   }
 
   function displayText(){
@@ -158,20 +189,35 @@ var State = {
     fill(State.textColor);
     push();
     translate(State.textX, State.textY);
-    text(State.text, 0, 0, width - (margin*2), height - margin);
+    text(State.text, 0, 0, width - (margin*2));
     pop(); // Text
+  }
+
+  function displayTextarea(){
+    // console.log("display textarea", State.textFont, State.fontSize);
+    textInputField.show();
+    textInputField.position(State.textX, State.textY);
+    $('#text-input').val(State.text);
+    $('#text-input').css({
+      'font-family': 'automatico',
+      'font-size': State.fontSize + "px", 
+      'line-height' : 1, 
+      'color': State.textColor, 
+      'background-color': State.background, 
+      'border-color': State.textColor
+    });
   }
 
   function dayNight(){
     console.log("mode nuit");
     if($('.day-night').hasClass('night')){
-      State.background = 255; 
-      State.textColor = 0;
+      State.background = "#FFF"; 
+      State.textColor = "#000";
       $('.day-night').removeClass('night');
     }
     else{
-      State.background = 0; 
-      State.textColor = 255;
+      State.background = "#000"; 
+      State.textColor = "#FFF";
       $('.day-night').addClass('night');
     }
   }
@@ -179,7 +225,7 @@ var State = {
   function changeColorRed(){
     console.log("couleur rouge");
     if($('.change-color').hasClass('red')){ 
-      State.textColor = 0;
+      State.textColor = "#000";
       $('.change-color').removeClass('red');
     }
     else{ 
@@ -250,11 +296,11 @@ var State = {
     }
   }
 
-  function general(){
-    background(255);
-    textInput = $('#general-text').val();
-    text(textInput, width/2, height/2, width - 80, height - 80);
-  }
+/*
+=========================================
+ Modes
+=========================================
+*/
 
   // nouvelle fonction qui permet d'écrire un texte en répartissant les lettres sur une grille
   function grille(){
@@ -295,49 +341,38 @@ var State = {
   // nouvelle fonction permet d'écrire un texte dans une colonne étroite
   function activateAbstraction(){
     abstractionMode = true;
-    textInputField.hide();
+    writingMode = false;
+    moveMode = true;
+    $('.move-text').addClass('active');
+    // textInputField.hide();
   }
 
   function abstraction(){
-    console.log("Mode Abstraction", originalText)
-    // background(255);
-    // var fontSize = 40;
-    // var lineHeight = fontSize * 1.2;
-    // if(textInput == undefined){
-    //   errorMessage();
-    // }
-    // else{
-    //   // textWrap(CHAR);
-    //   textLeading(lineHeight);
-    //   textSize(fontSize);
-    //   textFont(monoFont);
+    console.log("Mode Abstraction", originalText);
       State.text = originalText.replace(/.{2}/g, '$&\n');
       State.textWrap = "CHAR";
       console.log(State.text, repetitionMode);
       abstractionMode = false;
-
-      // text(newText, 100, 100);
-      // textInput = newText;
-    // }
   }
 
   // nouvelle fonction permet d'écrire un texte avec un inter-mot aléatoire
+  function activateEspacement(){
+    espacementMode = true;
+    writingMode = false;
+    moveMode = true;
+    $('.move-text').addClass('active');
+    // textInputField.hide();
+  }
+
   function espacement(){
-    background(255);
-    textLeading(80);
-    if(textInput == undefined){
-      errorMessage();
-    }
-    else{
-      var min = 0;
-      var max = 40;
-      var newText = textInput.replace(/\s/g, function() {
-        return " ".repeat(parseInt(Math.random() * (max - min) + min))
-      });
-      textSize(50);
-      text(newText, width/2, height/2, width - 80, height - 80);
-      // textInput = newText;
-    }
+    console.log("Mode Abstraction", originalText);
+    var min = 0;
+    var max = 40;
+    State.textWrap = "WORD";
+    State.text = originalText.replace(/\s/g, function() {
+      return " ".repeat(parseInt(Math.random() * (max - min) + min))
+    });
+    espacementMode = false;
   }
 
   // nouvelle fonction permet de réaliser un carré de 9 carrés avec les lettres du mot
@@ -373,12 +408,15 @@ var State = {
   // nouvelle fonction permet de répéter le mot un certain nombre de fois
   function activateRepetition(){
     repetitionMode = true;
-    textInputField.hide();
+    writingMode = false;
+    moveMode = true;
+    $('.move-text').addClass('active');
+    // textInputField.hide();
   }
 
   function repetition(){
     console.log('Répétition Mode', originalText);
-    State.textFont = monoFont;
+    // State.textFont = monoFont;
     var newArr = [];
     for (let i = 0; i < 10; i++) {
       newArr.push(originalText);
@@ -386,24 +424,6 @@ var State = {
     State.text = newArr.join("");
     State.textWrap = "CHAR";
     repetitionMode = false;
-
-    // State.text.repeat(10);
-    // State.text = Array(11).join(State.text);
-    // displayText();
-
-    // textSize(State.fontSize);
-    // textFont(monoFont);
-    // calcul la taille du mot 
-    // var wordWidth = textWidth(State.text)
-
-    // var blockW = State.fontSize * 20;
-    // var blockH = State.fontSize * 10;
-
-    // for(var x= 0; x<blockW; x+=wordWidth){
-    //   for(var y= 0; y<blockH; y+=fontSize){
-    //     text(textInput, x + 80, y + 80);
-    //   }
-    // }
   }
 
   function constellation(){
@@ -436,29 +456,40 @@ var State = {
 
   }
 
+  function activatePermutation(){
+    permutationMode = true;
+    writingMode = false;
+    moveMode = true;
+    $('.move-text').addClass('active');
+    // textInputField.hide();
+  }
+
   function permutation(){
-    background(255);
-    // translate(200, 400);
-    var fontSize = 30; 
-    var words = textInput.split(' ');
+    console.log('Permutation Mode', originalText);
+    var words = originalText.split(' ');
     var permutations = getArrayMutations(words);
-    var yPos = 0;
-    var xPos = 80;
-    textSize(fontSize);
+    var newArr = [];
+    console.log(permutations);
+    // var yPos = 0;
+    // var xPos = 80;
+    // textSize(fontSize);
     for(var i = 0; i<permutations.length; i++){
-      for(var ii= 0; ii<permutations[i].length; ii++){
+      // for(var ii= 0; ii<permutations[i].length; ii++){
         var sentence = permutations[i].join(' ');
-        text(sentence, xPos, yPos + 80);
-      }
-      if(yPos > height - 150){
-        yPos = 0; 
-        xPos += textWidth(textPermutation) + 50; 
-      }
-      else{
-        yPos += fontSize * 1.2;
-      }
+        newArr.push(sentence);
+        // text(sentence, xPos, yPos + 80);
+      // }
+      // if(yPos > height - 150){
+      //   yPos = 0; 
+      //   xPos += textWidth(textPermutation) + 50; 
+      // }
+      // else{
+      //   yPos += State.textSize * 1.2;
+      // }
       
     }
+    State.text = newArr.join("\n");
+    permutationMode = false;
 
     function getArrayMutations(arr, perms = [], len = arr.length) {
       if (len === 1) perms.push(arr.slice(0))
@@ -487,64 +518,4 @@ var State = {
     textFont('Courier');
     textAlign(CENTER);
     text("Choisir un mot", width/2, height/2);
-  }
-
-
-  function buildUI() {
-    //////////////
-    // CREATE TEMPLATE
-    //////////////
-
-    var markup = `
-    <div id="gui">
-
-    <div class="gui-group header">
-
-    	<h4>Générateur de poèmes</h4>
-      <p>
-        <a href='wall.php'>Voir les créations</a>
-      </p>
-    </div>
-    <div class="gui-group submit-btn" id="general-mode">
-      <h2>Écrire un texte</h2>
-      <div class="gui-input">
-        <textarea id="general-text" type="text" placeholder="écrire ici"></textarea>
-      </div>
-      <div class="gui-input ok-btn">
-        <button onclick="general()">Ok</button>
-      </div>
-    </div>
-    <div class="gui-group click-btn mode-selection">
-      <h2>Choisir un mode</h2>
-      <div class="gui-input mode-btn" data-mode="constellation-mode">
-        <button onclick="constellation()">Constellation</button>
-      </div>
-      <div class="gui-input mode-btn" data-mode="network-mode">
-        <button>Réseau</button>
-      </div>
-      <div class="gui-input mode-btn" data-mode="repetition-mode">
-        <button onclick="squareRepetition()">Répétition</button>
-      </div>
-      <div class="gui-input mode-btn" data-mode="repetitiontwo-mode">
-        <button onclick="repetition()">Répétition 2</button>
-      </div>
-      <div class="gui-input mode-btn" data-mode="abstraction-mode">
-        <button onclick="abstraction()">Abstraction</button>
-      </div>
-      <div class="gui-input mode-btn" data-mode="espacement-mode">
-        <button onclick="espacement()"">Espacement</button>
-      </div>
-      <div class="gui-input mode-btn" data-mode="grille-mode">
-        <button onclick="grille()"">Grille</button>
-      </div>
-      <div class="gui-input mode-btn" data-mode="permutation-mode">
-        <button onclick="permutation()"">Permutation</button>
-      </div>
-      <div class="gui-input mode-btn" data-mode="soleil-mode">
-        <button>Soleil ?</button>
-      </div>
-    </div>
-    
-  	`;
-    $("#guiWrapper").html(markup);
   }

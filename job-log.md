@@ -1,5 +1,5 @@
 ## to do 
-- garder version v1bis
+- ok - garder version v1bis
 - développer réseau et soleil 
 - remettre expression avec les formes = pouvoir dessiner directement dans l'interface
 - ok ---> écrire le texte directement dans la page 
@@ -14,7 +14,9 @@
   + ok - négatif / positif
   + ok - rouge 
   + ok - choix de la font (bouton simple mono/medium)
-  + taille = grand / petit / adaptatif (bouton simple d'interface)
+  + ok - taille = grand / petit / adaptatif (bouton simple d'interface)
+  + manque bouton adaptatif
+  + minuscule / capitale
 - onglet qui explique la police de caractère (petit texte) 
 - trouver un titre 
 - page d'accueil
