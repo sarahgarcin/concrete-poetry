@@ -5,6 +5,11 @@ var img;
 var canvas;
 var margin = 80;
 var originalText = "Écrire un texte ici";
+var randomX;
+var randomY;
+
+// déclarer l'objet "mot" pour le mode constellation
+let word;
 
 var mouseOffsetX = 0,
     mouseOffsetY = 0,
@@ -16,7 +21,12 @@ var repetitionMode = false,
     abstractionMode = false,
     espacementMode = false,
     permutationMode = false,
+    grilleMode = false,
+    squareMode = false,
+    constellationMode = false,
     writingMode = true;
+
+var constellationProcess = false;
 
 /* =========================================
     STATE
@@ -123,7 +133,21 @@ var State = {
 
   function draw() {
     background(State.background);
-    displayText();
+    if(!grilleMode && !squareMode && !constellationMode){
+      displayText();
+    }
+    else if(grilleMode){
+      grille();
+    }
+
+    else if(squareMode){
+      squareRepetition();
+    }
+
+    else if(constellationMode){
+      constellation();
+    }
+    
 
     if(writingMode){
       displayTextarea();
@@ -148,6 +172,7 @@ var State = {
     if(permutationMode){
       permutation();
     }
+
 
     
   }
@@ -303,39 +328,46 @@ var State = {
 */
 
   // nouvelle fonction qui permet d'écrire un texte en répartissant les lettres sur une grille
+  function activateGrille(){
+    grilleMode = true;
+    writingMode = false;
+    moveMode = true;
+    squareMode = false;
+    constellationMode = false;
+    $('.move-text').addClass('active');
+  }
+
   function grille(){
-    background(255);
-    if(textInput == undefined){
-      errorMessage();
-    }
-    else{
-      // définir les paramètres
-      let margin = 30;
-      translate(margin * 2, margin * 3);
+    // définir les paramètres
+    // let margin = 30;
+    // translate(margin * 2, margin * 3);
 
-      // séparer le texte en lettres
-      var textNoSpace = textInput.replaceAll(" ", "");
-      var chars = textNoSpace.split('');
-      // calculer la taille de la typo
-      let fontSize = 0.52*sqrt(((width - 100) * (height - 130))/chars.length);;
-      //  la taille du gap est calculé en fonction de la taille de la typo
-      let gap = fontSize * 2;
-      textSize(fontSize);
-      textFont(monoFont);
-      textWrap(CHAR);
-      textLeading(gap);
+    // séparer le texte en lettres
+    var textNoSpace = originalText.replaceAll(" ", "");
+    var chars = textNoSpace.split('');
+    // calculer la taille de la typo
+    let fontSize = 0.52*sqrt(((width - 100) * (height - 130))/chars.length);
+    //  la taille du gap est calculé en fonction de la taille de la typo
+    let gap = fontSize * 2;
+    textSize(fontSize);
+    textFont(State.textFont);
+    textWrap(CHAR);
+    textLeading(gap);
+    fill(State.textColor);
 
-      var counter = 0;
-      for (let y = 0; y < height - 100; y += gap) {
-        for (let x = 0; x < width - 130; x += gap) {
-          let letter = chars[counter];
-          text(letter, x, y);
+    var counter = 0;
 
-          // Increment the counter
-          counter++;
-        }
+    push();
+    translate(State.textX, State.textY);
+    for (let y = 0; y < height - 100; y += gap) {
+      for (let x = 0; x < width - 130; x += gap) {
+        let letter = chars[counter];
+        text(letter, x, y);
+        // Increment the counter
+        counter++;
       }
     }
+    pop();
   }
 
   // nouvelle fonction permet d'écrire un texte dans une colonne étroite
@@ -343,6 +375,9 @@ var State = {
     abstractionMode = true;
     writingMode = false;
     moveMode = true;
+    grilleMode = false;
+    squareMode = false;
+    constellationMode = false;
     $('.move-text').addClass('active');
     // textInputField.hide();
   }
@@ -360,6 +395,9 @@ var State = {
     espacementMode = true;
     writingMode = false;
     moveMode = true;
+    grilleMode = false;
+    squareMode = false;
+    constellationMode = false;
     $('.move-text').addClass('active');
     // textInputField.hide();
   }
@@ -376,33 +414,42 @@ var State = {
   }
 
   // nouvelle fonction permet de réaliser un carré de 9 carrés avec les lettres du mot
+  function activateSquareRepetition(){
+    squareMode = true;
+    writingMode = false;
+    moveMode = true;
+    grilleMode = false;
+    constellationMode = false;
+    $('.move-text').addClass('active');
+    // textInputField.hide();
+  }
+
   function squareRepetition(){
-    background(255);
+  
+    var chars = originalText.split('');
+    var count = 0;
+    var squarePosX = 0;
+    var squarePosY = 0;
+    var squareSize = 200;
+    var nbOfRepet = 10;
     textSize(17);
-    if(textInput == undefined){
-      errorMessage();
-    }
-    else{
-      // addWordButton(mot);
-      var chars = textInput.split('');
-      var count = 0;
-      var squarePosX = 0;
-      var squarePosY = 0;
-      var squareSize = 200;
-      var nbOfRepet = 10;
-      for (let y = 1; y < (chars.length / 3) + 1; y++) {
-        for (let x = 1; x < (chars.length / 3) + 1; x++) {
-          squarePosX = x * squareSize;
-          squarePosY = y * squareSize;
-          for(var ix= 0; ix<squareSize; ix+=squareSize/nbOfRepet){
-            for(var iy= 0; iy<squareSize; iy+=squareSize/nbOfRepet){
-              text(chars[count], ix + squarePosX, iy + squarePosY);
-            }
+    textFont(State.textFont);
+    fill(State.textColor);
+    push();
+    translate(State.textX, State.textY);
+    for (let y = 0; y < (chars.length / 3); y++) {
+      for (let x = 0; x < (chars.length / 3); x++) {
+        squarePosX = x * squareSize;
+        squarePosY = y * squareSize;
+        for(var ix= 0; ix<squareSize; ix+=squareSize/nbOfRepet){
+          for(var iy= 0; iy<squareSize; iy+=squareSize/nbOfRepet){
+            text(chars[count], ix + squarePosX, iy +  squarePosY);
           }
-          count ++;
         }
-      }      
+        count ++;
+      }
     }
+    pop();      
   }
 
   // nouvelle fonction permet de répéter le mot un certain nombre de fois
@@ -410,6 +457,9 @@ var State = {
     repetitionMode = true;
     writingMode = false;
     moveMode = true;
+    grilleMode = false;
+    squareMode = false;
+    constellationMode = false;
     $('.move-text').addClass('active');
     // textInputField.hide();
   }
@@ -418,7 +468,7 @@ var State = {
     console.log('Répétition Mode', originalText);
     // State.textFont = monoFont;
     var newArr = [];
-    for (let i = 0; i < 10; i++) {
+    for (let i = 0; i < 30; i++) {
       newArr.push(originalText);
     }
     State.text = newArr.join("");
@@ -426,40 +476,97 @@ var State = {
     repetitionMode = false;
   }
 
+  // nouvelle fonction permettant de créer des constellations de phrases ou de mot 
+  function activateConstellation(){
+    constellationMode = true;
+    writingMode = false;
+    moveMode = true;
+    grilleMode = false;
+    squareMode = false;
+    $('.move-text').addClass('active');
+    constellationProcess = true;
+    // textInputField.hide();
+  }
   function constellation(){
-    background(255);
-    translate(200, 400);
-    var fontSize = 30; 
-    var words = textInput.split(' ');
-    textSize(fontSize);
-    for(var i=0; i<words.length; i++){
-      var randomX = random(-100, 100);
-      var randomY = random(-100, 100);
-      var wordWidth = words[i].length * (fontSize/1.6) + randomX;
-      text(words[i], i * wordWidth, randomY);
-    }
+    var words = originalText.split(' ');
+    var constellationWords = [];
 
+    textSize(State.fontSize);
+    textFont(State.textFont);
+    fill(State.textColor);
+    push();
+    translate(State.textX, State.textY);
+
+    if(words.length > 1){
+      for(var i=0; i<words.length; i++){
+        constellationWords.push(new Word(words[i]));
+
+        // if(constellationProcess){
+        //   randomX = random(-100, 100);
+        //   randomY = random(0, 300);
+        // }
+        // console.log(randomX, randomY, constellationProcess);
+        // var wordWidth = words[i].length * (State.fontSize/1.6) + randomX;
+        // text(words[i], i * wordWidth, randomY);
+      }
+    }
+    else{
+      var chars = originalText.split('');
+      for(var i=0; i<chars.length; i++){
+        if(constellationProcess){
+          randomX = random(0, 50);
+          randomY = random(-100, 100);
+        }
+        var charsWidth = State.fontSize*2 + randomX;
+        text(chars[i], i * charsWidth, randomY);
+      }
+    }
+    // if(constellationProcess){
+      for (let i = 0; i < constellationWords.length; i++) {
+        constellationWords[i].display(i);
+      }
+    // }
+    
+    pop();
+    constellationProcess = false;
   }
 
-  function constellationWord(){
-    background(255);
-    translate(200, 400);
-    var fontSize = 70; 
-    var chars = textInput.split('');
-    for(var i=0; i<chars.length; i++){
-      var randomX = random(0, 50);
-      var randomY = random(-100, 100);
-      var charsWidth = fontSize*2 + randomX;
-      textSize(fontSize);
-      text(chars[i], i * charsWidth, randomY);
+  // Jitter class
+  class Word {
+    constructor(currentWord) {
+      this.x = random(width);
+      this.y = random(height);
+      this.text = currentWord;
+      this.width = textWidth(currentWord) + this.x;
     }
 
+    display(i) {
+      text(this.text, i * this.width, this.y);
+    }
   }
+
+  // function constellationWord(){
+  //   background(255);
+  //   translate(200, 400);
+  //   var fontSize = 70; 
+  //   var chars = textInput.split('');
+  //   for(var i=0; i<chars.length; i++){
+  //     var randomX = random(0, 50);
+  //     var randomY = random(-100, 100);
+  //     var charsWidth = fontSize*2 + randomX;
+  //     textSize(fontSize);
+  //     text(chars[i], i * charsWidth, randomY);
+  //   }
+
+  // }
 
   function activatePermutation(){
     permutationMode = true;
     writingMode = false;
     moveMode = true;
+    grilleMode = false;
+    squareMode = false;
+    constellationMode = false;
     $('.move-text').addClass('active');
     // textInputField.hide();
   }
