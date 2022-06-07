@@ -393,7 +393,7 @@ var State = {
   function abstraction(){
     console.log("Mode Abstraction", originalText);
       State.text = originalText.replace(/.{2}/g, '$&\n');
-      State.textWrap = "CHAR";
+      State.textWrap = "WORD";
       console.log(State.text, repetitionMode);
       abstractionMode = false;
   }
