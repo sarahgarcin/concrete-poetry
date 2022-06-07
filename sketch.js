@@ -8,6 +8,14 @@ var originalText = "Écrire un texte ici";
 var randomX;
 var randomY;
 
+// array des positions des mots pour le mode constellation
+var wordsX = [];
+var wordsY = [];
+
+// array des positions des lettres pour le mode constellation
+var lettersX = [];
+var lettersY = [];
+
 // déclarer l'objet "mot" pour le mode constellation
 let word;
 
@@ -485,11 +493,17 @@ var State = {
     squareMode = false;
     $('.move-text').addClass('active');
     constellationProcess = true;
+    // vider les array contenant les positions des mots 
+    wordsX = [];
+    wordsY = [];
+
+    // vider les array contenant les positions des lettres 
+    lettersX = [];
+    lettersY = [];
     // textInputField.hide();
   }
   function constellation(){
     var words = originalText.split(' ');
-    var constellationWords = [];
 
     textSize(State.fontSize);
     textFont(State.textFont);
@@ -499,51 +513,30 @@ var State = {
 
     if(words.length > 1){
       for(var i=0; i<words.length; i++){
-        constellationWords.push(new Word(words[i]));
-
-        // if(constellationProcess){
-        //   randomX = random(-100, 100);
-        //   randomY = random(0, 300);
-        // }
-        // console.log(randomX, randomY, constellationProcess);
-        // var wordWidth = words[i].length * (State.fontSize/1.6) + randomX;
-        // text(words[i], i * wordWidth, randomY);
+        if(constellationProcess){
+          wordsX.push(random(-100, 100));
+          wordsY.push(random(0, 300));
+        }
+        var wordWidth = words[i].length * (State.fontSize/1.6) + wordsX[i];
+        text(words[i], i * wordWidth, wordsY[i]);
       }
     }
     else{
       var chars = originalText.split('');
       for(var i=0; i<chars.length; i++){
         if(constellationProcess){
-          randomX = random(0, 50);
-          randomY = random(-100, 100);
+          lettersX.push(random(0, 50));
+          lettersY.push(random(0, 300));
         }
-        var charsWidth = State.fontSize*2 + randomX;
-        text(chars[i], i * charsWidth, randomY);
+        var charsWidth = State.fontSize*2 + lettersX[i];
+        text(chars[i], i * charsWidth, lettersY[i]);
       }
     }
-    // if(constellationProcess){
-      for (let i = 0; i < constellationWords.length; i++) {
-        constellationWords[i].display(i);
-      }
-    // }
     
     pop();
     constellationProcess = false;
   }
 
-  // Jitter class
-  class Word {
-    constructor(currentWord) {
-      this.x = random(width);
-      this.y = random(height);
-      this.text = currentWord;
-      this.width = textWidth(currentWord) + this.x;
-    }
-
-    display(i) {
-      text(this.text, i * this.width, this.y);
-    }
-  }
 
   // function constellationWord(){
   //   background(255);
