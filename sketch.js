@@ -7,6 +7,18 @@ var margin = 80;
 var originalText = "Écrire un texte ici";
 var randomX;
 var randomY;
+var clickCounter = 0; 
+
+// variables pour l'exportation
+let scaleRatio = 1;
+let exportRatio = 3;
+let buffer;
+let a4Paper = {
+  width: 2480,
+  height: 1754
+}
+let pageW; 
+let pageH; 
 
 // array des positions des mots pour le mode constellation
 var wordsX = [];
@@ -32,6 +44,7 @@ var repetitionMode = false,
     grilleMode = false,
     squareMode = false,
     constellationMode = false,
+    formeMode = false,
     writingMode = true;
 
 var constellationProcess = false;
@@ -65,8 +78,9 @@ var State = {
   function setup() {
     imageMode(CENTER);
     rectMode(CENTER); // Create canvas
-
-    canvas = createCanvas(windowWidth, windowHeight);
+    pageW = a4Paper.width / exportRatio;
+    pageH = a4Paper.height / exportRatio;
+    canvas = createCanvas(pageW, pageH);
     canvas.parent("sketch"); // The poster is a PGraphics-element
 
     State.textFont = font;
@@ -85,8 +99,9 @@ var State = {
     // Write text - display input text field
     // textInputField = createInput(State.text);
     textInputField = createElement("textarea", State.text);
+    // textInputField.parent('text-input_wrapper');
     textInputField.position(State.textX, State.textY);
-    textInputField.size(windowWidth - (margin*2));
+    textInputField.size(pageW);
     textInputField.input(writingText);
     textInputField.id('text-input');
 
@@ -141,7 +156,7 @@ var State = {
 
   function draw() {
     background(State.background);
-    if(!grilleMode && !squareMode && !constellationMode){
+    if(!grilleMode && !squareMode && !constellationMode && !formeMode){
       displayText();
     }
     else if(grilleMode){
@@ -154,6 +169,10 @@ var State = {
 
     else if(constellationMode){
       constellation();
+    }
+
+    else if(formeMode){
+      forme();
     }
     
 
@@ -186,15 +205,24 @@ var State = {
   }
 
   // responsive canvas onresize 
-  function windowResized() {
-    canvas = resizeCanvas(windowWidth, windowHeight);
-    background(State.background);
-  }
+  // function windowResized() {
+  //   canvas = resizeCanvas(windowWidth, windowHeight);
+  //   background(State.background);
+  // }
 
   function writingText() {
     originalText = this.value();
     State.text = originalText;
     console.log('you are typing: ', this.value());
+  }
+
+  function toogleEditView(){
+    if(writingMode === true){
+      moveText();
+    }
+    else{
+      editText();
+    }
   }
 
   function moveText(){
@@ -335,6 +363,66 @@ var State = {
 =========================================
 */
 
+  // fonction permettant de dessiner, sauvegarder un svg et de le transformer en texte 
+  // forme ne fonctionne pas => demande trop de ressources 
+  function activateForme(){
+    formeMode = true;
+    grilleMode = false;
+    writingMode = false;
+    moveMode = true;
+    squareMode = false;
+    constellationMode = false;
+    $('.move-text').addClass('active');
+    if(clickCounter < 9){
+      clickCounter ++;
+    }
+    else{
+      clickCounter = 1;
+    }
+    
+  }
+
+  function forme(){
+    var words = originalText.split("");
+    var letterCounter = 0;
+
+    textSize(State.fontSize);
+      
+    imageMode(CENTER);
+
+    push();
+    translate(State.textX, State.textY);
+    img = loadImage("assets/shape-0" + clickCounter + ".png", function () {
+      console.log("shape-0" + clickCounter + " loaded");
+    
+      img.loadPixels();
+      
+      // on passe sur tous les pixels de l'image
+      for(var x = 0; x < img.width; x+=State.fontSize){
+        for(var y = 0; y < img.height; y+=State.fontSize){
+          var pix = img.get(x, y);
+          // on remplit la forme avec la couleur du pixels + on fait varier cette couleur suivant la position de la souris
+          //fill(pix);
+          // on redessine le pixel
+          if(pix[3] === 255){
+            if(letterCounter < words.length){
+              // console.log(words[letterCounter]);
+              // if(direction == "bas"){
+                text(words[letterCounter], x, y); 
+              // }
+              // else{
+              //   text(words[letterCounter], y, x); 
+              // }
+              
+              letterCounter ++;
+            }
+          }
+        }
+      }
+    });
+    pop();
+  }
+
   // nouvelle fonction qui permet d'écrire un texte en répartissant les lettres sur une grille
   function activateGrille(){
     grilleMode = true;
@@ -393,6 +481,7 @@ var State = {
   function abstraction(){
     console.log("Mode Abstraction", originalText);
       State.text = originalText.replace(/.{2}/g, '$&\n');
+      // textWrap doit être en mode WORD, sinon ça ne fonctionne pas
       State.textWrap = "WORD";
       console.log(State.text, repetitionMode);
       abstractionMode = false;
