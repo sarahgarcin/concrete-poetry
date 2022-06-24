@@ -248,6 +248,12 @@ var State = {
     textSize(State.fontSize);
     textLeading(State.lineHeight);
     fill(State.textColor);
+    if(State.textUppercase == true){
+      State.text = State.text.toUpperCase();
+    }
+    else{
+      State.text = State.text.charAt(0).toUpperCase() + State.text.toLowerCase().slice(1);
+    }
     push();
     translate(State.textX, State.textY);
     text(State.text, 0, 0, width - (margin*2));
@@ -319,6 +325,19 @@ var State = {
       State.lineHeight = 100;
       $('.change-size').addClass('big');
     }
+  }
+
+  function changeCase(){
+    console.log("changer la casse du texte");
+    if($('.change-case').hasClass('upper')){ 
+      State.textUppercase = false;
+      $('.change-case').removeClass('upper');
+    }
+    else{ 
+      State.textUppercase = true;
+      $('.change-case').addClass('upper');
+    }
+
   }
 
 /*
