@@ -3,7 +3,7 @@ let textInputField;
 var font;
 var img;
 var canvas;
-var margin = 80;
+var margin = 0;
 var originalText = "Écrire un texte ici";
 var randomX;
 var randomY;
@@ -58,8 +58,8 @@ var constellationProcess = false;
 
 var State = {
     text: originalText,
-    fontSize: 50,
-    lineHeight: 50,
+    fontSize: 40,
+    lineHeight: 40,
     textX: margin,
     textY: margin, 
     textFont: "",
@@ -100,7 +100,7 @@ var State = {
     // textInputField = createInput(State.text);
     textInputField = createElement("textarea", State.text);
     // textInputField.parent('text-input_wrapper');
-    textInputField.position(State.textX, State.textY);
+    // textInputField.position(State.textX, State.textY);
     textInputField.size(pageW);
     textInputField.input(writingText);
     textInputField.id('text-input');
@@ -263,7 +263,7 @@ var State = {
   function displayTextarea(){
     // console.log("display textarea", State.textFont, State.fontSize);
     textInputField.show();
-    textInputField.position(State.textX, State.textY);
+    textInputField.position(State.textX + 220, State.textY + 109);
     $('#text-input').val(State.text);
     $('#text-input').css({
       'font-family': 'automatico',

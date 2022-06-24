@@ -33,8 +33,8 @@ textarea{
   align-items: center;
   height: 100vh;*/
   display: flex;
-  justify-content: center;
-  align-items: center;
+/*  justify-content: center;
+  align-items: center;*/
   height: 100vh;
   background: #F8F8F8;
 }
@@ -47,6 +47,8 @@ canvas {
 /*  width: 29.7cm;
   height:21cm;*/
   background: #FFF;
+  margin:auto;
+  margin-top: 110px;
 }
 
 /*#text-input_wrapper{
@@ -76,29 +78,28 @@ canvas {
 
 #guiWrapper{
   position: fixed;
-  width: 100%;
+  width: calc(100% - 60px);
+  height: 90px;
+  /*background: red;*/
   top: 0;
   left:0;
   display: flex;
   flex-wrap: wrap;
+  justify-content: space-between;
+  padding: 5px 30px;
 }
 
-
-.gui-wrapper {
-/*  margin: 10px 0;
-  width: 100%;
-  display: flex;
-  align-items: center;*/
-}
 
 .gui-group {
-  padding: 5px 15px;
+  padding: 7px 15px 0px;
   border: 1px solid #000000;
   border-radius: 50px;
   /*display: inline-block;*/
   cursor: pointer;
   background: #FFF;
   margin: 5px;
+  font-size: 15px;
+  height: 25px;
 }
 
 .gui-group.noir{
