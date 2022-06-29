@@ -14,87 +14,80 @@
   <script src="js/p5.gui.js"></script>
   <script src="js/quicksettings.js"></script>
   <script src="js/p5.touchgui.js"></script>
-  <script src="js/html2canvas.js"></script>
   <script src="sketch.js"></script>
-  <script src="script.js"></script>
-  <!-- <script src="app.js"></script> -->
 </head>
 
 <body>
 
-    <div id="sketch"></div>
     <div id="guiWrapper">
-      <div class="gui-group repetitiontwo-mode" onclick="activateRepetition()">
-        Répétition
-      </div>
-      <div class="gui-group espacement-mode" onclick="activateEspacement()">
-        Espacement
-      </div>
-      <div class="gui-group constellation-mode" onclick="activateConstellation()">
-        Constellation
-      </div>
-       <div class="gui-group abstraction-mode" onclick="activateAbstraction()">
-        Abstraction
-      </div>
-      <div class="gui-group permutation-mode" onclick="activatePermutation()">
-        Permutation
-      </div>
-      <div class="gui-group grille-mode" onclick="activateGrille()">
-        Grille
-      </div>
-      <div class="gui-group square-mode" onclick="activateSquareRepetition()">
-        Carrelage
-      </div>
-      <div class="gui-group square-mode" onclick="activateSoleil()">
-        Soleil
-      </div>
-      <!-- <div class="gui-group forme-mode" onclick="activateForme()"> -->
-      <div class="gui-group forme-mode">
-        Forme
-      </div>
-      <div class="gui-group reset noir" onclick="resetAll()">
-        Réinitialiser
-      </div>
-      <div class="context-menu">
-        <div class="gui-group day-night gris" onclick="dayNight()">
-          Noir / Blanc
+      <div class="gui-line">
+        <div class="gui-group reset noir" onclick="resetAll()">
+          Réinitialiser
         </div>
-        <div class="gui-group change-font gris" onclick="changeFont()">
-          Normal / Monospace
+        <div class="gui-group repetitiontwo-mode" onclick="activateRepetition()">
+          Répétition
         </div>
-        <div class="gui-group change-size gris" onclick="changeSize()">
-          Petit / Grand
+        <div class="gui-group espacement-mode" onclick="activateEspacement()">
+          Espacement
         </div>
-        <div class="gui-group change-case gris" onclick="changeCase()">
-          Majuscule / Minuscule
+        <div class="gui-group constellation-mode" onclick="activateConstellation()">
+          Constellation
         </div>
-        <div class="gui-group change-color gris" onclick="changeColorRed()">
-          Noir / Rouge
+         <div class="gui-group abstraction-mode" onclick="activateAbstraction()">
+          Abstraction
+        </div>
+        <div class="gui-group permutation-mode" onclick="activatePermutation()">
+          Permutation
+        </div>
+        <div class="gui-group grille-mode" onclick="activateGrille()">
+          Grille
+        </div>
+        <div class="gui-group square-mode" onclick="activateSquareRepetition()">
+          Carrelage
+        </div>
+        <div class="gui-group square-mode" onclick="activateSoleil()">
+          Soleil
+        </div>
+        <div class="gui-group forme-mode">
+          Forme
         </div>
       </div>
-      <div class="gui-group toogle-edit-view noir" onclick="toogleEditView()">
-        Édition / Visualisation
+      <div class="gui-line">
+        <div class="gui-group noir" id="export-btn">
+          Télécharger
+        </div>
+        <div class="gui-group toogle-edit-view noir" onclick="toogleEditView()">
+          Édition / Visualisation
+        </div>
+        <div class="context-menu">
+          <div class="gui-group day-night gris" onclick="dayNight()">
+            Noir / Blanc
+          </div>
+          <div class="gui-group change-font gris" onclick="changeFont()">
+            Normal / Monospace
+          </div>
+          <div class="gui-group change-size gris" onclick="changeSize()">
+            Petit / Grand
+          </div>
+          <div class="gui-group change-case gris" onclick="changeCase()">
+            Majuscule / Minuscule
+          </div>
+          <div class="gui-group change-color gris" onclick="changeColorRed()">
+            Noir / Rouge
+          </div>
+        </div>
       </div>
-      <!-- <div class="gui-group edit-text active" onclick="editText()">
-        T
-      </div>
-      <div class="gui-group move-text" onclick="moveText()"">
-        ☞
-      </div> -->
-      <div class="gui-group noir" id="export-btn">
-        Télécharger
-      </div>
-      <!-- <div class="gui-group forme-mode" onclick="activateForme()">
-        forme
-      </div> -->
+      
+      
     </div>
 
- <!--    <div class="save-buttons">
-      <div id="export-btn">⬇</div>
-      <div id="delete-poem">✖</div>
-    </div> -->
+    <div id="sketch" data-mode="edition"></div>
 
-    <!-- <div id="text-input_wrapper"></div> -->
+
+<!-- ######### snippets js ######### -->
+    <!-- fichier contenant les intéractions souris : edit/move -->
+    <script src="js-snippets/interaction.js"></script>
+    <script src="js-snippets/repetition.js"></script>
 
 </body>
 

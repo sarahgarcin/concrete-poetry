@@ -7,6 +7,23 @@
 - d'abord les modes, puis les fonctionnalités typo, puis le bouton télécharger (Demian va me faire un screenshot) 
 
 ## to do
+
+### Répétition
+- Majuscule / Minuscule
+- ok - répétition nombre aléatoire pour le nombre de répétition + typographie adaptatif
+- ok - éditer le texte modifié
+
+- Majuscule / Minuscule -> bug dans le textarea, on peut pas choisir 
+- aligné le cadre en haut et en bas
+- cursor main quand on passe en mode visualisation
+- ok - enlever le resize sur le textarea
+- quand on passe de carrelage à édition = bug
+- menu fixe aligné à gauche + Réinitialiser + édition / visualisation + Télécharger à mettre sur la gauche (sur la 2ème ligne)
+- menu ne doit pas bouger
+- responsive => avoir un truc adaptatif ? bouton qui s'agrandisse
+- ne pas décaler les 2 fenêtres
+- augmenter la définition ! 
+- desactiver le responsive - mettre un message d'erreur
 - Ajouter des shortcuts + les afficher quand on passe la souris sur un éléments 
 - Bug sur carrés sur les mot de 5 et 6 lettres 
 - ok - Mettre en A4 précisemment, une page dans la page = export PDF A4

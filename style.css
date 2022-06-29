@@ -1,3 +1,26 @@
+@font-face {
+    font-family: 'automatico mono';
+    src: url('fonts/AutomaticoMono-Regular.woff2') format('woff2'),
+        url('fonts/AutomaticoMono-Regular.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'automatico';
+    src: url('fonts/AutomaticoText-Medium.woff2') format('woff2'),
+        url('fonts/AutomaticoText-Medium.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+* {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
 body {
   font-family: 'automatico', sans-serif;
   margin: 0;
@@ -9,34 +32,17 @@ body {
 
 ul{margin:0; padding:0;}
 li{list-style: none;}
-img{
-  width:100%;
-}
+img{width:100%;}
 
 figure{
   padding:0;
   margin:0;
 }
 
-textarea{
-  height: 100px;
-}
-
-
 #sketch {
-/*  width: calc(100vw - 350px);
-  position: fixed;
-  top: 0;
-  left: 350px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;*/
-  display: flex;
-/*  justify-content: center;
-  align-items: center;*/
-  height: 100vh;
+  height: calc(100vh - 5vw);
   background: #F8F8F8;
+  position: relative;
 }
 
 #sketch.edit{
@@ -46,61 +52,43 @@ textarea{
 canvas {
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
   cursor: -webkit-grab;
-  /*width: 56vw !important;*/
-  /*height: 40vw !important;*/
-/*  width: 29.7cm;
-  height:21cm;*/
   background: #FFF;
-  margin:auto;
-  margin-top: 110px;
+  position: absolute; 
+  left: 50%;
+  top:50vh;
+  transform: translate(-50%, -58%);
 }
 
-/*#text-input_wrapper{
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}*/
 
 #text-input{
-  /*border: none;*/
   font-size: 40px;
-  /*height: 100%;*/
+  width: calc(2480px/3);
   height: calc(1754px/3);
-  /*width: calc(2480px/3);*/
   background: #FFF;
+  padding: 10px;
+  font-family: 'automatico', sans-serif;
+  position: absolute; 
+  left: 50%;
+  top:50vh;
+  transform: translate(-50%, -58%);
+  z-index: 3;
+  resize: none;
+}
+
+#guiWrapper{
+  width: calc(100% - 20px);
   padding: 10px;
 }
 
-/*#text-input:focus { outline: none; }*/
-
-/*#gui {
-  z-index: 10000;
-  min-height: 100vh;
-  width: 350px;
-  background: #efefef;
-  font-family: sans-serif;
-}*/
-
-#guiWrapper{
-  position: fixed;
-  width: calc(100% - 60px);
-  height: 90px;
-  /*background: red;*/
-  top: 0;
-  left:0;
+#guiWrapper .gui-line{
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-between;
-  padding: 5px 30px;
 }
 
 .context-menu{
   opacity: 0;
-  /*display: none;*/
-  width: 70%;
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-between;
 }
 
 .context-menu.active{
@@ -112,12 +100,11 @@ canvas {
   padding: 7px 15px 0px;
   border: 1px solid #000000;
   border-radius: 50px;
-  /*display: inline-block;*/
   cursor: pointer;
   background: #FFF;
   margin: 5px;
-  font-size: 15px;
-  height: 25px;
+  font-size: 1.3vw;
+  height: 1.9vw;
 }
 
 .gui-group.noir{
@@ -134,176 +121,6 @@ canvas {
 
 .gui-group:hover, .gui-group.active {
   background: #FFB6AF;
-}
-
-/*.red-btn{
-  width: 17px;
-  height: 17px;
-  background: red;
-}
-
-.change-color.red .red-btn{
-  background: #000;
-}
-
-.change-font{
-  font-family: sans-serif;
-}
-
-.change-font.mono{
-  font-family: monospace;
-}
-
-.change-size{
-  font-size: 1em;
-}*/
-
-/*.change-size.big{
-  font-size: 2em;
-  padding: 0px 10px;
-}*/
-
-.gui-group.mode, .gui-group.mode-selection{
-  display: none;
-}
-
-
-.gui-group.mode.active, .gui-group.mode-selection.active{
-  display: block;
-}
-
-.gui-group.click-btn .mode-btn.active button{
-  background: red; 
-  color: #FFF;
-}
-
-.gui-group h1, 
-.gui-group h2, 
-.gui-group h3, 
-.gui-group h4{
-  margin-top:0;
-}
-
-.gui-group h4{
-  text-transform: uppercase; 
-  font-size: 0.8em;
-  margin-bottom: 0;
-}
-
-.gui-group h2{
-  font-size: 1.2em;
-  margin-bottom: 10px;
-}
-
-.gui-group.header p{
-  margin:0;
-}
-
-.gui-group a{
-  color: red; 
-  font-size: 0.8em;
-  /*text-decoration: none;*/
-}
-
-.gui-group .gui-input{
-  display: inline-block;
-}
-
-.gui-group.click-btn button{
-  font-size: 0.8em;
-  border: 1px solid red;
-  background: #FFF;
-  text-transform: uppercase;
-  box-shadow: none;
-  margin:0 5px 5px 0;
-  padding: 5px 10px;
-  cursor: pointer;
-}
-
-.gui-group.click-btn button:hover{
-  color: red;
-}
-
-.gui-group.click-btn button.active{
-  background: red;
-  color: #FFF;
-}
-
-
-.gui-group.submit-btn button{
-  font-size: 0.8em;
-  border: 1px solid red;
-  background: #FFF;
-  text-transform: uppercase;
-  box-shadow: none;
-  margin:10px 5px 5px 0;
-  padding: 5px 10px;
-  cursor: pointer;
-}
-
-.gui-group.submit-btn button:hover{
-  color: red;
-}
-
-.gui-group input{
-  border: 1px solid red;
-  box-shadow: none;
-  padding: 5px 10px;
-}
-
-/* SAVE BUTTONS */
-.save-buttons{
-  position: fixed; 
-  z-index: 100;
-  top: 0;
-  right:0;
-  padding: 10px;
-}
-
-.save-buttons > div{
-  border: 1px solid #000;
-  background: #FFF; 
-  padding: 10px;
-  margin-bottom: 10px;
-  cursor: pointer;
-  font-size: 0.8em;
-  text-align: center;
-}
-
-.save-buttons > div:hover{
-  color: red;
-}
-
-/* POETRY WALL */
-.wall h1{
-  font-family: sans-serif;
-  text-transform: uppercase;
-  font-size: 1em;
-  margin-top:0;
-}
-
-.wall h1 a{
-  color: #000;
-  text-decoration: none;
-}
-
-.wall main{
-  padding: 40px;
-}
-
-.poetry-wall{
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  justify-content: flex-start;
-}
-
-.poetry-wall li{
-  /*border: 1px solid #000;*/
-  max-width: calc(33% - 20px);
-  flex: 0 0 auto;
-  margin-right: 20px;
-  margin-bottom: 20px;
 }
 
 

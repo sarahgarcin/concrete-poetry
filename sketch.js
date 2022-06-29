@@ -1,54 +1,45 @@
-let textInput; 
-let textInputField; 
-var font;
-var img;
-var canvas;
-var margin = 10;
-var originalText = "Écrire un texte ici";
-var randomX;
-var randomY;
-var clickCounter = 0; 
-
+/* =========================================
+    DOCUMENT VARIABLES
+   =========================================
+*/
+let canvas; 
+let poster;
+let pageW; 
+let pageH;
+let margin = 10;
 // variables pour l'exportation
 let scaleRatio = 1;
 let exportRatio = 3;
-let buffer;
 let a4Paper = {
   width: 2480,
   height: 1754
 }
-let pageW; 
-let pageH; 
 
-// array des positions des mots pour le mode constellation
-var wordsX = [];
-var wordsY = [];
 
-// array des positions des lettres pour le mode constellation
-var lettersX = [];
-var lettersY = [];
+let textInputField; 
+let font;
+let img;
 
-// déclarer l'objet "mot" pour le mode constellation
-let word;
+var originalText = "Écris ton poème ici…";
 
+/* =========================================
+    DRAG AND DROP
+   =========================================
+*/
 var mouseOffsetX = 0,
     mouseOffsetY = 0,
     dragging = false,
-    rollover = false,
-    moveMode = false;
+    rollover = false;
 
-var repetitionMode = false,
-    abstractionMode = false,
-    espacementMode = false,
-    permutationMode = false,
-    grilleMode = false,
-    squareMode = false,
-    constellationMode = false,
-    formeMode = false,
-    soleilMode = false,
-    writingMode = true;
+/* =========================================
+    MODES
+   =========================================
+*/
+var writingMode = true, 
+    moveMode = false,
+    repetitionMode = false;
 
-var constellationProcess = false;
+ 
 
 /* =========================================
     STATE
@@ -67,7 +58,8 @@ var State = {
     textWrap: "WORD", 
     background: "#FFF",
     textColor: "#000", 
-    textUppercase : false
+    textUppercase : false,
+    textLowercase : false
 }
 
   function preload() {
@@ -82,76 +74,22 @@ var State = {
     pageW = a4Paper.width / exportRatio;
     pageH = a4Paper.height / exportRatio;
     canvas = createCanvas(pageW, pageH);
-    canvas.parent("sketch"); // The poster is a PGraphics-element
+    canvas.parent("sketch"); 
+    poster = createGraphics(pageW, pageH);
 
     State.textFont = font;
-    textFont(State.textFont);
-    textAlign(LEFT);
-    textLeading(State.lineHeight);
-    textSize(State.fontSize);
+    // textFont(State.textFont);
+    // textAlign(LEFT);
+    // textLeading(State.lineHeight);
+    // textSize(State.fontSize);
 
-    fill(State.textColor);
-    background(State.background);
-    //poster = createGraphics(586, 810);
-    // manipulateImage();
-    // busy = false; // gui.js
+    // fill(State.textColor);
+    // background(State.background);
 
-
-    // Write text - display input text field
-    // textInputField = createInput(State.text);
     textInputField = createElement("textarea", State.text);
-    // textInputField.parent('text-input_wrapper');
-    // textInputField.position(State.textX, State.textY);
-    textInputField.size(pageW);
     textInputField.input(writingText);
     textInputField.id('text-input');
-
-    // $('#text-input').draggable();
-
-    // buildUI();
-
-    $('#export-btn').on('click', function(){
-      saveCanvas(canvas, 'Concrete Poetry', 'jpg');
-    }); 
-
-    $('#delete-poem').on('click', function(){
-      effacer();
-    }); 
-
-    $('.mode-btn').on('click', function(){
-      var mode = $(this).attr('data-mode');
-      if($(this).hasClass('active')){
-        $(this).removeClass('active');
-        $('#'+mode).remove('active');
-      }
-      else{
-        $('.mode-btn').removeClass('active');
-        $('.mode').removeClass('active');
-        $(this).addClass('active');
-        $('#'+mode).addClass('active');
-      }
-    })
-
-    $('#general-mode .ok-btn').on('click', function(){
-      $('.mode-selection').addClass('active');
-    });
-
-    $('.move-text').on('click', function(){
-      $('.edit-text').removeClass('active');
-      $('.move-text').addClass('active');
-    });
-
-    $('.edit-text').on('click', function(){
-      $('.edit-text').addClass('active');
-      $('.move-text').removeClass('active');
-    });
-
-    // $('.gui-group').on('click', function(){
-    //   if(!$(this).hasClass('active')){
-    //     $('.gui-group').removeClass('active');
-    //     $(this).addClass('active');
-    //   }
-    // });
+    textInputField.parent("sketch");
 
     // ------- SHORTCUTS ------- 
     $(document).keydown(function(e) {
@@ -208,70 +146,83 @@ var State = {
   }
 
   function draw() {
-    background(State.background);
-    if(!grilleMode && !squareMode && !constellationMode && !formeMode && !soleilMode){
-      displayText();
-    }
-    else if(grilleMode){
-      grille();
-    }
-
-    else if(squareMode){
-      squareRepetition();
-    }
-
-    else if(constellationMode){
-      constellation();
-    }
-
-    else if(formeMode){
-      forme();
-    }
-    else if(soleilMode){
-      soleil();
-    }
+    poster.background(State.background);
+    displayText();
     
+    push();
+    translate(width/2, height/2);
+    image(poster, 0, 0);
+    pop();
 
-    if(writingMode){
-      displayTextarea();
-      $('.context-menu').removeClass('active');
-      $('#sketch').addClass('edit');
-    }
-    else{
+    if(moveMode){
+      mouseDragText();
       textInputField.hide();
       $('.context-menu').addClass('active');
       $('#sketch').removeClass('edit')
     }
 
-    if(moveMode){
-      mouseDragText();
+     if(writingMode){
+      displayTextarea();
+      $('.context-menu').removeClass('active');
+      $('#sketch').addClass('edit');
     }
+
+    // if(!grilleMode && !squareMode && !constellationMode && !formeMode && !soleilMode){
+      // displayText();
+    //  }
+    // else if(grilleMode){
+    //   grille();
+    // }
+
+    // else if(squareMode){
+    //   squareRepetition();
+    // }
+
+    // else if(constellationMode){
+    //   constellation();
+    // }
+
+    // else if(formeMode){
+    //   forme();
+    // }
+    // else if(soleilMode){
+    //   soleil();
+    // }
+    
+
+    // if(writingMode){
+    //   displayTextarea();
+    //   $('.context-menu').removeClass('active');
+    //   $('#sketch').addClass('edit');
+    // }
+    // else{
+    //   textInputField.hide();
+    //   $('.context-menu').addClass('active');
+    //   $('#sketch').removeClass('edit')
+    // }
+
+    
     if(repetitionMode){
       repetition();
     }
-    if(abstractionMode){
-      abstraction();
-    }
-    if(espacementMode){
-      espacement();
-    }
+    // if(abstractionMode){
+    //   abstraction();
+    // }
+    // if(espacementMode){
+    //   espacement();
+    // }
 
-    if(permutationMode){
-      permutation();
-    }
+    // if(permutationMode){
+    //   permutation();
+    // }
     
   }
-
-  // responsive canvas onresize 
-  // function windowResized() {
-  //   canvas = resizeCanvas(windowWidth, windowHeight);
-  //   background(State.background);
-  // }
 
   function resetAll(){
     State.textColor = "#000";
     State.background = "#FFF";
     State.textUppercase = false;
+    State.textLowercase = false;
     State.text = originalText;
     State.fontSize =  40;
     State.textFont = font;
@@ -296,63 +247,39 @@ var State = {
     console.log('you are typing: ', this.value());
   }
 
-  function toogleEditView(){
-    if(writingMode === true){
-      moveText();   
-    }
-    else{
-      editText();
-    }
-  }
 
-  function moveText(){
-    console.log("Move Text");
-    // textInputField.hide();
-    writingMode = false;
-    moveMode = true;
-  }
-
-  function editText(){
-    console.log("Edit Text");
-    moveMode = false;
-    // textInputField.position(State.textX, State.textY);
-    // textInputField.show();
-    writingMode = true;
-  }
 
   function displayText(){
-    textAlign(LEFT, TOP);
-    rectMode(CORNER);
-    textWrap(State.textWrap);
-    textFont(State.textFont);
-    textSize(State.fontSize);
-    textLeading(State.lineHeight);
-    fill(State.textColor);
+    poster.textAlign(LEFT, TOP);
+    poster.rectMode(CORNER);
+    poster.textWrap(State.textWrap);
+    poster.textFont(State.textFont);
+    poster.textSize(State.fontSize);
+    poster.textLeading(State.lineHeight);
+    poster.fill(State.textColor);
     if(State.textUppercase == true){
       State.text = State.text.toUpperCase();
     }
-    else{
-      State.text = State.text.charAt(0).toUpperCase() + State.text.toLowerCase().slice(1);
+    if(State.textLowercase == true){
+      State.text = State.text.toLowerCase();
     }
-    push();
-    translate(State.textX, State.textY);
-    text(State.text, 0, 0, width - (margin*2));
-    pop(); // Text
+    // else{
+    //   // State.text = State.text.charAt(0).toUpperCase() + State.text.toLowerCase().slice(1);
+    //   State.text = State.text.toLowerCase();
+    // }
+    poster.push();
+    poster.translate(State.textX, State.textY);
+    poster.text(State.text, 0, 0, width - (margin*10));
+    poster.pop();
   }
 
   function displayTextarea(){
-    // console.log("display textarea", State.textFont, State.fontSize);
-
     textInputField.show();
-    textInputField.position(212, 99);
+    // textInputField.position(212, 99);
     $('#text-input').val(State.text);
     $('#text-input').css({
-      'font-family': 'automatico',
-      // 'font-size': State.fontSize + "px", 
+      'font-family': 'automatico', 
       'line-height' : 1, 
-      // 'color': State.textColor, 
-      // 'background-color': State.background, 
-      // 'border-color': State.textColor
     });
   }
 
@@ -412,50 +339,18 @@ var State = {
     console.log("changer la casse du texte");
     if($('.change-case').hasClass('upper')){ 
       State.textUppercase = false;
+      State.textLowercase = true;
       $('.change-case').removeClass('upper');
     }
     else{ 
       State.textUppercase = true;
+      State.textLowercase = false;
       $('.change-case').addClass('upper');
     }
 
   }
 
-/*
-=========================================
- Mouse
-=========================================
-*/
 
-
-  function mousePressed() {
-    // Did I click on the rectangle?
-    if (rollover) {
-      dragging = true; // If so, keep track of relative location of click to corner of rectangle
-    }
-
-    mouseOffsetX = State.textX - mouseX;
-    mouseOffsetY = State.textY - mouseY;
-  }
-
-  function mouseReleased() {
-    // Quit dragging
-    dragging = false;
-  }
-
-  function mouseDragText() {
-    // Is mouse over object
-    if (mouseX > 0 && mouseX < 900 && mouseY > 0 && mouseY < 900) {
-      rollover = true;
-    } else {
-      rollover = false;
-    }
-
-    if (dragging) {
-      State.textX = mouseX + mouseOffsetX;
-      State.textY = mouseY + mouseOffsetY;
-    }
-  }
 
 /*
 =========================================
@@ -739,31 +634,7 @@ var State = {
     pop();      
   }
 
-  // nouvelle fonction permet de répéter le mot un certain nombre de fois
-  function activateRepetition(){
-    repetitionMode = true;
-    writingMode = false;
-    moveMode = true;
-    grilleMode = false;
-    squareMode = false;
-    constellationMode = false;
-    soleilMode = false;
-    formeMode = false;
-    $('.move-text').addClass('active');
-    // textInputField.hide();
-  }
 
-  function repetition(){
-    console.log('Répétition Mode', originalText);
-    // State.textFont = monoFont;
-    var newArr = [];
-    for (let i = 0; i < 30; i++) {
-      newArr.push(originalText);
-    }
-    State.text = newArr.join("");
-    State.textWrap = "CHAR";
-    repetitionMode = false;
-  }
 
   // nouvelle fonction permettant de créer des constellations de phrases ou de mot 
   function activateConstellation(){
