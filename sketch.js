@@ -1,3 +1,5 @@
+p5.disableFriendlyErrors = true;
+
 /* =========================================
     DOCUMENT VARIABLES
    =========================================
@@ -23,14 +25,7 @@ let img;
 var originalText = "Écris ton poème ici…";
 var resetText = originalText;
 
-/* =========================================
-    DRAG AND DROP
-   =========================================
-*/
-var mouseOffsetX = 0,
-    mouseOffsetY = 0,
-    dragging = false,
-    rollover = false;
+
 
 /* =========================================
     MODES
@@ -39,7 +34,8 @@ var mouseOffsetX = 0,
 var writingMode = true, 
     moveMode = false,
     repetitionMode = false,
-    espacementMode = false;
+    espacementMode = false, 
+    constellationMode = false;
 
  
 
@@ -149,12 +145,14 @@ var State = {
 
   function draw() {
     poster.background(State.background);
-    displayText();
     
-    push();
-    translate(width/2, height/2);
-    image(poster, 0, 0);
-    pop();
+    if(!constellationMode){
+      displayText();
+    }
+    else if(constellationMode){
+      constellation();
+    }
+
 
     if(moveMode){
       mouseDragText();
@@ -169,12 +167,15 @@ var State = {
       $('#sketch').addClass('edit');
     }
 
-    if(repetitionMode){
-      repetition();
-    }
-    if(espacementMode){
-      espacement();
-    }
+    if(repetitionMode){repetition();}
+    if(espacementMode){espacement();}
+    
+    push();
+    translate(width/2, height/2);
+    image(poster, 0, 0);
+    pop();
+
+    
 
     // if(!grilleMode && !squareMode && !constellationMode && !formeMode && !soleilMode){
       // displayText();
@@ -266,8 +267,6 @@ var State = {
       'line-height' : 1, 
     });
   }
-
-
 
 
 
@@ -530,60 +529,6 @@ var State = {
 
 
 
-  // nouvelle fonction permettant de créer des constellations de phrases ou de mot 
-  function activateConstellation(){
-    constellationMode = true;
-    writingMode = false;
-    moveMode = true;
-    grilleMode = false;
-    squareMode = false;
-    soleilMode = false;
-    formeMode = false;
-    $('.move-text').addClass('active');
-    constellationProcess = true;
-    // vider les array contenant les positions des mots 
-    wordsX = [];
-    wordsY = [];
-
-    // vider les array contenant les positions des lettres 
-    lettersX = [];
-    lettersY = [];
-    // textInputField.hide();
-  }
-  function constellation(){
-    var words = originalText.split(' ');
-
-    textSize(State.fontSize);
-    textFont(State.textFont);
-    fill(State.textColor);
-    push();
-    translate(State.textX, State.textY);
-
-    if(words.length > 1){
-      for(var i=0; i<words.length; i++){
-        if(constellationProcess){
-          wordsX.push(random(-100, 100));
-          wordsY.push(random(0, 300));
-        }
-        var wordWidth = words[i].length * (State.fontSize/1.6) + wordsX[i];
-        text(words[i], i * wordWidth, wordsY[i]);
-      }
-    }
-    else{
-      var chars = originalText.split('');
-      for(var i=0; i<chars.length; i++){
-        if(constellationProcess){
-          lettersX.push(random(0, 50));
-          lettersY.push(random(0, 300));
-        }
-        var charsWidth = State.fontSize*2 + lettersX[i];
-        text(chars[i], i * charsWidth, lettersY[i]);
-      }
-    }
-    
-    pop();
-    constellationProcess = false;
-  }
 
 
   // function constellationWord(){
