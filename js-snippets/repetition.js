@@ -1,8 +1,10 @@
   // fonction permettant de répéter le mot un certain nombre de fois
   function activateRepetition(){
+    repetitionMode = true;
+
     writingMode = false;
     moveMode = true;
-    repetitionMode = true;
+    espacementMode = false;
     $('.gui-group.change-size').css('display', 'none');
   }
 

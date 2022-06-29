@@ -21,6 +21,7 @@ let font;
 let img;
 
 var originalText = "Écris ton poème ici…";
+var resetText = originalText;
 
 /* =========================================
     DRAG AND DROP
@@ -37,7 +38,8 @@ var mouseOffsetX = 0,
 */
 var writingMode = true, 
     moveMode = false,
-    repetitionMode = false;
+    repetitionMode = false,
+    espacementMode = false;
 
  
 
@@ -167,6 +169,13 @@ var State = {
       $('#sketch').addClass('edit');
     }
 
+    if(repetitionMode){
+      repetition();
+    }
+    if(espacementMode){
+      espacement();
+    }
+
     // if(!grilleMode && !squareMode && !constellationMode && !formeMode && !soleilMode){
       // displayText();
     //  }
@@ -202,15 +211,11 @@ var State = {
     // }
 
     
-    if(repetitionMode){
-      repetition();
-    }
+
     // if(abstractionMode){
     //   abstraction();
     // }
-    // if(espacementMode){
-    //   espacement();
-    // }
+
 
     // if(permutationMode){
     //   permutation();
@@ -218,28 +223,7 @@ var State = {
     
   }
 
-  function resetAll(){
-    State.textColor = "#000";
-    State.background = "#FFF";
-    State.textUppercase = false;
-    State.textLowercase = false;
-    State.text = originalText;
-    State.fontSize =  40;
-    State.textFont = font;
-    State.textX = margin;
-    State.textY = margin;
-
-    repetitionMode = false,
-    abstractionMode = false,
-    espacementMode = false,
-    permutationMode = false,
-    grilleMode = false,
-    squareMode = false,
-    constellationMode = false,
-    formeMode = false,
-    writingMode = true;
-
-  }
+  
 
   function writingText() {
     originalText = this.value();
@@ -283,72 +267,7 @@ var State = {
     });
   }
 
-  function dayNight(){
-    console.log("mode nuit");
-    if($('.day-night').hasClass('night')){
-      State.background = "#FFF"; 
-      State.textColor = "#000";
-      $('.day-night').removeClass('night');
-    }
-    else{
-      State.background = "#000"; 
-      State.textColor = "#FFF";
-      $('.day-night').addClass('night');
-    }
-  }
 
-  function changeColorRed(){
-    console.log("couleur rouge");
-    if($('.change-color').hasClass('red')){ 
-      State.textColor = "#000";
-      $('.change-color').removeClass('red');
-    }
-    else{ 
-      State.textColor = "#FF0000";
-      $('.change-color').addClass('red');
-    }
-  }
-
-  function changeFont(){
-    console.log("changer la typo");
-    if($('.change-font').hasClass('mono')){ 
-      State.textFont = font;
-      $('.change-font').removeClass('mono');
-    }
-    else{ 
-      State.textFont = monoFont;
-      $('.change-font').addClass('mono');
-    }
-  }
-
-  function changeSize(){
-    console.log("changer la taille du texte");
-    if($('.change-size').hasClass('big')){ 
-      State.fontSize = 50;
-      State.lineHeight = 50;
-      $('.change-size').removeClass('big');
-    }
-    else{ 
-      State.fontSize = 100;
-      State.lineHeight = 100;
-      $('.change-size').addClass('big');
-    }
-  }
-
-  function changeCase(){
-    console.log("changer la casse du texte");
-    if($('.change-case').hasClass('upper')){ 
-      State.textUppercase = false;
-      State.textLowercase = true;
-      $('.change-case').removeClass('upper');
-    }
-    else{ 
-      State.textUppercase = true;
-      State.textLowercase = false;
-      $('.change-case').addClass('upper');
-    }
-
-  }
 
 
 
@@ -543,31 +462,6 @@ var State = {
       State.textWrap = "WORD";
       console.log(State.text, repetitionMode);
       abstractionMode = false;
-  }
-
-  // nouvelle fonction permet d'écrire un texte avec un inter-mot aléatoire
-  function activateEspacement(){
-    espacementMode = true;
-    writingMode = false;
-    moveMode = true;
-    grilleMode = false;
-    squareMode = false;
-    constellationMode = false;
-    soleilMode = false;
-    formeMode = false;
-    $('.move-text').addClass('active');
-    // textInputField.hide();
-  }
-
-  function espacement(){
-    console.log("Mode Abstraction", originalText);
-    var min = 0;
-    var max = 40;
-    State.textWrap = "WORD";
-    State.text = originalText.replace(/\s/g, function() {
-      return " ".repeat(parseInt(Math.random() * (max - min) + min))
-    });
-    espacementMode = false;
   }
 
   // nouvelle fonction permet de réaliser un carré de 9 carrés avec les lettres du mot

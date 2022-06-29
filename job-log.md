@@ -9,12 +9,16 @@
 ## to do
 
 ### Répétition
-- Majuscule / Minuscule
+- ok - Majuscule / Minuscule
 - ok - répétition nombre aléatoire pour le nombre de répétition + typographie adaptatif
 - ok - éditer le texte modifié
 
+### Espacement
+- 
+
 - Majuscule / Minuscule -> bug dans le textarea, on peut pas choisir 
-- aligné le cadre en haut et en bas
+- aligner correctement les 2 cadres (petit décalage)
+- ok - aligné le cadre en haut et en bas
 - cursor main quand on passe en mode visualisation
 - ok - enlever le resize sur le textarea
 - quand on passe de carrelage à édition = bug
