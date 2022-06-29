@@ -13,8 +13,9 @@
 - ok - répétition nombre aléatoire pour le nombre de répétition + typographie adaptatif
 - ok - éditer le texte modifié
 
-### Espacement
-- 
+### Abstraction
+- Abstraction = faire des colonnes 
+- ok - Abstraction = quand on reclique dessus, il coupe 1 lettre, 2 lettres, 3 lettres, 4 lettres etc.
 
 - Majuscule / Minuscule -> bug dans le textarea, on peut pas choisir 
 - aligner correctement les 2 cadres (petit décalage)
@@ -22,7 +23,7 @@
 - cursor main quand on passe en mode visualisation
 - ok - enlever le resize sur le textarea
 - quand on passe de carrelage à édition = bug
-- menu fixe aligné à gauche + Réinitialiser + édition / visualisation + Télécharger à mettre sur la gauche (sur la 2ème ligne)
+- ok - menu fixe aligné à gauche + Réinitialiser + édition / visualisation + Télécharger à mettre sur la gauche (sur la 2ème ligne)
 - menu ne doit pas bouger
 - responsive => avoir un truc adaptatif ? bouton qui s'agrandisse
 - ne pas décaler les 2 fenêtres
@@ -33,8 +34,7 @@
 - ok - Mettre en A4 précisemment, une page dans la page = export PDF A4
 - Changement de couleur de fond quand on est en mode édition par exemple 
 - Dans grille - menu contextuel enlever taille typo 
-- Abstraction / Permutation = faire des colonnes 
-- Abstraction = quand on reclique dessus, il coupe 1 lettre, 2 lettres, 3 lettres, 4 lettres etc.
+- Permutation = faire des colonnes 
 - ok - Améliorer la tête de l'interface (voir screenshot demian)
 - Marquer la différence graphique entre les modes et les fonctionnalités de mise en page = exemple blanc et gris 
 - Le bouton T = éditer le texte de base 

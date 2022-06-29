@@ -6,7 +6,8 @@
     moveMode = true;
     espacementMode = false;
     constellationMode = false;
-    
+    abstractionMode = true;
+
     $('.gui-group.change-size').css('display', 'none');
   }
 

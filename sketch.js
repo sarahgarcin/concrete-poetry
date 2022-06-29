@@ -35,7 +35,8 @@ var writingMode = true,
     moveMode = false,
     repetitionMode = false,
     espacementMode = false, 
-    constellationMode = false;
+    constellationMode = false,
+    abstractionMode = false;
 
  
 
@@ -91,7 +92,7 @@ var State = {
 
     // ------- SHORTCUTS ------- 
     $(document).keydown(function(e) {
-      console.log(e.which);
+      // console.log(e.which);
       // ALT + R
       if (e.altKey && e.which === 82){
         activateRepetition();
@@ -169,6 +170,7 @@ var State = {
 
     if(repetitionMode){repetition();}
     if(espacementMode){espacement();}
+    if(abstractionMode){abstraction();}
     
     push();
     translate(width/2, height/2);
@@ -440,28 +442,7 @@ var State = {
     pop();
   }
 
-  // nouvelle fonction permet d'écrire un texte dans une colonne étroite
-  function activateAbstraction(){
-    abstractionMode = true;
-    writingMode = false;
-    moveMode = true;
-    grilleMode = false;
-    squareMode = false;
-    constellationMode = false;
-    soleilMode = false;
-    formeMode = false;
-    $('.move-text').addClass('active');
-    // textInputField.hide();
-  }
-
-  function abstraction(){
-    console.log("Mode Abstraction", originalText);
-      State.text = originalText.replace(/.{2}/g, '$&\n');
-      // textWrap doit être en mode WORD, sinon ça ne fonctionne pas
-      State.textWrap = "WORD";
-      console.log(State.text, repetitionMode);
-      abstractionMode = false;
-  }
+  
 
   // nouvelle fonction permet de réaliser un carré de 9 carrés avec les lettres du mot
   function activateSquareRepetition(){

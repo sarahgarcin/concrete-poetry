@@ -16,6 +16,7 @@ function activateConstellation(){
   moveMode = true;
   espacementMode = false;
   repetitionMode = false;
+  abstractionMode = false;
 
   $('.gui-group.change-size').css('display', 'block');
 
