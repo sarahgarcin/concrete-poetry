@@ -3,7 +3,7 @@ let textInputField;
 var font;
 var img;
 var canvas;
-var margin = 0;
+var margin = 10;
 var originalText = "Écrire un texte ici";
 var randomX;
 var randomY;
@@ -45,6 +45,7 @@ var repetitionMode = false,
     squareMode = false,
     constellationMode = false,
     formeMode = false,
+    soleilMode = false,
     writingMode = true;
 
 var constellationProcess = false;
@@ -152,11 +153,63 @@ var State = {
     //   }
     // });
 
+    // ------- SHORTCUTS ------- 
+    $(document).keydown(function(e) {
+      console.log(e.which);
+      // ALT + R
+      if (e.altKey && e.which === 82){
+        activateRepetition();
+        e.preventDefault();
+      }
+      // ALT + E
+      if (e.altKey && e.which === 69){
+        activateEspacement();
+        e.preventDefault();
+      }
+      // ALT + C
+      if (e.altKey && e.which === 67){
+        activateConstellation();
+        e.preventDefault();
+      }
+      // ALT + A
+      if (e.altKey && e.which === 65){
+        activateAbstraction();
+        e.preventDefault();
+      }
+      // ALT + P
+      if (e.altKey && e.which === 80){
+        activatePermutation();
+        e.preventDefault();
+      }
+      // ALT + G
+      if (e.altKey && e.which === 71){
+        activateGrille();
+        e.preventDefault();
+      }
+      // ALT + K
+      if (e.altKey && e.which === 75){
+        activateSquareRepetition();
+        e.preventDefault();
+      }
+      // ALT + S
+      if (e.altKey && e.which === 83){
+        activateSoleil();
+        e.preventDefault();
+      }
+      // ALT + V
+      if (e.altKey && e.which === 86){
+        toogleEditView();
+        e.preventDefault();
+      }
+      
+    });
+
+
   }
 
   function draw() {
     background(State.background);
-    if(!grilleMode && !squareMode && !constellationMode && !formeMode){
+    if(!grilleMode && !squareMode && !constellationMode && !formeMode && !soleilMode){
       displayText();
     }
     else if(grilleMode){
@@ -174,13 +227,20 @@ var State = {
     else if(formeMode){
       forme();
     }
+    else if(soleilMode){
+      soleil();
+    }
     
 
     if(writingMode){
       displayTextarea();
+      $('.context-menu').removeClass('active');
+      $('#sketch').addClass('edit');
     }
     else{
       textInputField.hide();
+      $('.context-menu').addClass('active');
+      $('#sketch').removeClass('edit')
     }
 
     if(moveMode){
@@ -199,8 +259,6 @@ var State = {
     if(permutationMode){
       permutation();
     }
-
-
     
   }
 
@@ -210,6 +268,28 @@ var State = {
   //   background(State.background);
   // }
 
+  function resetAll(){
+    State.textColor = "#000";
+    State.background = "#FFF";
+    State.textUppercase = false;
+    State.text = originalText;
+    State.fontSize =  40;
+    State.textFont = font;
+    State.textX = margin;
+    State.textY = margin;
+
+    repetitionMode = false,
+    abstractionMode = false,
+    espacementMode = false,
+    permutationMode = false,
+    grilleMode = false,
+    squareMode = false,
+    constellationMode = false,
+    formeMode = false,
+    writingMode = true;
+
+  }
+
   function writingText() {
     originalText = this.value();
     State.text = originalText;
@@ -218,7 +298,7 @@ var State = {
 
   function toogleEditView(){
     if(writingMode === true){
-      moveText();
+      moveText();   
     }
     else{
       editText();
@@ -262,16 +342,17 @@ var State = {
 
   function displayTextarea(){
     // console.log("display textarea", State.textFont, State.fontSize);
+
     textInputField.show();
-    textInputField.position(State.textX + 220, State.textY + 109);
+    textInputField.position(212, 99);
     $('#text-input').val(State.text);
     $('#text-input').css({
       'font-family': 'automatico',
-      'font-size': State.fontSize + "px", 
+      // 'font-size': State.fontSize + "px", 
       'line-height' : 1, 
-      'color': State.textColor, 
-      'background-color': State.background, 
-      'border-color': State.textColor
+      // 'color': State.textColor, 
+      // 'background-color': State.background, 
+      // 'border-color': State.textColor
     });
   }
 
@@ -386,6 +467,7 @@ var State = {
   // forme ne fonctionne pas => demande trop de ressources 
   function activateForme(){
     formeMode = true;
+    soleilMode = false
     grilleMode = false;
     writingMode = false;
     moveMode = true;
@@ -442,6 +524,57 @@ var State = {
     pop();
   }
 
+  // nouvelle fonction qui permet d'écrire un texte en répartissant les lettres en soleil
+  function activateSoleil(){
+    soleilMode = true;
+    formeMode = false;
+    grilleMode = false;
+    writingMode = false;
+    moveMode = true;
+    squareMode = false;
+    constellationMode = false;
+    $('.move-text').addClass('active');
+  }
+
+  function soleil(){
+    // séparer le texte en lettres
+    // var textNoSpace = originalText.replaceAll(" ", "");
+    // var chars = textNoSpace.split('');
+ 
+    textSize(State.fontSize);
+    textFont(State.textFont);
+    fill(State.textColor);
+    rectMode(CENTER);
+
+    var counter = 0;
+    var rayNb = 8;
+
+    push();
+    translate(State.textX, State.textY);
+    for(let i=0; i <= rayNb; i++ ){
+      let ang = i * 45;
+      rotate(radians(ang));
+      push()
+      translate(-20, -20)
+      text(originalText, 0, 0);
+      pop();
+    }
+    // for(let i = 0; i < chars.length; i++){
+    //   fill(255);
+    //   ellipse(300, 300, (chars.length * 30) - (i*30));
+    //   counter++;
+    // }
+    // for (let y = 0; y < height - 100; y += gap) {
+    //   for (let x = 0; x < width - 130; x += gap) {
+    //     let letter = chars[counter];
+    //     text(letter, x, y);
+    //     // Increment the counter
+    //     counter++;
+    //   }
+    // }
+    pop();
+  }
+
   // nouvelle fonction qui permet d'écrire un texte en répartissant les lettres sur une grille
   function activateGrille(){
     grilleMode = true;
@@ -449,6 +582,8 @@ var State = {
     moveMode = true;
     squareMode = false;
     constellationMode = false;
+    soleilMode = false;
+    formeMode = false;
     $('.move-text').addClass('active');
   }
 
@@ -474,9 +609,16 @@ var State = {
 
     push();
     translate(State.textX, State.textY);
-    for (let y = 0; y < height - 100; y += gap) {
-      for (let x = 0; x < width - 130; x += gap) {
+    for (let y = 0; y <= height - 100; y += gap) {
+      for (let x = 0; x <= width - 130; x += gap) {
         let letter = chars[counter];
+        // console.log(letter);
+        // if(State.textUppercase == true){
+        //   letter = chars[counter].toUpperCase();
+        // }
+        // else{
+        //   letter = chars[counter].toLowerCase();
+        // }
         text(letter, x, y);
         // Increment the counter
         counter++;
@@ -493,6 +635,8 @@ var State = {
     grilleMode = false;
     squareMode = false;
     constellationMode = false;
+    soleilMode = false;
+    formeMode = false;
     $('.move-text').addClass('active');
     // textInputField.hide();
   }
@@ -514,6 +658,8 @@ var State = {
     grilleMode = false;
     squareMode = false;
     constellationMode = false;
+    soleilMode = false;
+    formeMode = false;
     $('.move-text').addClass('active');
     // textInputField.hide();
   }
@@ -536,6 +682,8 @@ var State = {
     moveMode = true;
     grilleMode = false;
     constellationMode = false;
+    soleilMode = false;
+    formeMode = false;
     $('.move-text').addClass('active');
     // textInputField.hide();
   }
@@ -548,6 +696,22 @@ var State = {
     var squarePosY = 0;
     var squareSize = 200;
     var nbOfRepet = 10;
+    // var col;
+    // var line;
+    // if(chars.length % 3 == 0){
+    //   col = 3;
+    //   line = 3;  
+    // }
+    // else if(chars.length % 2 == 0){
+    //   col = 2;
+    //   line = 2;
+    // }
+    // else{
+    //   col = 3;
+    //   line = 2;
+    // }
+
+
     textSize(17);
     textFont(State.textFont);
     fill(State.textColor);
@@ -559,7 +723,14 @@ var State = {
         squarePosY = y * squareSize;
         for(var ix= 0; ix<squareSize; ix+=squareSize/nbOfRepet){
           for(var iy= 0; iy<squareSize; iy+=squareSize/nbOfRepet){
-            text(chars[count], ix + squarePosX, iy +  squarePosY);
+            let letter; 
+            if(State.textUppercase == true){
+              letter = chars[count].toUpperCase();
+            }
+            else{
+              letter = chars[count].toLowerCase();
+            }
+            text(letter, ix + squarePosX, iy +  squarePosY);
           }
         }
         count ++;
@@ -576,6 +747,8 @@ var State = {
     grilleMode = false;
     squareMode = false;
     constellationMode = false;
+    soleilMode = false;
+    formeMode = false;
     $('.move-text').addClass('active');
     // textInputField.hide();
   }
@@ -599,6 +772,8 @@ var State = {
     moveMode = true;
     grilleMode = false;
     squareMode = false;
+    soleilMode = false;
+    formeMode = false;
     $('.move-text').addClass('active');
     constellationProcess = true;
     // vider les array contenant les positions des mots 
@@ -668,6 +843,8 @@ var State = {
     grilleMode = false;
     squareMode = false;
     constellationMode = false;
+    soleilMode = false;
+    formeMode = false;
     $('.move-text').addClass('active');
     // textInputField.hide();
   }
@@ -713,11 +890,6 @@ var State = {
       return perms
     }
 
-  }
-
-
-  function effacer(){
-    background(255);
   }
 
   function errorMessage(){

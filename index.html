@@ -45,30 +45,32 @@
       <div class="gui-group square-mode" onclick="activateSquareRepetition()">
         Carrelage
       </div>
-      <div class="gui-group square-mode">
+      <div class="gui-group square-mode" onclick="activateSoleil()">
         Soleil
       </div>
       <!-- <div class="gui-group forme-mode" onclick="activateForme()"> -->
       <div class="gui-group forme-mode">
         Forme
       </div>
-      <div class="gui-group reset noir">
+      <div class="gui-group reset noir" onclick="resetAll()">
         Réinitialiser
       </div>
-      <div class="gui-group day-night gris" onclick="dayNight()">
-        Noir / Blanc
-      </div>
-      <div class="gui-group change-font gris" onclick="changeFont()">
-        Normal / Monospace
-      </div>
-      <div class="gui-group change-size gris" onclick="changeSize()">
-        Petit / Grand
-      </div>
-      <div class="gui-group change-case gris" onclick="changeCase()">
-        Majuscule / Minuscule
-      </div>
-      <div class="gui-group change-color gris" onclick="changeColorRed()">
-        Noir / Rouge
+      <div class="context-menu">
+        <div class="gui-group day-night gris" onclick="dayNight()">
+          Noir / Blanc
+        </div>
+        <div class="gui-group change-font gris" onclick="changeFont()">
+          Normal / Monospace
+        </div>
+        <div class="gui-group change-size gris" onclick="changeSize()">
+          Petit / Grand
+        </div>
+        <div class="gui-group change-case gris" onclick="changeCase()">
+          Majuscule / Minuscule
+        </div>
+        <div class="gui-group change-color gris" onclick="changeColorRed()">
+          Noir / Rouge
+        </div>
       </div>
       <div class="gui-group toogle-edit-view noir" onclick="toogleEditView()">
         Édition / Visualisation
