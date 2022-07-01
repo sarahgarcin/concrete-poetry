@@ -7,6 +7,7 @@ function activateEspacement(){
   repetitionMode = false;
   constellationMode = false;
   abstractionMode = false;
+  permutationMode = false;
 
   $('.gui-group.change-size').css('display', 'block');
 }

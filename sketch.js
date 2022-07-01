@@ -36,7 +36,8 @@ var writingMode = true,
     repetitionMode = false,
     espacementMode = false, 
     constellationMode = false,
-    abstractionMode = false;
+    abstractionMode = false, 
+    permutationMode = false;
 
  
 
@@ -147,12 +148,18 @@ var State = {
   function draw() {
     poster.background(State.background);
     
-    if(!constellationMode){
+    if(!constellationMode && !permutationMode){
       displayText();
     }
     else if(constellationMode){
       constellation();
     }
+    else if(permutationMode){
+      permutation();
+    }
+    // else if(abstractionMode){
+    //   abstraction();
+    // }
 
 
     if(moveMode){
@@ -509,79 +516,6 @@ var State = {
   }
 
 
-
-
-
-  // function constellationWord(){
-  //   background(255);
-  //   translate(200, 400);
-  //   var fontSize = 70; 
-  //   var chars = textInput.split('');
-  //   for(var i=0; i<chars.length; i++){
-  //     var randomX = random(0, 50);
-  //     var randomY = random(-100, 100);
-  //     var charsWidth = fontSize*2 + randomX;
-  //     textSize(fontSize);
-  //     text(chars[i], i * charsWidth, randomY);
-  //   }
-
-  // }
-
-  function activatePermutation(){
-    permutationMode = true;
-    writingMode = false;
-    moveMode = true;
-    grilleMode = false;
-    squareMode = false;
-    constellationMode = false;
-    soleilMode = false;
-    formeMode = false;
-    $('.move-text').addClass('active');
-    // textInputField.hide();
-  }
-
-  function permutation(){
-    console.log('Permutation Mode', originalText);
-    var words = originalText.split(' ');
-    var permutations = getArrayMutations(words);
-    var newArr = [];
-    console.log(permutations);
-    // var yPos = 0;
-    // var xPos = 80;
-    // textSize(fontSize);
-    for(var i = 0; i<permutations.length; i++){
-      // for(var ii= 0; ii<permutations[i].length; ii++){
-        var sentence = permutations[i].join(' ');
-        newArr.push(sentence);
-        // text(sentence, xPos, yPos + 80);
-      // }
-      // if(yPos > height - 150){
-      //   yPos = 0; 
-      //   xPos += textWidth(textPermutation) + 50; 
-      // }
-      // else{
-      //   yPos += State.textSize * 1.2;
-      // }
-      
-    }
-    State.text = newArr.join("\n");
-    permutationMode = false;
-
-    function getArrayMutations(arr, perms = [], len = arr.length) {
-      if (len === 1) perms.push(arr.slice(0))
-
-      for (let i = 0; i < len; i++) {
-        getArrayMutations(arr, perms, len - 1)
-
-        len % 2 // parity dependent adjacent elements swap
-          ? [arr[0], arr[len - 1]] = [arr[len - 1], arr[0]]
-          : [arr[i], arr[len - 1]] = [arr[len - 1], arr[i]]
-      }
-
-      return perms
-    }
-
-  }
 
   function errorMessage(){
     background(255);

@@ -6,7 +6,8 @@
     moveMode = true;
     espacementMode = false;
     constellationMode = false;
-    abstractionMode = true;
+    abstractionMode = false;
+    permutationMode = false;
 
     $('.gui-group.change-size').css('display', 'none');
   }
@@ -26,7 +27,6 @@
     let lineHeight = fontSize * 1;
     State.fontSize = Math.floor(fontSize);
     State.lineHeight = lineHeight;
-    console.log(Math.floor(fontSize));
     State.textWrap = "CHAR";
     repetitionMode = false;
   }

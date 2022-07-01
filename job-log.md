@@ -14,8 +14,14 @@
 - ok - éditer le texte modifié
 
 ### Abstraction
-- Abstraction = faire des colonnes 
+- ok - faire typo variable
+- non - Abstraction = faire des colonnes 
 - ok - Abstraction = quand on reclique dessus, il coupe 1 lettre, 2 lettres, 3 lettres, 4 lettres etc.
+
+### Permutation 
+- ok - Mettre une limite de mots
+- petit bug sur la taille typo
+- majuscule / minuscule ne fonctionne pas 
 
 - Majuscule / Minuscule -> bug dans le textarea, on peut pas choisir 
 - aligner correctement les 2 cadres (petit décalage)
