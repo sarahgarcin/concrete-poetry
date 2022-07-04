@@ -10,6 +10,8 @@ var abstractionCounter = 1;
     repetitionMode = false;
     constellationMode = false;
     permutationMode = false;
+    grilleMode = false;
+    squareMode = false;
     
     $('.gui-group.change-size').css('display', 'none');
 

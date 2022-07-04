@@ -11,6 +11,8 @@ function activatePermutation(){
   espacementMode = false;
   constellationMode = false;
   abstractionMode = false;
+  grilleMode = false;
+  squareMode = false;
 
   permutationProcess = true;
 

@@ -38,7 +38,8 @@ var writingMode = true,
     constellationMode = false,
     abstractionMode = false, 
     permutationMode = false,
-    grilleMode = false;
+    grilleMode = false,
+    squareMode = false;
 
  
 
@@ -149,7 +150,7 @@ var State = {
   function draw() {
     poster.background(State.background);
     
-    if(!constellationMode && !permutationMode && !grilleMode){
+    if(!constellationMode && !permutationMode && !grilleMode && !squareMode){
       displayText();
     }
     else if(constellationMode){
@@ -160,6 +161,9 @@ var State = {
     }
     else if(grilleMode){
       grille();
+    }
+    else if(squareMode){
+      squareRepetition();
     }
     // else if(abstractionMode){
     //   abstraction();
@@ -399,72 +403,4 @@ var State = {
     //   }
     // }
     pop();
-  }
-
-
-
-  
-
-  // nouvelle fonction permet de réaliser un carré de 9 carrés avec les lettres du mot
-  function activateSquareRepetition(){
-    squareMode = true;
-    writingMode = false;
-    moveMode = true;
-    grilleMode = false;
-    constellationMode = false;
-    soleilMode = false;
-    formeMode = false;
-    $('.move-text').addClass('active');
-    // textInputField.hide();
-  }
-
-  function squareRepetition(){
-  
-    var chars = originalText.split('');
-    var count = 0;
-    var squarePosX = 0;
-    var squarePosY = 0;
-    var squareSize = 200;
-    var nbOfRepet = 10;
-    // var col;
-    // var line;
-    // if(chars.length % 3 == 0){
-    //   col = 3;
-    //   line = 3;  
-    // }
-    // else if(chars.length % 2 == 0){
-    //   col = 2;
-    //   line = 2;
-    // }
-    // else{
-    //   col = 3;
-    //   line = 2;
-    // }
-
-
-    textSize(17);
-    textFont(State.textFont);
-    fill(State.textColor);
-    push();
-    translate(State.textX, State.textY);
-    for (let y = 0; y < (chars.length / 3); y++) {
-      for (let x = 0; x < (chars.length / 3); x++) {
-        squarePosX = x * squareSize;
-        squarePosY = y * squareSize;
-        for(var ix= 0; ix<squareSize; ix+=squareSize/nbOfRepet){
-          for(var iy= 0; iy<squareSize; iy+=squareSize/nbOfRepet){
-            let letter; 
-            if(State.textUppercase == true){
-              letter = chars[count].toUpperCase();
-            }
-            else{
-              letter = chars[count].toLowerCase();
-            }
-            text(letter, ix + squarePosX, iy +  squarePosY);
-          }
-        }
-        count ++;
-      }
-    }
-    pop();      
   }

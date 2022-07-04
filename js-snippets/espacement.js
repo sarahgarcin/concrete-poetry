@@ -8,6 +8,8 @@ function activateEspacement(){
   constellationMode = false;
   abstractionMode = false;
   permutationMode = false;
+  grilleMode = false;
+  squareMode = false;
 
   $('.gui-group.change-size').css('display', 'block');
 }

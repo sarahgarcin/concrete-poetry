@@ -23,6 +23,9 @@
 - petit bug sur la taille typo
 - majuscule / minuscule ne fonctionne pas 
 
+### Carrelage
+- Bug sur les lettres : quand 5 ou 6 lettres ça ne fonctionne pas. Problème avec le /3 dans la boucle for
+
 - Majuscule / Minuscule -> bug dans le textarea, on peut pas choisir 
 - aligner correctement les 2 cadres (petit décalage)
 - ok - aligné le cadre en haut et en bas

@@ -10,6 +10,7 @@
     constellationMode = false;
     abstractionMode = false;
     permutationMode = false;
+    squareMode = false;
 
     $('.gui-group.change-size').css('display', 'none');
   }
@@ -19,10 +20,10 @@
     
     if(State.textUppercase == true){
         originalText = originalText.toUpperCase();
-      }
-      if(State.textLowercase == true){
+    }
+    if(State.textLowercase == true){
         originalText = originalText.toLowerCase();
-      }
+    }
 
     // séparer le texte en lettres
     var textNoSpace = originalText.replaceAll(" ", "");
