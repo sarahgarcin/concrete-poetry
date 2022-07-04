@@ -18,6 +18,7 @@ function activatePermutation(){
   permutations = [];
 
   $('.gui-group.change-size').css('display', 'none');
+  $('.gui-group.change-case').css('display', 'none');
 
 }
 
@@ -25,9 +26,11 @@ function permutation(){
   console.log('Permutation Mode', originalText);
 
   if(State.textUppercase == true){
+    console.log('upper');
     originalText = originalText.toUpperCase();
   }
   if(State.textLowercase == true){
+    console.log('lower');
     originalText = originalText.toLowerCase();
   }
 

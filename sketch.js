@@ -37,7 +37,8 @@ var writingMode = true,
     espacementMode = false, 
     constellationMode = false,
     abstractionMode = false, 
-    permutationMode = false;
+    permutationMode = false,
+    grilleMode = false;
 
  
 
@@ -148,7 +149,7 @@ var State = {
   function draw() {
     poster.background(State.background);
     
-    if(!constellationMode && !permutationMode){
+    if(!constellationMode && !permutationMode && !grilleMode){
       displayText();
     }
     else if(constellationMode){
@@ -156,6 +157,9 @@ var State = {
     }
     else if(permutationMode){
       permutation();
+    }
+    else if(grilleMode){
+      grille();
     }
     // else if(abstractionMode){
     //   abstraction();
@@ -397,57 +401,7 @@ var State = {
     pop();
   }
 
-  // nouvelle fonction qui permet d'écrire un texte en répartissant les lettres sur une grille
-  function activateGrille(){
-    grilleMode = true;
-    writingMode = false;
-    moveMode = true;
-    squareMode = false;
-    constellationMode = false;
-    soleilMode = false;
-    formeMode = false;
-    $('.move-text').addClass('active');
-  }
 
-  function grille(){
-    // définir les paramètres
-    // let margin = 30;
-    // translate(margin * 2, margin * 3);
-
-    // séparer le texte en lettres
-    var textNoSpace = originalText.replaceAll(" ", "");
-    var chars = textNoSpace.split('');
-    // calculer la taille de la typo
-    let fontSize = 0.52*sqrt(((width - 100) * (height - 130))/chars.length);
-    //  la taille du gap est calculé en fonction de la taille de la typo
-    let gap = fontSize * 2;
-    textSize(fontSize);
-    textFont(State.textFont);
-    textWrap(CHAR);
-    textLeading(gap);
-    fill(State.textColor);
-
-    var counter = 0;
-
-    push();
-    translate(State.textX, State.textY);
-    for (let y = 0; y <= height - 100; y += gap) {
-      for (let x = 0; x <= width - 130; x += gap) {
-        let letter = chars[counter];
-        // console.log(letter);
-        // if(State.textUppercase == true){
-        //   letter = chars[counter].toUpperCase();
-        // }
-        // else{
-        //   letter = chars[counter].toLowerCase();
-        // }
-        text(letter, x, y);
-        // Increment the counter
-        counter++;
-      }
-    }
-    pop();
-  }
 
   
 
@@ -513,14 +467,4 @@ var State = {
       }
     }
     pop();      
-  }
-
-
-
-  function errorMessage(){
-    background(255);
-    textSize(30);
-    textFont('Courier');
-    textAlign(CENTER);
-    text("Choisir un mot", width/2, height/2);
   }

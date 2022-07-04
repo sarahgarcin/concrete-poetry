@@ -5,6 +5,11 @@ var mouseOffsetX = 0,
 
 
 function toogleEditView(){
+  // réinitialiser le majuscule / minuscule
+  State.textUppercase = false;
+  State.textLowercase = false;
+  $('.change-case').removeClass('upper')
+
   if(writingMode === true){
     moveText();   
   }
