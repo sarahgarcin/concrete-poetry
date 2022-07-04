@@ -8,7 +8,7 @@ let canvas;
 let poster;
 let pageW; 
 let pageH;
-let margin = 10;
+let margin = 20;
 // variables pour l'exportation
 let scaleRatio = 1;
 let exportRatio = 3;
@@ -16,6 +16,8 @@ let a4Paper = {
   width: 2480,
   height: 1754
 }
+
+// let pdf;
 
 
 let textInputField; 
@@ -78,6 +80,13 @@ var State = {
     canvas = createCanvas(pageW, pageH);
     canvas.parent("sketch"); 
     poster = createGraphics(pageW, pageH);
+
+    // Adjust according to screens pixel density.
+    exportRatio /= pixelDensity();
+
+    // pour l'export pdf avec p5.pdf.js -- https://github.com/zenozeng/p5.js-pdf
+    // pdf = createPDF();
+    // pdf.beginRecord();
 
     State.textFont = font;
     // textFont(State.textFont);
@@ -283,6 +292,29 @@ var State = {
       'font-family': 'automatico', 
       'line-height' : 1, 
     });
+  }
+
+
+  function exportHighResolution() {
+    // scaleRatio = exportRatio;
+
+    // Re-create buffer with exportRatio and re-draw
+    // poster = createGraphics(scaleRatio*pageW, scaleRatio*pageH);
+    // draw();
+
+    // Get timestamp to name the ouput file
+    let timestamp = new Date().getTime();
+
+    // Save as JPG
+    save(poster, str(timestamp) + "-poeme_graphique", 'jpg');
+
+    // Save as PDF
+    // pdf.save();
+
+    // Reset scaleRation back to 1, re-create buffer, re-draw
+    // scaleRatio = 1;
+    // poster = createGraphics(pageW, pageH);
+    // draw();
   }
 
 

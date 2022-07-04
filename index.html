@@ -11,6 +11,10 @@
   <script src="js/jquery-3.4.1.min.js" type="text/javascript"></script>
   <script src="js/jquery-ui.min.js" type="text/javascript"></script>
   <script src="js/p5.js"></script>
+  <!-- exporter en vecteur en pdf / https://github.com/zenozeng/p5.js-pdf -->
+  <!-- <script src="js/p5.svg.js"></script>
+  <script src="js/p5.pdf.js"></script> -->
+
   <script src="js/p5.gui.js"></script>
   <script src="js/quicksettings.js"></script>
   <script src="js/p5.touchgui.js"></script>
@@ -53,7 +57,7 @@
         </div> -->
       </div>
       <div class="gui-line">
-        <div class="gui-group noir" id="export-btn">
+        <div class="gui-group noir" id="export-btn" onclick="exportHighResolution()">
           Télécharger
         </div>
         <div class="gui-group toogle-edit-view noir" onclick="toogleEditView()">

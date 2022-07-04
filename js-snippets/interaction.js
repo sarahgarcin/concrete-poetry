@@ -22,14 +22,14 @@ function moveText(){
   console.log("Move Text");;
   writingMode = false;
   moveMode = true;
+  $("canvas").css('cursor', 'grab');
 }
 
 function editText(){
   console.log("Edit Text");
   moveMode = false;
   writingMode = true;
-  State.textUppercase = false;
-  State.textLowercase = false;
+  $("canvas").css('cursor', 'default');
 }
 
 

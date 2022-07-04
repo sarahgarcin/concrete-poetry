@@ -57,15 +57,16 @@ canvas {
   left: 50%;
   top:50vh;
   transform: translate(-50%, -58%);
+  border-radius: 40px;
 }
 
 
 #text-input{
   font-size: 40px;
-  width: calc(2480px/3);
-  height: calc(1754px/3);
+  width: calc((2480px/3) - 40px);
+  height: calc((1754px/3) - 40px);
   background: #FFF;
-  padding: 10px;
+  padding: 20px;
   font-family: 'automatico', sans-serif;
   position: absolute; 
   left: 50%;
@@ -73,6 +74,8 @@ canvas {
   transform: translate(-50%, -58%);
   z-index: 3;
   resize: none;
+  border-radius: 40px;
+  border: 1px solid red;
 }
 
 #guiWrapper{

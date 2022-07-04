@@ -26,16 +26,16 @@
 ### Carrelage
 - Bug sur les lettres : quand 5 ou 6 lettres ça ne fonctionne pas. Problème avec le /3 dans la boucle for
 
-- Majuscule / Minuscule -> bug dans le textarea, on peut pas choisir 
-- aligner correctement les 2 cadres (petit décalage)
+- ok Majuscule / Minuscule -> bug dans le textarea, on peut pas choisir 
+- ok aligner correctement les 2 cadres (petit décalage)
 - ok - aligné le cadre en haut et en bas
-- cursor main quand on passe en mode visualisation
+- ok cursor main quand on passe en mode visualisation
 - ok - enlever le resize sur le textarea
-- quand on passe de carrelage à édition = bug
+- ok quand on passe de carrelage à édition = bug
 - ok - menu fixe aligné à gauche + Réinitialiser + édition / visualisation + Télécharger à mettre sur la gauche (sur la 2ème ligne)
-- menu ne doit pas bouger
-- responsive => avoir un truc adaptatif ? bouton qui s'agrandisse
-- ne pas décaler les 2 fenêtres
+- ok - menu ne doit pas bouger
+- ok - responsive => avoir un truc adaptatif ? bouton qui s'agrandisse
+- ok - ne pas décaler les 2 fenêtres
 - augmenter la définition ! 
 - desactiver le responsive - mettre un message d'erreur
 - Ajouter des shortcuts + les afficher quand on passe la souris sur un éléments 
