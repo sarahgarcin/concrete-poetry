@@ -6,12 +6,15 @@ var abstractionCounter = 1;
 
     writingMode = false;
     moveMode = true;
+    
     espacementMode = false;
     repetitionMode = false;
     constellationMode = false;
     permutationMode = false;
     grilleMode = false;
     squareMode = false;
+    soleilMode = false;
+    formeMode = false;
     
     $('.gui-group.change-size').css('display', 'none');
 

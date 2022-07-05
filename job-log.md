@@ -1,3 +1,5 @@
+04/07/2022 _ v0.5
+
 ## question Demian - retours 21/06
 - Site hébergé sur infomaniak, avec un nom de domaine spécifique
 - Non référencé mais accessible pour tous aver le lien
@@ -8,57 +10,23 @@
 
 ## to do
 
-### Répétition
-- ok - Majuscule / Minuscule
-- ok - répétition nombre aléatoire pour le nombre de répétition + typographie adaptatif
-- ok - éditer le texte modifié
-
-### Abstraction
-- ok - faire typo variable
-- non - Abstraction = faire des colonnes 
-- ok - Abstraction = quand on reclique dessus, il coupe 1 lettre, 2 lettres, 3 lettres, 4 lettres etc.
-
 ### Permutation 
-- ok - Mettre une limite de mots
 - petit bug sur la taille typo
 - majuscule / minuscule ne fonctionne pas 
 
 ### Carrelage
 - Bug sur les lettres : quand 5 ou 6 lettres ça ne fonctionne pas. Problème avec le /3 dans la boucle for
 
-- ok Majuscule / Minuscule -> bug dans le textarea, on peut pas choisir 
-- ok aligner correctement les 2 cadres (petit décalage)
-- ok - aligné le cadre en haut et en bas
-- ok cursor main quand on passe en mode visualisation
-- ok - enlever le resize sur le textarea
-- ok quand on passe de carrelage à édition = bug
-- ok - menu fixe aligné à gauche + Réinitialiser + édition / visualisation + Télécharger à mettre sur la gauche (sur la 2ème ligne)
-- ok - menu ne doit pas bouger
-- ok - responsive => avoir un truc adaptatif ? bouton qui s'agrandisse
-- ok - ne pas décaler les 2 fenêtres
+### All
 - augmenter la définition ! 
 - desactiver le responsive - mettre un message d'erreur
-- Ajouter des shortcuts + les afficher quand on passe la souris sur un éléments 
-- Bug sur carrés sur les mot de 5 et 6 lettres 
-- ok - Mettre en A4 précisemment, une page dans la page = export PDF A4
-- Changement de couleur de fond quand on est en mode édition par exemple 
-- Dans grille - menu contextuel enlever taille typo 
-- Permutation = faire des colonnes 
-- ok - Améliorer la tête de l'interface (voir screenshot demian)
-- Marquer la différence graphique entre les modes et les fonctionnalités de mise en page = exemple blanc et gris 
-- Le bouton T = éditer le texte de base 
-- Ajouter un menu contextuel pour les fonctions typo -> pour répétition / abstraction / espacement / permutation = éditer le texte modifié 
+- Ajouter des shortcuts + les afficher quand on passe la souris sur un éléments  
 - Mettre une license open-source sur le projet + Readme 
 - Exporter en PDF en vecteur (plutôt qu'en PNG)
-- ok - Enlever le wall.php et la possibilité d'enregistrer, on garde seulement la fonction téléchargement
-- développer soleil 
 - remettre expression avec les formes = pouvoir dessiner directement dans l'interface --> ça poser des problèmes 
 - ajouter un bouton options 
-  + ok - bouton Reset
   + Écrire un mot en rouge = sélection d'un mot en rouge (modalité édition)
-  + ok - Fonctionnalité Majuscule / Minuscule 
-  + ok - Enlever bouton disquette
-  + ok - intégrer le bouton download dans la part
+- Certificat SSL
 
 - page d'accueil
   + Titre
@@ -73,7 +41,49 @@
   + mode d'emploi ? vidéo explicative ? capsules vidéos
   + explication police de caractère (petit texte) 
 
-## Done
+## Done v0.4
+
+### Répétition
+- ok - Majuscule / Minuscule
+- ok - répétition nombre aléatoire pour le nombre de répétition + typographie adaptatif
+- ok - éditer le texte modifié
+
+### Abstraction
+- ok - faire typo variable
+- non - Abstraction = faire des colonnes 
+- ok - Abstraction = quand on reclique dessus, il coupe 1 lettre, 2 lettres, 3 lettres, 4 lettres etc.
+
+### Permutation 
+- ok - Mettre une limite de mots
+
+### All
+- ok - développer soleil 
+- ok Majuscule / Minuscule -> bug dans le textarea, on peut pas choisir 
+- ok aligner correctement les 2 cadres (petit décalage)
+- ok - aligné le cadre en haut et en bas
+- ok cursor main quand on passe en mode visualisation
+- ok - enlever le resize sur le textarea
+- ok quand on passe de carrelage à édition = bug
+- ok - menu fixe aligné à gauche + Réinitialiser + édition / visualisation + Télécharger à mettre sur la gauche (sur la 2ème ligne)
+- ok - menu ne doit pas bouger
+- ok - responsive => avoir un truc adaptatif ? bouton qui s'agrandisse
+- ok - ne pas décaler les 2 fenêtres
+- - ok - Mettre en A4 précisemment, une page dans la page = export PDF A4
+- ok - Changement de couleur de fond quand on est en mode édition par exemple 
+- ok - Dans grille - menu contextuel enlever taille typo 
+- ok - Permutation = faire des colonnes 
+- ok - Améliorer la tête de l'interface (voir screenshot demian)
+- ok - Marquer la différence graphique entre les modes et les fonctionnalités de mise en page = exemple blanc et gris 
+- ok - Le bouton T = éditer le texte de base 
+- ok - Ajouter un menu contextuel pour les fonctions typo -> pour répétition / abstraction / espacement / permutation = éditer le texte modifié 
+- ok - Enlever le wall.php et la possibilité d'enregistrer, on garde seulement la fonction téléchargement
+- ajouter un bouton options 
+  + ok - bouton Reset
+  + ok - Fonctionnalité Majuscule / Minuscule 
+  + ok - Enlever bouton disquette
+  + ok - intégrer le bouton download dans la part
+
+## Done v0.3
 - ok - garder version v1bis
 - ok ---> écrire le texte directement dans la page 
 - ok ---> pouvoir déplacer le block en drag and drop 

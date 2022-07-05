@@ -13,6 +13,8 @@ function activatePermutation(){
   abstractionMode = false;
   grilleMode = false;
   squareMode = false;
+  soleilMode = false;
+  formeMode = false;
 
   permutationProcess = true;
 

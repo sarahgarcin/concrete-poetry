@@ -22,12 +22,13 @@ let a4Paper = {
 
 let textInputField; 
 let font;
+
 let img;
+
+let img1; let img2; let img3; let img4; let img5; let img6; let img7; let img8; let img9;
 
 var originalText = "Écris ton poème ici…";
 var resetText = originalText;
-
-
 
 /* =========================================
     MODES
@@ -41,7 +42,9 @@ var writingMode = true,
     abstractionMode = false, 
     permutationMode = false,
     grilleMode = false,
-    squareMode = false;
+    squareMode = false,
+    soleilMode = false,
+    formeMode = false;
 
  
 
@@ -69,7 +72,16 @@ var State = {
   function preload() {
     font = loadFont("fonts/automatico.otf");
     monoFont = loadFont("fonts/automatico_mono.otf");
-    img = loadImage('assets/shape-01.png');
+    img1 = loadImage('assets/shape-01.png');
+    img2 = loadImage('assets/shape-02.png');
+    img3 = loadImage('assets/shape-03.png');
+    img4 = loadImage('assets/shape-04.png');
+    img5 = loadImage('assets/shape-05.png');
+    img6 = loadImage('assets/shape-06.png');
+    img7 = loadImage('assets/shape-07.png');
+    img8 = loadImage('assets/shape-08.png');
+    img9 = loadImage('assets/shape-09.png');
+
   }
 
   function setup() {
@@ -159,7 +171,7 @@ var State = {
   function draw() {
     poster.background(State.background);
     
-    if(!constellationMode && !permutationMode && !grilleMode && !squareMode){
+    if(!constellationMode && !permutationMode && !grilleMode && !squareMode && !soleilMode && !formeMode){ 
       displayText();
     }
     else if(constellationMode){
@@ -174,9 +186,13 @@ var State = {
     else if(squareMode){
       squareRepetition();
     }
-    // else if(abstractionMode){
-    //   abstraction();
-    // }
+    else if(soleilMode){
+      soleil();
+    }
+    else if(formeMode){
+      forme();
+    }
+
 
 
     if(moveMode){
@@ -319,120 +335,6 @@ var State = {
 
 
 
-/*
-=========================================
- Modes
-=========================================
-*/
 
-  // fonction permettant de dessiner, sauvegarder un svg et de le transformer en texte 
-  // forme ne fonctionne pas => demande trop de ressources 
-  function activateForme(){
-    formeMode = true;
-    soleilMode = false
-    grilleMode = false;
-    writingMode = false;
-    moveMode = true;
-    squareMode = false;
-    constellationMode = false;
-    $('.move-text').addClass('active');
-    if(clickCounter < 9){
-      clickCounter ++;
-    }
-    else{
-      clickCounter = 1;
-    }
-    
-  }
 
-  function forme(){
-    var words = originalText.split("");
-    var letterCounter = 0;
 
-    textSize(State.fontSize);
-      
-    imageMode(CENTER);
-
-    push();
-    translate(State.textX, State.textY);
-    img = loadImage("assets/shape-0" + clickCounter + ".png", function () {
-      console.log("shape-0" + clickCounter + " loaded");
-    
-      img.loadPixels();
-      
-      // on passe sur tous les pixels de l'image
-      for(var x = 0; x < img.width; x+=State.fontSize){
-        for(var y = 0; y < img.height; y+=State.fontSize){
-          var pix = img.get(x, y);
-          // on remplit la forme avec la couleur du pixels + on fait varier cette couleur suivant la position de la souris
-          //fill(pix);
-          // on redessine le pixel
-          if(pix[3] === 255){
-            if(letterCounter < words.length){
-              // console.log(words[letterCounter]);
-              // if(direction == "bas"){
-                text(words[letterCounter], x, y); 
-              // }
-              // else{
-              //   text(words[letterCounter], y, x); 
-              // }
-              
-              letterCounter ++;
-            }
-          }
-        }
-      }
-    });
-    pop();
-  }
-
-  // nouvelle fonction qui permet d'écrire un texte en répartissant les lettres en soleil
-  function activateSoleil(){
-    soleilMode = true;
-    formeMode = false;
-    grilleMode = false;
-    writingMode = false;
-    moveMode = true;
-    squareMode = false;
-    constellationMode = false;
-    $('.move-text').addClass('active');
-  }
-
-  function soleil(){
-    // séparer le texte en lettres
-    // var textNoSpace = originalText.replaceAll(" ", "");
-    // var chars = textNoSpace.split('');
- 
-    textSize(State.fontSize);
-    textFont(State.textFont);
-    fill(State.textColor);
-    rectMode(CENTER);
-
-    var counter = 0;
-    var rayNb = 8;
-
-    push();
-    translate(State.textX, State.textY);
-    for(let i=0; i <= rayNb; i++ ){
-      let ang = i * 45;
-      rotate(radians(ang));
-      push()
-      translate(-20, -20)
-      text(originalText, 0, 0);
-      pop();
-    }
-    // for(let i = 0; i < chars.length; i++){
-    //   fill(255);
-    //   ellipse(300, 300, (chars.length * 30) - (i*30));
-    //   counter++;
-    // }
-    // for (let y = 0; y < height - 100; y += gap) {
-    //   for (let x = 0; x < width - 130; x += gap) {
-    //     let letter = chars[counter];
-    //     text(letter, x, y);
-    //     // Increment the counter
-    //     counter++;
-    //   }
-    // }
-    pop();
-  }

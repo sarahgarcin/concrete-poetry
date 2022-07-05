@@ -11,6 +11,8 @@
     abstractionMode = false;
     permutationMode = false;
     squareMode = false;
+    soleilMode = false;
+    formeMode = false;
 
     $('.gui-group.change-size').css('display', 'none');
   }

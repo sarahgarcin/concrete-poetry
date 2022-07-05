@@ -10,6 +10,8 @@
     permutationMode = false;
     grilleMode = false;
     squareMode = false;
+    soleilMode = false;
+    formeMode = false;
 
     $('.gui-group.change-size').css('display', 'none');
   }

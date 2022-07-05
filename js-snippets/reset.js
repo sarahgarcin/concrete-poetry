@@ -10,6 +10,9 @@ function resetAll(){
     State.textX = margin;
     State.textY = margin;
 
+    writingMode = true;
+    moveMode = false;
+    
     repetitionMode = false,
     abstractionMode = false,
     espacementMode = false,
@@ -17,7 +20,9 @@ function resetAll(){
     grilleMode = false,
     squareMode = false,
     constellationMode = false,
-    formeMode = false,
-    writingMode = true;
+    soleilMode = false,
+    formeMode = false;
+
+
 
 }
