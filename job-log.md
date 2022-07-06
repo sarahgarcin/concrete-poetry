@@ -23,7 +23,7 @@
 - Ajouter des shortcuts + les afficher quand on passe la souris sur un éléments  
 - Mettre une license open-source sur le projet + Readme 
 - Exporter en PDF en vecteur (plutôt qu'en PNG)
-- remettre expression avec les formes = pouvoir dessiner directement dans l'interface --> ça poser des problèmes 
+- ok - remettre expression avec les formes = pouvoir dessiner directement dans l'interface --> ça poser des problèmes 
 - ajouter un bouton options 
   + Écrire un mot en rouge = sélection d'un mot en rouge (modalité édition)
 - Certificat SSL

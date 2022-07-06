@@ -114,58 +114,6 @@ var State = {
     textInputField.id('text-input');
     textInputField.parent("sketch");
 
-    // ------- SHORTCUTS ------- 
-    $(document).keydown(function(e) {
-      // console.log(e.which);
-      // ALT + R
-      if (e.altKey && e.which === 82){
-        activateRepetition();
-        e.preventDefault();
-      }
-      // ALT + E
-      if (e.altKey && e.which === 69){
-        activateEspacement();
-        e.preventDefault();
-      }
-      // ALT + C
-      if (e.altKey && e.which === 67){
-        activateConstellation();
-        e.preventDefault();
-      }
-      // ALT + A
-      if (e.altKey && e.which === 65){
-        activateAbstraction();
-        e.preventDefault();
-      }
-      // ALT + P
-      if (e.altKey && e.which === 80){
-        activatePermutation();
-        e.preventDefault();
-      }
-      // ALT + G
-      if (e.altKey && e.which === 71){
-        activateGrille();
-        e.preventDefault();
-      }
-      // ALT + K
-      if (e.altKey && e.which === 75){
-        activateSquareRepetition();
-        e.preventDefault();
-      }
-      // ALT + S
-      if (e.altKey && e.which === 83){
-        activateSoleil();
-        e.preventDefault();
-      }
-      // ALT + V
-      if (e.altKey && e.which === 86){
-        toogleEditView();
-        e.preventDefault();
-      }
-      
-    });
-
-
   }
 
   function draw() {
