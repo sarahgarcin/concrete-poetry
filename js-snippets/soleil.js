@@ -35,10 +35,10 @@ function soleil(){
   poster.fill(State.textColor);
   poster.rectMode(CENTER);
 
-  poster.push();
-  poster.translate(State.textX + width/2, State.textY + height/2);
-
   if(chars.length < 9){
+    poster.push();
+    poster.translate(State.textX + width/2, State.textY + height/2);
+
     // affiche la première lettre au milieu
     poster.text(chars[0], 0, 0);
     for(var i = 1; i<chars.length; i++){
@@ -53,12 +53,17 @@ function soleil(){
       // increase size of circle
       r = r + 40;
     }
+    poster.pop();
   }
   else{
+    poster.textSize(25);
+    poster.push();
+    poster.translate(State.textX + width/2, State.textY);
     poster.text('Erreur, ce mode ne fonctionne qu\'avec 8 lettres maximum', 0, 0, pageW);
+    poster.pop();
   }
 
-  poster.pop();
+  
 }
 
 
