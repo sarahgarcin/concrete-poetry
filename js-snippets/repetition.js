@@ -14,6 +14,7 @@
     formeMode = false;
 
     $('.gui-group.change-size').css('display', 'none');
+    $('.gui-group.change-case').css('display', 'block');
   }
 
   function repetition(){

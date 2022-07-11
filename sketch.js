@@ -4,6 +4,7 @@ p5.disableFriendlyErrors = true;
     DOCUMENT VARIABLES
    =========================================
 */
+
 let canvas; 
 let poster;
 let pageW; 
@@ -12,6 +13,9 @@ let margin = 20;
 // variables pour l'exportation
 let scaleRatio = 1;
 let exportRatio = 3;
+// let exportRatioW = window.innerWidth / 300;
+// let exportRatioH = window.innerHeight / 200;
+
 let a4Paper = {
   width: 2480,
   height: 1754
@@ -94,7 +98,7 @@ var State = {
     poster = createGraphics(pageW, pageH);
 
     // Adjust according to screens pixel density.
-    exportRatio /= pixelDensity();
+    // exportRatio /= pixelDensity();
 
     // pour l'export pdf avec p5.pdf.js -- https://github.com/zenozeng/p5.js-pdf
     // pdf = createPDF();
@@ -122,26 +126,12 @@ var State = {
     if(!constellationMode && !permutationMode && !grilleMode && !squareMode && !soleilMode && !formeMode){ 
       displayText();
     }
-    else if(constellationMode){
-      constellation();
-    }
-    else if(permutationMode){
-      permutation();
-    }
-    else if(grilleMode){
-      grille();
-    }
-    else if(squareMode){
-      squareRepetition();
-    }
-    else if(soleilMode){
-      soleil();
-    }
-    else if(formeMode){
-      forme();
-    }
-
-
+    else if(constellationMode){constellation();}
+    else if(permutationMode){permutation();}
+    else if(grilleMode){grille();}
+    else if(squareMode){squareRepetition();}
+    else if(soleilMode){soleil();}
+    else if(formeMode){forme();}
 
     if(moveMode){
       mouseDragText();
@@ -164,53 +154,6 @@ var State = {
     translate(width/2, height/2);
     image(poster, 0, 0);
     pop();
-
-    
-
-    // if(!grilleMode && !squareMode && !constellationMode && !formeMode && !soleilMode){
-      // displayText();
-    //  }
-    // else if(grilleMode){
-    //   grille();
-    // }
-
-    // else if(squareMode){
-    //   squareRepetition();
-    // }
-
-    // else if(constellationMode){
-    //   constellation();
-    // }
-
-    // else if(formeMode){
-    //   forme();
-    // }
-    // else if(soleilMode){
-    //   soleil();
-    // }
-    
-
-    // if(writingMode){
-    //   displayTextarea();
-    //   $('.context-menu').removeClass('active');
-    //   $('#sketch').addClass('edit');
-    // }
-    // else{
-    //   textInputField.hide();
-    //   $('.context-menu').addClass('active');
-    //   $('#sketch').removeClass('edit')
-    // }
-
-    
-
-    // if(abstractionMode){
-    //   abstraction();
-    // }
-
-
-    // if(permutationMode){
-    //   permutation();
-    // }
     
   }
 
@@ -225,6 +168,7 @@ var State = {
 
 
   function displayText(){
+    $('.gui-group.change-size').css('display', 'block');
     poster.textAlign(LEFT, TOP);
     poster.rectMode(CORNER);
     poster.textWrap(State.textWrap);

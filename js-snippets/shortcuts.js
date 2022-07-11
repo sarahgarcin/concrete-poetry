@@ -98,87 +98,96 @@ $(document).keydown(function(e) {
     content: 'alt + r',
     arrow: true,
     theme: "light",
-    placement: 'bottom'
+    placement: 'bottom', 
+    delay: [800, 0] // ms
   });
 
  tippy('.espacement-mode', {
     content: 'alt + e',
     arrow: true,
     theme: "light",
-    placement: 'bottom'
+    placement: 'bottom',
+    delay: [800, 0] // ms
   });
 
  tippy('.constellation-mode', {
     content: 'alt + c',
     arrow: true,
     theme: "light",
-    placement: 'bottom'
+    placement: 'bottom',
+    delay: [800, 0] // ms
   });
 
  tippy('.abstraction-mode', {
     content: 'alt + a',
     arrow: true,
     theme: "light",
-    placement: 'bottom'
+    placement: 'bottom',
+    delay: [800, 0] // ms
   });
 
  tippy('.permutation-mode', {
     content: 'alt + p',
     arrow: true,
     theme: "light",
-    placement: 'bottom'
+    placement: 'bottom',
+    delay: [800, 0] // ms
   });
 
   tippy('.grille-mode', {
     content: 'alt + g',
     arrow: true,
     theme: "light",
-    placement: 'bottom'
+    placement: 'bottom',
+    delay: [800, 0] // ms
   });
 
   tippy('.square-mode', {
     content: 'alt + k',
     arrow: true,
     theme: "light",
-    placement: 'bottom'
+    placement: 'bottom',
+    delay: [800, 0] // ms
   });
 
   tippy('.soleil-mode', {
     content: 'alt + s',
     arrow: true,
     theme: "light",
-    placement: 'bottom'
+    placement: 'bottom',
+    delay: [800, 0] // ms
   });
 
   tippy('.forme-mode', {
     content: 'alt + f',
     arrow: true,
     theme: "light",
-    placement: 'bottom'
+    placement: 'bottom',
+    delay: [800, 0] // ms
   });
 
   tippy('#export-btn', {
     content: 'alt + t',
     arrow: true,
     theme: "light",
-    placement: 'bottom' 
-
+    placement: 'bottom',
+    delay: [800, 0] // ms 
   });
 
   tippy('.toogle-edit-view', {
     content: 'alt + v',
     arrow: true,
     theme: "light",
-    placement: 'bottom' 
-
+    placement: 'bottom',
+    delay: [800, 0] // ms 
   });
 
   tippy('.reset', {
     content: 'alt + x',
     arrow: true,
     theme: "light",
-    placement: 'bottom' 
-
+    placement: 'bottom', 
+    delay: [800, 0] // ms
   });
 
   // tippy('.day-night', {

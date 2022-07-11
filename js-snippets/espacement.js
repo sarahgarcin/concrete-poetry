@@ -14,6 +14,7 @@ function activateEspacement(){
   formeMode = false;
 
   $('.gui-group.change-size').css('display', 'block');
+  $('.gui-group.change-case').css('display', 'block');
 }
 
 function espacement(){

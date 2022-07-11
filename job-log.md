@@ -10,6 +10,7 @@
 
 ## to do
 
+
 ### Permutation 
 - petit bug sur la taille typo
 - majuscule / minuscule ne fonctionne pas 
@@ -18,6 +19,8 @@
 - Bug sur les lettres : quand 5 ou 6 lettres ça ne fonctionne pas. Problème avec le /3 dans la boucle for
 
 ### All
+- Responsive 
+- Ne fonctionne pas sur Safari ?
 - augmenter la définition ! 
 - desactiver le responsive - mettre un message d'erreur
 - Ajouter des shortcuts + les afficher quand on passe la souris sur un éléments  

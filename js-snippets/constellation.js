@@ -23,7 +23,8 @@ function activateConstellation(){
   soleilMode = false;
   formeMode = false;
 
-  $('.gui-group.change-size').css('display', 'block');
+  $('.gui-group.change-size').css('display', 'none');
+  $('.gui-group.change-case').css('display', 'block');
 
   constellationProcess = true;
 
