@@ -3,7 +3,8 @@ function resetAll(){
     State.background = "#FFF";
     State.textUppercase = false;
     State.textLowercase = false;
-    State.text = resetText;
+    originalText = "Écris ton poème ici…";
+    State.text = originalText;
     State.fontSize =  40;
     State.lineHeight = 40;
     State.textFont = font;

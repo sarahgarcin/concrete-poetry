@@ -32,7 +32,6 @@ let img;
 let img1; let img2; let img3; let img4; let img5; let img6; let img7; let img8; let img9;
 
 var originalText = "Écris ton poème ici…";
-var resetText = originalText;
 
 /* =========================================
     MODES
@@ -118,6 +117,24 @@ var State = {
     textInputField.id('text-input');
     textInputField.parent("sketch");
 
+    // active button on click 
+    $('.gui-btn').on('click', function(){
+      $('.gui-btn').removeClass('in-action');
+      $(this).addClass('in-action');
+    });
+
+     $('.gui-textbtn').on('click', function(){
+      if($(this).hasClass('in-action')){
+        $(this).removeClass('in-action');
+      }
+      else{
+        $(this).addClass('in-action');
+      }
+      
+    });
+
+    
+
   }
 
   function draw() {
@@ -137,13 +154,15 @@ var State = {
       mouseDragText();
       textInputField.hide();
       $('.context-menu').addClass('active');
-      $('#sketch').removeClass('edit')
+      $('#sketch').removeClass('edit');
+      $('body').removeClass('edit');
     }
 
      if(writingMode){
       displayTextarea();
       $('.context-menu').removeClass('active');
       $('#sketch').addClass('edit');
+      $('body').addClass('edit');
     }
 
     if(repetitionMode){repetition();}
@@ -168,8 +187,8 @@ var State = {
 
 
   function displayText(){
-    $('.gui-group.change-size').css('display', 'block');
-    poster.textAlign(LEFT, TOP);
+    // $('.gui-group.change-size').css('display', 'block');
+    // poster.textAlign(LEFT, TOP);
     poster.rectMode(CORNER);
     poster.textWrap(State.textWrap);
     poster.textFont(State.textFont);

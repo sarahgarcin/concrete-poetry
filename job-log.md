@@ -9,26 +9,44 @@
 - d'abord les modes, puis les fonctionnalités typo, puis le bouton télécharger (Demian va me faire un screenshot) 
 
 ## to do
+### pour demain
+- ok - bouton couleur 
+- ok - mettre le header de la même couleur que le fond
+- ok - interface : bouton rouge quand mode actif 
+- bouton fit 
+- ok - peaufiner espacement
+- ok - peaufiner constellation
+- ok - répétition: enlever petit / grand
+- ok - debug carrelage
 
+### Espacement
+- ok - mettre des espaces au début, ne pas aligner à gauche (aligner au centre)
+
+### Constellation 
+- ok - parfois ça sort du cadre
+
+### Répétition 
+- ok - Enlever petit grand
 
 ### Permutation 
 - petit bug sur la taille typo
 - majuscule / minuscule ne fonctionne pas 
+- colonnes égales 
 
 ### Carrelage
-- Bug sur les lettres : quand 5 ou 6 lettres ça ne fonctionne pas. Problème avec le /3 dans la boucle for
+- ok - Bug sur les lettres : quand 5 ou 6 lettres ça ne fonctionne pas. Problème avec le /3 dans la boucle for
+- ok - Quantité de lettres par carrés = ok 
 
 ### All
-- Responsive 
+- mettre le header de la même couleur que le fond
+- Enlever les boutons liés à la couleurs + ajouter un bouton couleur avec un set de couleurs fond / texte
+- Responsive (2 tailles d'écran - petit / grand)
 - Ne fonctionne pas sur Safari ?
 - augmenter la définition ! 
 - desactiver le responsive - mettre un message d'erreur
-- Ajouter des shortcuts + les afficher quand on passe la souris sur un éléments  
+- ok - Ajouter des shortcuts + les afficher quand on passe la souris sur un éléments  
 - Mettre une license open-source sur le projet + Readme 
-- Exporter en PDF en vecteur (plutôt qu'en PNG)
 - ok - remettre expression avec les formes = pouvoir dessiner directement dans l'interface --> ça poser des problèmes 
-- ajouter un bouton options 
-  + Écrire un mot en rouge = sélection d'un mot en rouge (modalité édition)
 - Certificat SSL
 
 - page d'accueil

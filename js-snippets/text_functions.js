@@ -1,3 +1,74 @@
+let colorCounter = 0;
+function colorPoem(){
+  console.log("mode couleur");
+  if(colorCounter < 10){
+    colorCounter ++;
+  }
+  else{
+    colorCounter = 1;
+  }
+
+  switch (colorCounter) {
+    case 1:
+      State.background = "#66CCFF"; 
+      State.textColor = "#FF0000";
+    break;
+    case 2:
+      State.background = "#FF0000"; 
+      State.textColor = "#FFFF00";
+    break;
+    case 3:
+      State.background = "#7F007F"; 
+      State.textColor = "#FFFF00";
+    break;
+    case 4:
+      State.background = "#0000FF"; 
+      State.textColor = "#FF7F00";
+    break;
+    case 5:
+      State.background = "#FFFF00"; 
+      State.textColor = "#FF00FF";
+    break;
+    case 6:
+      State.background = "#FF00FF"; 
+      State.textColor = "#00FF80";
+    break;
+    case 7:
+      State.background = "#FF0000"; 
+      State.textColor = "#008000";
+    break;
+    case 8:
+      State.background = "#FF0000"; 
+      State.textColor = "#66CCFF";
+    break;
+    case 9:
+      State.background = "#000"; 
+      State.textColor = "#FFF";
+    break;
+    case 10:
+      State.background = "#FFF"; 
+      State.textColor = "#000";  
+    break;
+    default:
+      State.background = "#FFF"; 
+      State.textColor = "#000";
+  }
+
+
+
+
+  // if($('.color-poem').hasClass('active')){
+  //   State.background = "#FFF"; 
+  //   State.textColor = "#000";
+  //   $('.color-poem').removeClass('active');
+  // }
+  // else{
+  //   State.background = "#000"; 
+  //   State.textColor = "#FFF";
+  //   $('.color-poem').addClass('active');
+  // }
+}
+
 function dayNight(){
   console.log("mode nuit");
   if($('.day-night').hasClass('night')){

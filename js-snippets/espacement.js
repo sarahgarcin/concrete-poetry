@@ -21,6 +21,7 @@ function espacement(){
   console.log("Mode Abstraction", originalText);
   var min = 0;
   var max = 40;
+  poster.textAlign(CENTER, TOP);
   State.textWrap = "WORD";
   State.text = originalText.replace(/\s/g, function() {
     return " ".repeat(parseInt(Math.random() * (max - min) + min))

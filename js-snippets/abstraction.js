@@ -56,6 +56,7 @@ var abstractionCounter = 1;
     let lineHeight = fontSize * 1;
     State.fontSize = Math.floor(fontSize);
     State.lineHeight = lineHeight;
+    poster.textAlign(LEFT, TOP);
     // textWrap doit être en mode WORD, sinon ça ne fonctionne pas
     State.textWrap = "WORD";
     abstractionMode = false;

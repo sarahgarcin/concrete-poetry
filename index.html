@@ -28,31 +28,31 @@
         <div class="gui-group reset noir" onclick="resetAll()">
           Réinitialiser
         </div>
-        <div class="gui-group repetitiontwo-mode" onclick="activateRepetition()">
+        <div class="gui-group gui-btn repetitiontwo-mode" onclick="activateRepetition()">
           Répétition
         </div>
-        <div class="gui-group espacement-mode" onclick="activateEspacement()">
+        <div class="gui-group gui-btn espacement-mode" onclick="activateEspacement()">
           Espacement
         </div>
-        <div class="gui-group constellation-mode" onclick="activateConstellation()">
+        <div class="gui-group gui-btn constellation-mode" onclick="activateConstellation()">
           Constellation
         </div>
-         <div class="gui-group abstraction-mode" onclick="activateAbstraction()">
+         <div class="gui-group gui-btn abstraction-mode" onclick="activateAbstraction()">
           Abstraction
         </div>
-        <div class="gui-group permutation-mode" onclick="activatePermutation()">
+        <div class="gui-group gui-btn permutation-mode" onclick="activatePermutation()">
           Permutation
         </div>
-        <div class="gui-group grille-mode" onclick="activateGrille()">
+        <div class="gui-group gui-btn grille-mode" onclick="activateGrille()">
           Grille
         </div>
-        <div class="gui-group square-mode" onclick="activateSquareRepetition()">
+        <div class="gui-group gui-btn square-mode" onclick="activateSquareRepetition()">
           Carrelage
         </div>
-        <div class="gui-group soleil-mode" onclick="activateSoleil()">
+        <div class="gui-group gui-btn soleil-mode" onclick="activateSoleil()">
           Soleil
         </div>
-        <div class="gui-group forme-mode" onclick="activateForme()">
+        <div class="gui-group gui-btn forme-mode" onclick="activateForme()">
           Forme
         </div>
       </div>
@@ -64,21 +64,26 @@
           Édition / Visualisation
         </div>
         <div class="context-menu">
-          <div class="gui-group day-night gris" onclick="dayNight()">
-            Noir / Blanc
-          </div>
-          <div class="gui-group change-font gris" onclick="changeFont()">
-            Normal / Monospace
-          </div>
-          <div class="gui-group change-size gris" onclick="changeSize()">
+          <div class="gui-group gui-textbtn change-size gris" onclick="changeSize()">
             Petit / Grand
           </div>
-          <div class="gui-group change-case gris" onclick="changeCase()">
-            Majuscule / Minuscule
+          <div class="gui-group gui-textbtn change-case gris" onclick="changeCase()">
+            Minuscule / Majuscule 
+          </div>
+          <div class="gui-group gui-textbtn change-font gris" onclick="changeFont()">
+            Normal / Monospace
+          </div>
+          <div class="gui-group color-poem gris" onclick="colorPoem()">
+           Couleurs
+          </div>
+
+          
+          <!-- <div class="gui-group day-night gris" onclick="dayNight()">
+           Blanc / Noir
           </div>
           <div class="gui-group change-color gris" onclick="changeColorRed()">
             Noir / Rouge
-          </div>
+          </div> -->
         </div>
       </div>
       

@@ -78,9 +78,14 @@ canvas {
   border: 1px solid red;
 }
 
+body.edit #guiWrapper{
+  background: #FFECE7;
+}
+
 #guiWrapper{
   width: calc(100% - 20px);
   padding: 10px;
+  background: #F8F8F8;
 }
 
 #guiWrapper .gui-line{
@@ -96,6 +101,10 @@ canvas {
 
 .context-menu.active{
   opacity: 1;
+}
+
+.gui-group.gui-btn.in-action, .gui-group.gui-textbtn.in-action{
+  background: #FFB6AF;
 }
 
 

@@ -15,11 +15,18 @@ function activateSoleil(){
   formeMode = false;
 
   $('.gui-group.change-size').css('display', 'none');
-  $('.gui-group.change-case').css('display', 'none');
+  $('.gui-group.change-case').css('display', 'block');
 }
 
 function soleil(){
   console.log('Soleil Mode', originalText);
+
+  if(State.textUppercase == true){
+    originalText = originalText.toUpperCase();
+  }
+  if(State.textLowercase == true){
+    originalText = originalText.toLowerCase();
+  }
 
   var r     = 30; //taille du rayon
   var angle = 0;
@@ -41,6 +48,7 @@ function soleil(){
 
     // affiche la première lettre au milieu
     poster.text(chars[0], 0, 0);
+    r = r + 20;
     for(var i = 1; i<chars.length; i++){
       for(var n = 0; n<nbOfRepet; n++){
           //convert polar coordinates to cartesian coordinates

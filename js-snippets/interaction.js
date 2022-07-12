@@ -8,7 +8,7 @@ function toogleEditView(){
   // réinitialiser le majuscule / minuscule
   State.textUppercase = false;
   State.textLowercase = false;
-  $('.change-case').removeClass('upper')
+  $('.change-case').removeClass('upper');
 
   if(writingMode === true){
     moveText();   
@@ -23,6 +23,7 @@ function moveText(){
   writingMode = false;
   moveMode = true;
   $("canvas").css('cursor', 'grab');
+  poster.textAlign(LEFT, TOP);
 }
 
 function editText(){

@@ -28,6 +28,7 @@
      // calculer la taille de la typo
     let chars = State.text.split('');
     console.log(chars.length);
+    poster.textAlign(LEFT, TOP);
     let fontSize = 1.15*sqrt((pageW * pageH)/chars.length);
     let lineHeight = fontSize * 1;
     State.fontSize = Math.floor(fontSize);

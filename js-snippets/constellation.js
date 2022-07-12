@@ -23,7 +23,7 @@ function activateConstellation(){
   soleilMode = false;
   formeMode = false;
 
-  $('.gui-group.change-size').css('display', 'none');
+  $('.gui-group.change-size').css('display', 'block');
   $('.gui-group.change-case').css('display', 'block');
 
   constellationProcess = true;
@@ -57,12 +57,13 @@ function constellation(){
 
   if(words.length > 1){
     for(var i=0; i< words.length; i++){
+      // var wordWidth = words[i].length * (State.fontSize/1.6) + wordsX[i];
       if(constellationProcess){
-        wordsX.push(random(-100, 100));
-        wordsY.push(random(0, 300));
+        wordsX.push(random(margin, (pageW - textWidth(words[i]) - margin)));
+        wordsY.push(random(margin, (pageH - State.fontSize) - margin));
       }
-      var wordWidth = words[i].length * (State.fontSize/1.6) + wordsX[i];
-      poster.text(words[i], i * wordWidth, wordsY[i]);
+      // poster.text(words[i], i * wordWidth, wordsY[i]);
+      poster.text(words[i],  wordsX[i], wordsY[i]);
     }
   }
   else{
