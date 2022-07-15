@@ -40,7 +40,7 @@ figure{
 }
 
 #sketch {
-  height: calc(100vh - 5vw);
+  height: calc(100vh - 5vw - 70px);
   background: #F8F8F8;
   position: relative;
 }
@@ -56,22 +56,22 @@ canvas {
   position: absolute; 
   left: 50%;
   top:50vh;
-  transform: translate(-50%, -58%);
+  transform: translate(-50%, -62%);
   border-radius: 40px;
 }
 
 
 #text-input{
   font-size: 40px;
-  width: calc((2480px/3) - 40px);
-  height: calc((1754px/3) - 40px);
+  width: calc((2480px/3.2) - 40px);
+  height: calc((1754px/3.2) - 40px);
   background: #FFF;
   padding: 20px;
   font-family: 'automatico', sans-serif;
   position: absolute; 
   left: 50%;
   top:50vh;
-  transform: translate(-50%, -58%);
+  transform: translate(-50%, -62%);
   z-index: 3;
   resize: none;
   border-radius: 40px;
@@ -144,6 +144,21 @@ body.edit #guiWrapper{
 
 .tippy-box[data-theme~='light'][data-placement^='bottom'] > .tippy-arrow::before {
    border-bottom-color: #CCCCCC;
+}
+
+body.edit footer{
+  background: #FFECE7;
+}
+
+footer{
+  padding: 10px;
+  color: #7F7F7F;
+  background: #F8F8F8;
+  font-size: 12px;
+}
+
+footer p{
+  margin:0;
 }
 
 
@@ -227,5 +242,48 @@ article{
   line-height: 1.4;
 }
 
+#responsive-message{
+  display: none;
+  font-size: 2em;
+  color: red;
+  padding: 40px;
+}
+
+/* RESPONSIVE */
+@media screen 
+  and (min-device-width: 1440px) 
+  and (-webkit-min-device-pixel-ratio: 1) { 
+
+  #text-input{
+    width: calc((2480px/2.3) - 40px);
+    height: calc((1754px/2.3) - 40px);
+  }
+
+}
+
+@media screen and (max-width: 1150px){
+  .gui-group{
+    font-size: 1.2vw;
+  }
+}
+
+@media screen and (max-width: 1024px){
+  #guiWrapper, #sketch, #text-input, footer{
+    display: none;
+  }
+
+  #responsive-message{
+    display: block;
+  }
+} 
+
+@media screen and (max-height: 680px){
+  #guiWrapper, #sketch, #text-input, footer{
+    display: none;
+  }
+  #responsive-message{
+    display: block;
+  }
+}
 
 

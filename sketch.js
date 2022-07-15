@@ -12,7 +12,15 @@ let pageH;
 let margin = 20;
 // variables pour l'exportation
 let scaleRatio = 1;
-let exportRatio = 3;
+let exportRatio;
+// let exportRatio = 3.2;
+if ($(window).width() < 1440) {
+  exportRatio = 3.2;
+}
+else {
+  exportRatio = 2.3;
+}
+
 // let exportRatioW = window.innerWidth / 300;
 // let exportRatioH = window.innerHeight / 200;
 
@@ -138,6 +146,12 @@ var State = {
   }
 
   function draw() {
+    
+    poster.clear();
+    poster.push();
+    poster.scale(scaleRatio);
+    
+
     poster.background(State.background);
     
     if(!constellationMode && !permutationMode && !grilleMode && !squareMode && !soleilMode && !formeMode){ 
@@ -168,15 +182,14 @@ var State = {
     if(repetitionMode){repetition();}
     if(espacementMode){espacement();}
     if(abstractionMode){abstraction();}
+
+    poster.pop();
     
     push();
     translate(width/2, height/2);
     image(poster, 0, 0);
     pop();
-    
   }
-
-  
 
   function writingText() {
     originalText = this.value();
@@ -223,11 +236,11 @@ var State = {
 
 
   function exportHighResolution() {
-    // scaleRatio = exportRatio;
+    scaleRatio = exportRatio;
 
     // Re-create buffer with exportRatio and re-draw
-    // poster = createGraphics(scaleRatio*pageW, scaleRatio*pageH);
-    // draw();
+    poster = createGraphics(exportRatio*pageW, exportRatio*pageH);
+    draw();
 
     // Get timestamp to name the ouput file
     let timestamp = new Date().getTime();
@@ -239,9 +252,9 @@ var State = {
     // pdf.save();
 
     // Reset scaleRation back to 1, re-create buffer, re-draw
-    // scaleRatio = 1;
-    // poster = createGraphics(pageW, pageH);
-    // draw();
+    scaleRatio = 1;
+    poster = createGraphics(pageW, pageH);
+    draw();
   }
 
 

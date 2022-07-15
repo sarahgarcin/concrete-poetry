@@ -8,45 +8,18 @@
 - Question A4 ou A5 ? 
 - d'abord les modes, puis les fonctionnalités typo, puis le bouton télécharger (Demian va me faire un screenshot) 
 
-## to do
-### pour demain
-- ok - bouton couleur 
-- ok - mettre le header de la même couleur que le fond
-- ok - interface : bouton rouge quand mode actif 
-- bouton fit 
-- ok - peaufiner espacement
-- ok - peaufiner constellation
-- ok - répétition: enlever petit / grand
-- ok - debug carrelage
-
-### Espacement
-- ok - mettre des espaces au début, ne pas aligner à gauche (aligner au centre)
-
-### Constellation 
-- ok - parfois ça sort du cadre
-
-### Répétition 
-- ok - Enlever petit grand
-
 ### Permutation 
-- petit bug sur la taille typo
+- ~ - petit bug sur la taille typo
 - ok - majuscule / minuscule ne fonctionne pas 
-- colonnes égales 
-
-### Carrelage
-- ok - Bug sur les lettres : quand 5 ou 6 lettres ça ne fonctionne pas. Problème avec le /3 dans la boucle for
-- ok - Quantité de lettres par carrés = ok 
+- ~ - colonnes égales 
 
 ### All
-- ok - mettre le header de la même couleur que le fond
-- ok - Enlever les boutons liés à la couleurs + ajouter un bouton couleur avec un set de couleurs fond / texte
-- Responsive (2 tailles d'écran - petit / grand)
+- Gros debug
+- bouton fit 
+- ok - Responsive (2 tailles d'écran - petit / grand)
 - Ne fonctionne pas sur Safari ?
-- augmenter la définition ! 
-- desactiver le responsive - mettre un message d'erreur
-- ok - Ajouter des shortcuts + les afficher quand on passe la souris sur un éléments  
-- Mettre une license open-source sur le projet + Readme 
-- ok - remettre expression avec les formes = pouvoir dessiner directement dans l'interface --> ça poser des problèmes 
+- ok - augmenter la définition ! 
+- ok - desactiver le responsive - mettre un message d'erreur
 - Certificat SSL
 
 - page d'accueil
@@ -61,6 +34,35 @@
   + crédits / colophon 
   + mode d'emploi ? vidéo explicative ? capsules vidéos
   + explication police de caractère (petit texte) 
+
+## Done v0.6
+- ok - bouton couleur 
+- ok - mettre le header de la même couleur que le fond
+- ok - interface : bouton rouge quand mode actif 
+- ok - peaufiner espacement
+- ok - peaufiner constellation
+- ok - répétition: enlever petit / grand
+- ok - debug carrelage
+
+### Espacement
+- ok - mettre des espaces au début, ne pas aligner à gauche (aligner au centre)
+
+### Constellation 
+- ok - parfois ça sort du cadre
+
+### Répétition 
+- ok - Enlever petit grand
+
+### Carrelage
+- ok - Bug sur les lettres : quand 5 ou 6 lettres ça ne fonctionne pas. Problème avec le /3 dans la boucle for
+- ok - Quantité de lettres par carrés = ok 
+
+### ALL
+- ok - mettre le header de la même couleur que le fond
+- ok - Enlever les boutons liés à la couleurs + ajouter un bouton couleur avec un set de couleurs fond / texte
+- ok - Ajouter des shortcuts + les afficher quand on passe la souris sur un éléments  
+- Mettre une license open-source sur le projet + Readme 
+- ok - remettre expression avec les formes = pouvoir dessiner directement dans l'interface --> ça poser des problèmes 
 
 ## Done v0.4
 
