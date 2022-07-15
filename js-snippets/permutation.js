@@ -22,43 +22,65 @@ function activatePermutation(){
   permutations = [];
 
   $('.gui-group.change-size').css('display', 'none');
-  $('.gui-group.change-case').css('display', 'none');
+  $('.gui-group.change-case').css('display', 'block');
 
 }
 
 function permutation(){
   console.log('Permutation Mode', originalText);
+  let ratioCol =  1.7;
+  let ratioFontSize = 0.22;
 
+  // font = variable qui enregitre la typo romane 
   if(State.textUppercase == true){
     console.log('upper');
     originalText = originalText.toUpperCase();
+    if(State.textFont === font){
+      ratioCol =  1.5;
+      ratioFontSize = 0.22;
+    }
+    else{
+      ratioCol =  1.5;
+      ratioFontSize = 0.22;
+    }
   }
-  if(State.textLowercase == true){
+  else if(State.textLowercase == true){
     console.log('lower');
     originalText = originalText.toLowerCase();
+    if(State.textFont === font){
+      ratioCol =  1.7;
+      ratioFontSize = 0.22;
+    }
+    else{
+      ratioCol =  1.5;
+      ratioFontSize = 0.22;
+    }
+  }
+  else{
+    if(State.textFont === font){
+      ratioCol =  1.7;
+      ratioFontSize = 0.22;
+    }
+    else{
+      ratioCol =  1.5;
+      ratioFontSize = 0.22;
+    }
+
   }
 
   // console.log(State.textUppercase, originalText);
 
   var words = originalText.split(' ');
   var chars = originalText.split('');
-
   if(words.length < 6){
     if(permutationProcess){
       // permutations = getArrayMutations(words);
       // random sur les permutations
       permutations = shuffle(getArrayMutations(words));
     }
-    var yPos = 0;
-    var xPos = 0;
-    let fontSize;
-
-    if(State.textFont === font){
-      fontSize = 0.25*sqrt((pageW * (pageH-90))/permutations.length);
-    }
-    else{
-      fontSize = 0.22*sqrt((pageW * (pageH-90))/permutations.length);
-    }
+    var yPos = margin;
+    var xPos = margin;
+    let fontSize = ratioFontSize*sqrt((pageW * (pageH-90))/permutations.length);
 
     poster.textSize(fontSize);
     poster.textFont(State.textFont);
@@ -66,24 +88,22 @@ function permutation(){
 
     poster.push();
     poster.translate(State.textX, State.textY);
-
     for(var i = 0; i<permutations.length; i++){
       var sentence = permutations[i].join(' ');
       // console.log(textWidth(sentence));
       poster.text(sentence, xPos, yPos);
       if(yPos > height - 90){
         // Calcul de la largeur des colonnes
-        let textW;
-        if(State.textFont === font){
-          textW = chars.length * (fontSize/1.7);
-        }
-        else{
-          textW = chars.length * (fontSize/1.5);
-        }
-        
-        yPos = 0; 
+        let textW = chars.length * (fontSize/ratioCol);
+        yPos = margin; 
         xPos += textW; 
       }
+      // if(i%(permutations.length / 2) == 0 && i!=0){
+      //   // Calcul de la largeur des colonnes
+      //   let textW = chars.length * (fontSize/ratioCol);
+      //   yPos = margin; 
+      //   xPos += textW; 
+      // }
       else{
         yPos += fontSize * 1.2;
       }

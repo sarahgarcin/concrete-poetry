@@ -30,7 +30,7 @@
 
 ### Permutation 
 - petit bug sur la taille typo
-- majuscule / minuscule ne fonctionne pas 
+- ok - majuscule / minuscule ne fonctionne pas 
 - colonnes égales 
 
 ### Carrelage
@@ -38,8 +38,8 @@
 - ok - Quantité de lettres par carrés = ok 
 
 ### All
-- mettre le header de la même couleur que le fond
-- Enlever les boutons liés à la couleurs + ajouter un bouton couleur avec un set de couleurs fond / texte
+- ok - mettre le header de la même couleur que le fond
+- ok - Enlever les boutons liés à la couleurs + ajouter un bouton couleur avec un set de couleurs fond / texte
 - Responsive (2 tailles d'écran - petit / grand)
 - Ne fonctionne pas sur Safari ?
 - augmenter la définition ! 

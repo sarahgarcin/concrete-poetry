@@ -1,121 +1,33 @@
 <!DOCTYPE html>
-<html lang="">
-
+<html lang="fr">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Générateur de poèmes</title>
-  
-  <link rel="stylesheet" type="text/css" href="js/jquery-ui.min.css">
-  <link rel="stylesheet" type="text/css" href="style.css">
-  <script src="js/jquery-3.4.1.min.js" type="text/javascript"></script>
-  <script src="js/jquery-ui.min.js" type="text/javascript"></script>
-  <script src="js/p5.js"></script>
-  <!-- exporter en vecteur en pdf / https://github.com/zenozeng/p5.js-pdf -->
-  <!-- <script src="js/p5.svg.js"></script>
-  <script src="js/p5.pdf.js"></script> -->
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>Poème graphique</title>
 
-  <script src="js/p5.gui.js"></script>
-  <script src="js/quicksettings.js"></script>
-  <script src="js/p5.touchgui.js"></script>
-  <script src="sketch.js"></script>
+	<link rel="stylesheet" href="style.css">
+
 </head>
+<body class="home">
+	<h1 id="title">Poème graphique</h1>
+	<div class="btn-wrapper">
+		<a href="app.html" title="Écrire">Écrire</a>
+		<a href="comprendre.html" title="Comprendre">Comprendre</a>
+	</div>
 
-<body>
+	<script>
 
-    <div id="guiWrapper">
-      <div class="gui-line">
-        <div class="gui-group reset noir" onclick="resetAll()">
-          Réinitialiser
-        </div>
-        <div class="gui-group gui-btn repetitiontwo-mode" onclick="activateRepetition()">
-          Répétition
-        </div>
-        <div class="gui-group gui-btn espacement-mode" onclick="activateEspacement()">
-          Espacement
-        </div>
-        <div class="gui-group gui-btn constellation-mode" onclick="activateConstellation()">
-          Constellation
-        </div>
-         <div class="gui-group gui-btn abstraction-mode" onclick="activateAbstraction()">
-          Abstraction
-        </div>
-        <div class="gui-group gui-btn permutation-mode" onclick="activatePermutation()">
-          Permutation
-        </div>
-        <div class="gui-group gui-btn grille-mode" onclick="activateGrille()">
-          Grille
-        </div>
-        <div class="gui-group gui-btn square-mode" onclick="activateSquareRepetition()">
-          Carrelage
-        </div>
-        <div class="gui-group gui-btn soleil-mode" onclick="activateSoleil()">
-          Soleil
-        </div>
-        <div class="gui-group gui-btn forme-mode" onclick="activateForme()">
-          Forme
-        </div>
-      </div>
-      <div class="gui-line">
-        <div class="gui-group noir" id="export-btn" onclick="exportHighResolution()">
-          Télécharger
-        </div>
-        <div class="gui-group toogle-edit-view noir" onclick="toogleEditView()">
-          Édition / Visualisation
-        </div>
-        <div class="context-menu">
-          <div class="gui-group gui-textbtn change-size gris" onclick="changeSize()">
-            Petit / Grand
-          </div>
-          <div class="gui-group gui-textbtn change-case gris" onclick="changeCase()">
-            Minuscule / Majuscule 
-          </div>
-          <div class="gui-group gui-textbtn change-font gris" onclick="changeFont()">
-            Normal / Monospace
-          </div>
-          <div class="gui-group color-poem gris" onclick="colorPoem()">
-           Couleurs
-          </div>
-
-          
-          <!-- <div class="gui-group day-night gris" onclick="dayNight()">
-           Blanc / Noir
-          </div>
-          <div class="gui-group change-color gris" onclick="changeColorRed()">
-            Noir / Rouge
-          </div> -->
-        </div>
-      </div>
-      
-      
-    </div>
-
-    <div id="sketch" data-mode="edition"></div>
-
-
-<!-- ######### snippets js ######### -->
-    <!-- fichier contenant les intéractions souris : edit/move -->
-    <script src="js-snippets/interaction.js"></script>
-    <script src="js-snippets/reset.js"></script>
-     <script src="js-snippets/text_functions.js"></script>
-    <script src="js-snippets/repetition.js"></script>
-    <script src="js-snippets/espacement.js"></script>
-    <script src="js-snippets/constellation.js"></script>
-    <script src="js-snippets/abstraction.js"></script>
-    <script src="js-snippets/permutation.js"></script>
-    <script src="js-snippets/grille.js"></script>
-    <script src="js-snippets/carrelage.js"></script>
-    <script src="js-snippets/soleil.js"></script>
-    <script src="js-snippets/forme.js"></script>
-
-    <!-- Shortcuts -->
-    <script src="https://unpkg.com/@popperjs/core@2"></script>
-    <script src="https://unpkg.com/tippy.js@6"></script>
-    <script src="js-snippets/shortcuts.js"></script>
+  	var min = 0;
+  	var max = 5;
+  	var title = document.getElementById("title").innerHTML;
+  	var titleWithSpace = title.split('').join(' ');
+  	var newTitle = titleWithSpace.replace(/\s/g, function() {
+    	return "\xa0".repeat(parseInt(Math.random() * (max - min) + min))
+  	});
+  	console.log(newTitle);
+  	document.getElementById("title").innerHTML = newTitle;
+	</script>
 
 </body>
-
 </html>
-
-
-

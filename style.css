@@ -139,11 +139,92 @@ body.edit #guiWrapper{
 .tippy-box[data-theme~='light'] {
   background-color: #CCCCCC;
   color: #3F3F3F;
-  // border: 1px solid #000;
+
 }
 
 .tippy-box[data-theme~='light'][data-placement^='bottom'] > .tippy-arrow::before {
    border-bottom-color: #CCCCCC;
+}
+
+
+ /*--------- HOME PAGE --------- */
+body.home{
+  background: #F8F8F8;
+}
+
+.home h1{
+  width: 100%;
+  font-size: 4vw;
+  text-align: center;
+  margin-top: 20vh;
+}
+
+.home .btn-wrapper{
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+.home .btn-wrapper a{
+  padding: 1.5vw 2vw;
+  border: 1px solid #000000;
+  border-radius: 50px;
+  cursor: pointer;
+  background: #FFF;
+  margin: 20px;
+  font-size: 2.5vw;
+  color: #000;
+  text-decoration: none;
+}
+
+.home .btn-wrapper a:hover{
+  background: #FFB6AF;
+}
+
+ /*--------- COMPRENDRE PAGE --------- */
+body.comprendre{
+  background: #F8F8F8;
+  max-width: 1300px;
+  width: 80%;
+  margin: 30px auto;
+}
+
+.comprendre a{
+  color: #000;
+  /*text-decoration: none;*/
+}
+
+.comprendre a.none{
+  text-decoration: none;
+}
+
+.comprendre h1{
+  width: 100%;
+  font-size: 4vw;
+  margin-bottom: 0;
+  text-align: center;
+}
+
+.flex-wrapper{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+video{
+  width:100%;
+}
+
+.flex-wrapper article{
+  width: 46%;
+  margin-bottom: 50px;
+  margin-top: 50px;
+}
+
+article{
+  font-family: "automatico mono", monospace;
+  font-size: 1.2em;
+  line-height: 1.4;
 }
 
 

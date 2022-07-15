@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>Poème graphique | Comprendre</title>
+
+	<link rel="stylesheet" href="style.css">
+
+</head>
+<body class="comprendre">
+	<a href="/" title="Poème graphique" class="none">
+		<h1 id="title">Poème graphique</h1>
+	</a>
+	<div class="flex-wrapper">
+		<article class="pedago-text">
+			<p><em>Poème graphique</em> est une application web pour concevoir des poèmes graphiques. Elle a été développée par Demian Conrad et Sarah Garcin pour des ateliers en collège en Suisse romande.</p>
+		</article>
+		<article class="app-text">
+			<p><em>Poème graphique</em> a été développé avec <a href="https://p5js.org/" title="p5.js">p5.js</a>. Le code source est accessible <a href="https://github.com/sarahgarcin/concrete-poetry" title="Code source">ici</a>.</p>
+			<p><em>Poème graphique</em> est une application sour License <a href="https://www.gnu.org/licenses/agpl-3.0.en.html" title="GNU AGPL">GNU AGPL</a></p>
+	</div>
+		
+	</article>
+	<article class="demo-video">
+		<video src="" autobuffer controls poster=""></video>
+		
+	</article>
+	<div class="flex-wrapper">
+		<article class="font-text">
+			<p>Suspendisse sollicitudin metus non velit iaculis viverra. Phasellus pretium lacus libero. Vivamus sit amet nibh fermentum, tristique metus vel, vehicula augue. Etiam molestie mattis nulla ut euismod. Etiam nec sodales sem. In semper, mi sed tempor placerat, velit felis convallis velit, vel pharetra metus dolor in libero. </p>
+		</article>
+		<article class="credits">
+			<p>Design et programmation: Demian Conrad et Sarah Garcin</p>
+			<p>Typographie: Automatico et Automatico Mono (Demian Conrad)</p>
+			<p>Hébergement: Infomaniak</p>
+		</article>
+	</div>
+
+	<script>
+
+  	var min = 0;
+  	var max = 5;
+  	var title = document.getElementById("title").innerHTML;
+  	var titleWithSpace = title.split('').join(' ');
+  	var newTitle = titleWithSpace.replace(/\s/g, function() {
+    	return "\xa0".repeat(parseInt(Math.random() * (max - min) + min))
+  	});
+  	console.log(newTitle);
+  	document.getElementById("title").innerHTML = newTitle;
+	</script>
+
+</body>
+</html>

@@ -123,6 +123,7 @@ function changeSize(){
 
 function changeCase(){
   console.log("changer la casse du texte");
+  permutationProcess = true; 
   if($('.change-case').hasClass('upper')){ 
     State.textUppercase = false;
     State.textLowercase = true;

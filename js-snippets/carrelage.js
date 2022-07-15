@@ -71,6 +71,10 @@ function squareRepetition(){
   }
   else if(chars.length > 9){
     col = 3;
+    line = 3;
+  }
+  else if(chars.length > 12){
+    col = 4;
     line = 4;
   }
   else{
