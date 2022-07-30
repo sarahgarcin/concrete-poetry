@@ -41,6 +41,8 @@ let img1; let img2; let img3; let img4; let img5; let img6; let img7; let img8; 
 
 var originalText = "Écris ton poème ici…";
 
+let selectedWord;
+
 /* =========================================
     MODES
    =========================================

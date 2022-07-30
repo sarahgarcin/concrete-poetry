@@ -19,7 +19,7 @@ function toogleEditView(){
 }
 
 function moveText(){
-  console.log("Move Text");;
+  console.log("Move Text");
   writingMode = false;
   moveMode = true;
   $("canvas").css('cursor', 'grab');

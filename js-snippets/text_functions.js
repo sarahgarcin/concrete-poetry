@@ -136,3 +136,26 @@ function changeCase(){
   }
 
 }
+
+
+function selectWord(){
+  console.log("selection d'un mot");
+  $('.select-word').on('click', function(){
+    $('.select-word').removeClass('in-action');
+    $(this).addClass('in-action');
+    selectedWord = $(this).attr('data-id');
+  });
+  // if($('.change-case').hasClass('upper')){ 
+  //   State.textUppercase = false;
+  //   State.textLowercase = true;
+  //   $('.change-case').removeClass('upper');
+  // }
+  // else{ 
+  //   State.textUppercase = true;
+  //   State.textLowercase = false;
+  //   $('.change-case').addClass('upper');
+  // }
+
+}
+
+
