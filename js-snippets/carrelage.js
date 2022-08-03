@@ -46,11 +46,11 @@ function squareRepetition(){
   var nbOfRepet = carrelageCounter;
   var col = 2;
 
-  poster.textSize(17);
+  poster.textSize(16);
   poster.textFont(State.textFont);
   poster.fill(State.textColor);
   console.log(chars.length);
-  if(chars.length%2 == 0 && chars.length != 2){
+  if(chars.length%2 == 0 && chars.length != 2 && chars.length < 10){
     console.log("%2");
     col = 2;
     line = 2;
@@ -65,23 +65,28 @@ function squareRepetition(){
     col = 2;
     line = 2;
   }
-  else if(chars.length%3 == 0){
+  else if(chars.length%3 == 0 && chars.length != 3 && chars.length < 10){
     col = 3;
     line = 3;
   }
-  else if(chars.length > 9){
+  else if(chars.length > 9 && chars.length < 13){
     col = 3;
     line = 3;
   }
-  else if(chars.length > 12){
+  else if(chars.length > 12 && chars.length < 31){
     col = 4;
     line = 4;
+  }
+  else if(chars.length > 30){
+    col = 5;
+    line = 5;
   }
   else{
     col = 2;
     line = 2;
   }
-  
+
+  console.log(col, line);
   poster.push();
   poster.translate(State.textX, State.textY);
   for (let y = 0; y < (chars.length / line); y++) {

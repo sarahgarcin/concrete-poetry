@@ -1,20 +1,9 @@
-04/07/2022 _ v0.5
+04/07/2022 _ v0.6
+03/08/2022 _ v0.7
 
-## question Demian - retours 21/06
-- Site hébergé sur infomaniak, avec un nom de domaine spécifique
-- Non référencé mais accessible pour tous aver le lien
-- Nom du projet Poème Graphique 
-- Enlever le livre d'or / car pb de modération
-- Question A4 ou A5 ? 
-- d'abord les modes, puis les fonctionnalités typo, puis le bouton télécharger (Demian va me faire un screenshot) 
-
-### Permutation 
-- ~ - petit bug sur la taille typo
-- ok - majuscule / minuscule ne fonctionne pas 
-- ~ - colonnes égales 
 
 ### Carrelage 
-- Bug à résoudre 
+- ok - Bug d'affichage à résoudre (changer les paramètres)
 
 ### All
 - 1 bouton negatif / positif
@@ -25,15 +14,19 @@
   + répétition 
   + espacement 
 - Debug menu contextuel mot couleur 
-
 - Gros debug
-- bouton fit 
-- ok - Responsive (2 tailles d'écran - petit / grand)
 - Ne fonctionne pas sur Safari ?
-- ok - augmenter la définition ! 
-- ok - desactiver le responsive - mettre un message d'erreur
 - Certificat SSL
 
+ 
+
+## Done v0.7
+
+### Permutation 
+- ~ - petit bug sur la taille typo
+- ~ - colonnes égales 
+
+### Pages autres
 - page d'accueil
   + Titre
   + Bouton web app = Écrire (mène à l'app)
@@ -45,9 +38,13 @@
   + vidéo démo 
   + crédits / colophon 
   + mode d'emploi ? vidéo explicative ? capsules vidéos
-  + explication police de caractère (petit texte) 
+  + explication police de caractère (petit texte)
+
 
 ## Done v0.6
+- ok - augmenter la définition ! 
+- ok - desactiver le responsive - mettre un message d'erreur
+- ok - Responsive (2 tailles d'écran - petit / grand)
 - ok - bouton couleur 
 - ok - mettre le header de la même couleur que le fond
 - ok - interface : bouton rouge quand mode actif 
@@ -55,6 +52,9 @@
 - ok - peaufiner constellation
 - ok - répétition: enlever petit / grand
 - ok - debug carrelage
+
+### Permutation 
+- ok - majuscule / minuscule ne fonctionne pas 
 
 ### Espacement
 - ok - mettre des espaces au début, ne pas aligner à gauche (aligner au centre)
@@ -130,4 +130,13 @@
   + ok - rouge 
   + ok - choix de la font (bouton simple mono/medium)
   + ok - taille = grand / petit / adaptatif (bouton simple d'interface)
+
+
+## question Demian - retours 21/06
+- Site hébergé sur infomaniak, avec un nom de domaine spécifique
+- Non référencé mais accessible pour tous aver le lien
+- Nom du projet Poème Graphique 
+- Enlever le livre d'or / car pb de modération
+- Question A4 ou A5 ? 
+- d'abord les modes, puis les fonctionnalités typo, puis le bouton télécharger (Demian va me faire un screenshot) 
 
