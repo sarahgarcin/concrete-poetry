@@ -15,6 +15,7 @@
   + espacement 
 - Debug menu contextuel mot couleur 
 - Gros debug
+- Clean code
 - Ne fonctionne pas sur Safari ?
 - Certificat SSL
 

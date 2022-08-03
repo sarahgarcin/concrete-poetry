@@ -1,6 +1,24 @@
 let colorCounter = 0;
+let negatif = false;
+
+function negPoem(){
+  console.log("mode négatif");
+  if($('.neg-poem').hasClass('negatif')){
+    negatif = false;
+    State.background = "#FFF";
+    State.textColor = "#000"; 
+    $('.neg-poem').removeClass('negatif');
+  }
+  else{
+    negatif = true;
+    State.background = "#000";
+    State.textColor = "#FFF"; 
+    $('.neg-poem').addClass('negatif');
+  }
+}
+
 function colorPoem(){
-  console.log("mode couleur");
+  console.log("mode couleur", negatif);
   if(colorCounter < 10){
     colorCounter ++;
   }
@@ -10,48 +28,95 @@ function colorPoem(){
 
   switch (colorCounter) {
     case 1:
-      State.background = "#66CCFF"; 
+      if(negatif == true){
+        State.background = "#66CCFF"; 
+      }
+      else{
+        State.background = "#FFF"; 
+      }
       State.textColor = "#FF0000";
     break;
     case 2:
-      State.background = "#FF0000"; 
+      if(negatif == true){
+        State.background = "#FF0000";
+      } 
+      else{
+        State.background = "#FFF"; 
+      }
       State.textColor = "#FFFF00";
     break;
     case 3:
-      State.background = "#7F007F"; 
+      if(negatif == true){
+        State.background = "#7F007F"; 
+      }
+      else{
+        State.background = "#FFF"; 
+      }
       State.textColor = "#FFFF00";
     break;
     case 4:
-      State.background = "#0000FF"; 
+      if(negatif == true){
+        State.background = "#0000FF"; 
+      }
+      else{
+        State.background = "#FFF"; 
+      }
       State.textColor = "#FF7F00";
     break;
     case 5:
-      State.background = "#FFFF00"; 
+      if(negatif == true){
+        State.background = "#FFFF00";
+      }
+      else{
+        State.background = "#FFF"; 
+      } 
       State.textColor = "#FF00FF";
     break;
     case 6:
-      State.background = "#FF00FF"; 
+      if(negatif == true){
+        State.background = "#FF00FF"; 
+      }
+      else{
+        State.background = "#FFF"; 
+      }
       State.textColor = "#00FF80";
     break;
     case 7:
-      State.background = "#FF0000"; 
+      if(negatif == true){
+        State.background = "#FF0000"; 
+      }
+      else{
+        State.background = "#FFF"; 
+      }
       State.textColor = "#008000";
     break;
     case 8:
-      State.background = "#FF0000"; 
+      if(negatif == true){
+        State.background = "#FF0000";
+      } 
+      else{
+        State.background = "#FFF"; 
+      }
       State.textColor = "#66CCFF";
     break;
     case 9:
-      State.background = "#000"; 
-      State.textColor = "#FFF";
-    break;
-    case 10:
-      State.background = "#FFF"; 
-      State.textColor = "#000";  
+      if(negatif == true){
+        State.background = "#80FF00";
+      } 
+      else{
+        State.background = "#FFF"; 
+      }
+      State.textColor = "#400080";
     break;
     default:
-      State.background = "#FFF"; 
-      State.textColor = "#000";
+      if(negatif == true){
+        State.background = "#000";
+        State.textColor = "#FFF";
+      } 
+      else{
+        State.background = "#FFF";
+        State.textColor = "#000"; 
+      }
   }
 
 
