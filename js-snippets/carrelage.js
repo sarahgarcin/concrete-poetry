@@ -25,6 +25,8 @@ function activateSquareRepetition(){
     else{
       carrelageCounter = 1;
     }
+
+    displayLetterMenu();
 }
 
 function squareRepetition(){
@@ -96,6 +98,14 @@ function squareRepetition(){
       for(var ix= 0; ix<squareSize; ix+=squareSize/nbOfRepet){
         for(var iy= 0; iy<squareSize; iy+=squareSize/nbOfRepet){
           let letter = chars[count];
+          // verifie si la lettre est selectionée
+          // si oui change sa couleur en rouge
+          if(jQuery.inArray(letter, selectedWord) !== -1){
+            poster.fill(255, 0, 0);
+          }
+          else{
+            poster.fill(State.textColor);
+          }
           poster.text(letter, ix + squarePosX, iy +  squarePosY);
         }
       }

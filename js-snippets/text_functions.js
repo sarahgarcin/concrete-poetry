@@ -202,25 +202,51 @@ function changeCase(){
 
 }
 
+function displayWordMenu(){
+  $('#word-selection').html(""); // vider #word-selection
+  var words = originalText.split(" ");
+  for(var i=0; i<words.length; i++){
+    var contentToAdd = '<div class="gui-group gui-btn word select-word" data-id="'+i+'">'+ words[i] +'</div>'
+    $('#word-selection').append(contentToAdd);
+  }
+}
+
+function displayLetterMenu(){
+  $('#word-selection').html(""); // vider #word-selection
+  var textNoSpace = originalText.replaceAll(" ", "");
+  var chars = textNoSpace.split("");
+  for(var i=0; i<chars.length; i++){
+    var contentToAdd = '<div class="gui-group gui-btn word select-word" data-id="'+i+'">'+ chars[i] +'</div>'
+    $('#word-selection').append(contentToAdd);
+  }
+}
+
 
 function selectWord(){
   console.log("selection d'un mot");
-  $('.select-word').on('click', function(){
-    $('.select-word').removeClass('in-action');
-    $(this).addClass('in-action');
-    selectedWord = $(this).attr('data-id');
+  $('body').on('click', '.select-word', function(){
+    if($(this).hasClass('in-action')){
+      console.log('remove');
+      $(this).removeClass('in-action');
+      // selectedWord = null;
+      // selectedWord = [];
+      var i = selectedWord.indexOf($(this).html()); // get index where to delete
+      var deleted = selectedWord.splice(i, 1); // remove from array at that index
+    }
+    else{
+      console.log('add');
+      // $('.select-word').removeClass('in-action');
+      $(this).addClass('in-action');
+      // $(this).attr('data-index', selectedWord.length);
+      // selectedWord = $(this).attr('data-id');  
+      // selectedWord.push($(this).attr('data-id'));
+      selectedWord.push($(this).html());
+    }
+    console.log(selectedWord);
   });
-  // if($('.change-case').hasClass('upper')){ 
-  //   State.textUppercase = false;
-  //   State.textLowercase = true;
-  //   $('.change-case').removeClass('upper');
-  // }
-  // else{ 
-  //   State.textUppercase = true;
-  //   State.textLowercase = false;
-  //   $('.change-case').addClass('upper');
-  // }
-
 }
+
+ 
+
 
 

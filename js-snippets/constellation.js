@@ -38,13 +38,7 @@ function activateConstellation(){
 
 
   // faire apparaître le menu contextuel pour les mots
-  $('#word-selection').html(""); // vider #word-selection
-  var words = originalText.split(" ");
-  for(var i=0; i<words.length; i++){
-    var contentToAdd = '<div class="gui-group gui-btn word select-word" data-id="'+i+'">'+ words[i] +'</div>'
-    $('#word-selection').append(contentToAdd);
-  }
-  selectWord();
+  displayWordMenu();
 }
 
 
@@ -72,14 +66,13 @@ function constellation(){
         wordsX.push(random(margin, (pageW - textWidth(words[i]) - margin)));
         wordsY.push(random(margin, (pageH - State.fontSize) - margin));
       }
-      // poster.text(words[i], i * wordWidth, wordsY[i]);
-      if(i == selectedWord){
+      // verifie si le mot est présent dans le.s mot.s selection.é.s
+      // si oui change sa couleur en rouge
+      if(jQuery.inArray(words[i], selectedWord) !== -1){
         poster.fill(255, 0, 0);
-        poster.textSize(State.fontSize * 2);
       }
       else{
         poster.fill(State.textColor);
-        poster.textSize(State.fontSize);
       }
       poster.text(words[i],  wordsX[i], wordsY[i]);
     }

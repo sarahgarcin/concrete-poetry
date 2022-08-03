@@ -26,6 +26,8 @@ function activateSoleil(){
     soleilClickCounter = 10;
   }
 
+  displayLetterMenu();
+
 }
 
 function soleil(){
@@ -65,6 +67,12 @@ function soleil(){
     poster.translate(State.textX + width/2, State.textY + height/2);
 
     // affiche la première lettre au milieu
+    if(jQuery.inArray(chars[0], selectedWord) !== -1){
+      poster.fill(255, 0, 0);
+    }
+    else{
+      poster.fill(State.textColor);
+    }
     poster.text(chars[0], 0, 0);
     r = r + 20;
     for(var i = 1; i<chars.length; i++){
@@ -72,6 +80,14 @@ function soleil(){
           //convert polar coordinates to cartesian coordinates
           var x = r * sin(angle);
           var y = r * cos(angle);
+          // verifie si la lettre est selectionée
+          // si oui change sa couleur en rouge
+          if(jQuery.inArray(chars[i], selectedWord) !== -1){
+            poster.fill(255, 0, 0);
+          }
+          else{
+            poster.fill(State.textColor);
+          }
           poster.text(chars[i], x, y);
           //increase angle by step size
           angle = angle + step; 
@@ -86,9 +102,23 @@ function soleil(){
     poster.translate(State.textX + width/2, State.textY + height/2);
     poster.textSize(20);
     // affiche la première lettre au milieu
+    if(jQuery.inArray(chars[0], selectedWord) !== -1){
+      poster.fill(255, 0, 0);
+    }
+    else{
+      poster.fill(State.textColor);
+    }
     poster.text(chars[0], 0, 0);
     r = r + 20;
     for(var i = 1; i<chars.length; i++){
+      // verifie si la lettre est selectionée
+      // si oui change sa couleur en rouge
+      if(jQuery.inArray(chars[i], selectedWord) !== -1){
+        poster.fill(255, 0, 0);
+      }
+      else{
+        poster.fill(State.textColor);
+      }
       // for(var n = 0; n<nbOfRepet; n++){
           //convert polar coordinates to cartesian coordinates
           var x = r * sin(angle);

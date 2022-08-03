@@ -16,6 +16,9 @@
 
     $('.gui-group.change-size').css('display', 'none');
     $('.gui-group.change-case').css('display', 'block');
+
+    displayLetterMenu();
+
   }
 
   function grille(){
@@ -49,6 +52,15 @@
     for (let y = 0; y <= height - 100; y += gap) {
       for (let x = 0; x <= width - 130; x += gap) {
         let letter = chars[counter];
+
+        // verifie si la lettre est selectionée
+        // si oui change sa couleur en rouge
+        if(jQuery.inArray(letter, selectedWord) !== -1){
+          poster.fill(255, 0, 0);
+        }
+        else{
+          poster.fill(State.textColor);
+        }
         poster.text(letter, x, y);
         // Increment the counter
         counter++;

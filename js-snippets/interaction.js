@@ -24,6 +24,9 @@ function moveText(){
   moveMode = true;
   $("canvas").css('cursor', 'grab');
   poster.textAlign(LEFT, TOP);
+  if(constellationMode){
+    displayWordMenu();
+  }
 }
 
 function editText(){

@@ -6,8 +6,8 @@
 - ok - Bug d'affichage à résoudre (changer les paramètres)
 
 ### All
-- 1 bouton negatif / positif
-- 1 bouton couleur si négatif = fond de couleur, si positif fond blanc
+- ok - 1 bouton negatif / positif
+- ok - 1 bouton couleur si négatif = fond de couleur, si positif fond blanc
 - Changer un mot de couleur = 1 ligne de mots avec limitation du nombre de mot qui apparait + espace de travail plus petit 
   + Constellation 
   + permutation 
