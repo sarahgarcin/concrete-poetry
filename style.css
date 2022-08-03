@@ -242,6 +242,37 @@ article{
   line-height: 1.4;
 }
 
+.couper-decaler{
+  margin-bottom: 50px;
+  margin-top: 50px;
+}
+
+.couper-decaler article{
+  width: 65%;
+}
+
+.couper-decaler article:nth-child(even){
+  margin-left: 35%;
+}
+
+/* RESPONSIVE PAGE COMPRENDRE*/
+@media screen and (max-width: 800px){
+  .couper-decaler article{
+    width: 100%;
+  }
+
+  .couper-decaler article:nth-child(even){
+    margin-left: 0;
+  }
+}
+
+@media screen and (min-width: 2000px){
+  .comprendre h1{
+    font-size: 70px;
+  }
+}
+
+/* RESPONSIVE MESSAGE - DESACTIVER LE RESPONSIVE */
 #responsive-message{
   display: none;
   font-size: 2em;

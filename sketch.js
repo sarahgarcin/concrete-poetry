@@ -94,6 +94,10 @@ var State = {
     img7 = loadImage('assets/shape-07.png');
     img8 = loadImage('assets/shape-08.png');
     img9 = loadImage('assets/shape-09.png');
+    img10 = loadImage('assets/shape-10.png');
+    img11 = loadImage('assets/shape-11.png');
+    img12 = loadImage('assets/shape-12.png');
+    img13 = loadImage('assets/shape-13.png');
 
   }
 

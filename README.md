@@ -9,7 +9,8 @@
 
 ## Crédits
 Design et programmation: Demian Conrad et Sarah Garcin
-Typographie: Automatico et Automatico Mono (Demian Conrad)
+Typographie: Automatico et Automatico Mono (Demian Conrad et Arnaud Chemin)
+Poème Démo: Demian Conrad
 Hébergement: Infomaniak
 
 ## License

@@ -13,7 +13,19 @@
 - ok - majuscule / minuscule ne fonctionne pas 
 - ~ - colonnes égales 
 
+### Carrelage 
+- Bug à résoudre 
+
 ### All
+- 1 bouton negatif / positif
+- 1 bouton couleur si négatif = fond de couleur, si positif fond blanc
+- Changer un mot de couleur = 1 ligne de mots avec limitation du nombre de mot qui apparait + espace de travail plus petit 
+  + Constellation 
+  + permutation 
+  + répétition 
+  + espacement 
+- Debug menu contextuel mot couleur 
+
 - Gros debug
 - bouton fit 
 - ok - Responsive (2 tailles d'écran - petit / grand)

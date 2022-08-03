@@ -23,7 +23,7 @@ function activateForme(){
 
   formeProcess = true;
 
-  if(clickCounter < 9){
+  if(clickCounter < 13){
     clickCounter ++;
   }
   else{
