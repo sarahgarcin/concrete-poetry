@@ -6,9 +6,9 @@ var mouseOffsetX = 0,
 
 function toogleEditView(){
   // réinitialiser le majuscule / minuscule
-  State.textUppercase = false;
-  State.textLowercase = false;
-  $('.change-case').removeClass('upper');
+  // State.textUppercase = false;
+  // State.textLowercase = false;
+  // $('.change-case').removeClass('upper');
 
   if(writingMode === true){
     moveText();   
@@ -24,8 +24,9 @@ function moveText(){
   moveMode = true;
   $("canvas").css('cursor', 'grab');
   poster.textAlign(LEFT, TOP);
-  if(constellationMode){
-    displayWordMenu();
+  if(constellationMode){displayWordMenu();}
+  if($('.repetitiontwo-mode').hasClass('in-action')){
+    activateRepetition();
   }
 }
 

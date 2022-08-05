@@ -1,6 +1,13 @@
 04/07/2022 _ v0.6
 03/08/2022 _ v0.7
 
+### DEBUG
+#### Espacement 
+- Bug quand on passe du textarea au movetext
+
+#### Répétition 
+- ok - petit problème taille typo quand majuscule et monospace
+
 
 ### Carrelage 
 - ok - Bug d'affichage à résoudre (changer les paramètres)
@@ -8,16 +15,16 @@
 ### All
 - ok - 1 bouton negatif / positif
 - ok - 1 bouton couleur si négatif = fond de couleur, si positif fond blanc
-- Changer un mot de couleur = 1 ligne de mots avec limitation du nombre de mot qui apparait + espace de travail plus petit 
-  + Constellation 
-  + permutation 
-  + répétition 
-  + espacement 
+- ok - Changer un mot de couleur = 1 ligne de mots avec limitation du nombre de mot qui apparait + espace de travail plus petit 
+  + ok - Constellation 
+  + ok - Grille
+  + ok - Carrelage
+  + ok - Soleil
 - Debug menu contextuel mot couleur 
 - Gros debug
 - Clean code
 - Ne fonctionne pas sur Safari ?
-- Certificat SSL
+- ok - Certificat SSL
 
  
 

@@ -18,7 +18,7 @@ function activateEspacement(){
 }
 
 function espacement(){
-  console.log("Mode Abstraction", originalText);
+  console.log("Mode Espacement", originalText);
   var min = 0;
   var max = 40;
   poster.textAlign(CENTER, TOP);
