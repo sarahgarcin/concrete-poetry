@@ -24,10 +24,7 @@ function moveText(){
   moveMode = true;
   $("canvas").css('cursor', 'grab');
   poster.textAlign(LEFT, TOP);
-  if(constellationMode){displayWordMenu();}
-  if($('.repetitiontwo-mode').hasClass('in-action')){
-    activateRepetition();
-  }
+  // if(constellationMode){displayWordMenu();}
 }
 
 function editText(){

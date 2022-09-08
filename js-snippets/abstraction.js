@@ -25,7 +25,8 @@ var abstractionCounter = 1;
     else{
       abstractionCounter = 2;
     }
-    
+    // faire disparaître le menu contextuel pour les mots
+    // removeWordMenu();
   }
 
   function abstraction(){

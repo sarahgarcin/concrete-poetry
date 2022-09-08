@@ -148,6 +148,7 @@ function dayNight(){
   }
 }
 
+// N'est plus utilisé…
 function changeColorRed(){
   console.log("couleur rouge");
   if($('.change-color').hasClass('red')){ 
@@ -202,6 +203,10 @@ function changeCase(){
 
 }
 
+function removeWordMenu(){
+  $('#word-selection').html("");
+}
+
 function displayWordMenu(){
   $('#word-selection').html(""); // vider #word-selection
   var words = originalText.split(" ");
@@ -244,6 +249,20 @@ function selectWord(){
     }
     console.log(selectedWord);
   });
+}
+
+
+// function qui transforme inArray insensible à la casse
+function inArrayCaseInsensitive(needle, haystackArray){
+  //Iterates over an array of items to return the index of the first item that matches the provided val ('needle') in a case-insensitive way.  Returns -1 if no match found.
+  var defaultResult = -1;
+  var result = defaultResult;
+  $.each(haystackArray, function(index, value) { 
+      if (result == defaultResult && value.toLowerCase() == needle.toLowerCase()) {
+          result = index;
+      }
+  });
+  return result;
 }
 
  

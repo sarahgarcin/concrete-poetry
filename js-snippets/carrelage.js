@@ -26,7 +26,7 @@ function activateSquareRepetition(){
       carrelageCounter = 1;
     }
 
-    displayLetterMenu();
+    // displayLetterMenu();
 }
 
 function squareRepetition(){
@@ -100,12 +100,12 @@ function squareRepetition(){
           let letter = chars[count];
           // verifie si la lettre est selectionée
           // si oui change sa couleur en rouge
-          if(jQuery.inArray(letter, selectedWord) !== -1){
-            poster.fill(255, 0, 0);
-          }
-          else{
-            poster.fill(State.textColor);
-          }
+          // if(inArrayCaseInsensitive(letter, selectedWord) !== -1){
+          //   poster.fill(255, 0, 0);
+          // }
+          // else{
+          //   poster.fill(State.textColor);
+          // }
           poster.text(letter, ix + squarePosX, iy +  squarePosY);
         }
       }

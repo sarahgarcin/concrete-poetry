@@ -17,7 +17,7 @@
     $('.gui-group.change-size').css('display', 'none');
     $('.gui-group.change-case').css('display', 'block');
 
-    displayLetterMenu();
+    // displayLetterMenu();
 
   }
 
@@ -55,12 +55,12 @@
 
         // verifie si la lettre est selectionée
         // si oui change sa couleur en rouge
-        if(jQuery.inArray(letter, selectedWord) !== -1){
-          poster.fill(255, 0, 0);
-        }
-        else{
-          poster.fill(State.textColor);
-        }
+        // if(inArrayCaseInsensitive(letter, selectedWord) !== -1){
+        //   poster.fill(255, 0, 0);
+        // }
+        // else{
+        //   poster.fill(State.textColor);
+        // }
         poster.text(letter, x, y);
         // Increment the counter
         counter++;

@@ -38,7 +38,7 @@ function activateConstellation(){
 
 
   // faire apparaître le menu contextuel pour les mots
-  displayWordMenu();
+  // displayWordMenu();
 }
 
 
@@ -68,12 +68,12 @@ function constellation(){
       }
       // verifie si le mot est présent dans le.s mot.s selection.é.s
       // si oui change sa couleur en rouge
-      if(jQuery.inArray(words[i], selectedWord) !== -1){
-        poster.fill(255, 0, 0);
-      }
-      else{
-        poster.fill(State.textColor);
-      }
+      // if(inArrayCaseInsensitive(words[i], selectedWord) !== -1){
+      //   poster.fill(255, 0, 0);
+      // }
+      // else{
+      //   poster.fill(State.textColor);
+      // }
       poster.text(words[i],  wordsX[i], wordsY[i]);
     }
   }
@@ -92,3 +92,5 @@ function constellation(){
   poster.pop();
   constellationProcess = false;
 }
+
+

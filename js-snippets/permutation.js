@@ -24,6 +24,8 @@ function activatePermutation(){
   $('.gui-group.change-size').css('display', 'none');
   $('.gui-group.change-case').css('display', 'block');
 
+  // faire disparaître le menu contextuel pour les mots
+  // removeWordMenu();
 }
 
 function permutation(){

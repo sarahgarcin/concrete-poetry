@@ -15,6 +15,9 @@ function activateEspacement(){
 
   $('.gui-group.change-size').css('display', 'block');
   $('.gui-group.change-case').css('display', 'block');
+
+  // faire disparaître le menu contextuel pour les mots
+  // removeWordMenu();
 }
 
 function espacement(){
@@ -23,6 +26,7 @@ function espacement(){
   var max = 40;
   poster.textAlign(CENTER, TOP);
   State.textWrap = "WORD";
+  originalText = originalText.replace(/\s\s+/g, ' ');
   State.text = originalText.replace(/\s/g, function() {
     return " ".repeat(parseInt(Math.random() * (max - min) + min))
   });

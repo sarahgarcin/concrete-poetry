@@ -1,13 +1,57 @@
 04/07/2022 _ v0.6
 03/08/2022 _ v0.7
+08/09/2022 _ v0.8
 
 ### DEBUG
+
 #### Espacement 
-- Bug quand on passe du textarea au movetext
+- ok- Bug quand on passe du textarea au movetext
 
-#### Répétition 
+#### Répétition
+- ok - Quand on clique répétition le première ligne est toujours coupée, possible de faire commencer le texte par la fenêtre ?
+- ok - bug quand je suis en répétition et je fais édition, et je retourne en visualisation si je clic sur le texte directement ceci devient super petit.
+
+#### Constellation
+- ok - si je sélectionne plusieurs mots rouge et après je sélectionne le mode majuscule, la couleur rouge disparaît. Entre autre si après je retourne à minuscule la sélection des mots en rouge disparaît.
+- ok - si je passe à répétition me garde le menu sélection texte en rouge.
+- ok - même chose si je passe de constellation à abstractions
+
+#### Permutation 
+- ~ Permutation selons les mots longs le texte sort de la fenêtre
+
+#### Grille
+- La grille aussi commence avec le texte coupé, et selon la taille du texte la fenêtre sort du browser. entre autre si je clique sur une lettre comme “r” il transforme en rouge toutes le lettres r, et la deuxième lettre r n’est pas influente
+- ok - si je passe au majuscule ne ma garde pas les mots en rouge
+
+#### Carrelage
+- ok - même problème au carrelage, et si je passe au majuscule ne ma garde pas les mots en rouge
+
+#### Forme
+- forme, si la croix, le a et le dunats on peut le faire un peu plus grand
+
+### ALL
+- problème quand on passe d'un mode qui enregistre le texte dans le textarea à un mode qui ne l'enregistre pas (exemple de répétition à Constellation) == enregistrer le texte original quelque part pour le réinitialiser à chaque fois…
+- problème de marges dans plusieurs modes 
+- ok - la fenêtre de dessin sur mon ordi est juste, et quand je laisse aussi la barre des instrument est trop petite, peut être la faire encore un poil plus petite ?
+- parfois le réinitialise ne marche pas comme depuis abstraction
+- ok - réinitialiser me garde aussi les options couleur texte rouge
+- Debug menu contextuel mot couleur 
+- Gros debug
+- Clean code
+- Ne fonctionne pas sur Safari ?
+
+
+## Done v0.8
+--> la sélection d'un mot ou d'une lettre en rouge me cause trop de bug, j'ai virer cette fonction qui me parait trop compliqué par rapport aux manières d'interargir dans l'app
+
+## Done v0.7
+
+### Permutation 
+- ~ - petit bug sur la taille typo
+- ~ - colonnes égales 
+
+### Répétition 
 - ok - petit problème taille typo quand majuscule et monospace
-
 
 ### Carrelage 
 - ok - Bug d'affichage à résoudre (changer les paramètres)
@@ -20,19 +64,7 @@
   + ok - Grille
   + ok - Carrelage
   + ok - Soleil
-- Debug menu contextuel mot couleur 
-- Gros debug
-- Clean code
-- Ne fonctionne pas sur Safari ?
-- ok - Certificat SSL
-
- 
-
-## Done v0.7
-
-### Permutation 
-- ~ - petit bug sur la taille typo
-- ~ - colonnes égales 
+- ok - Certificat SSL 
 
 ### Pages autres
 - page d'accueil

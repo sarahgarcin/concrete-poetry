@@ -15,7 +15,7 @@ let scaleRatio = 1;
 let exportRatio;
 // let exportRatio = 3.2;
 if ($(window).width() < 1440) {
-  exportRatio = 3.2;
+  exportRatio = 3.3;
 }
 else {
   exportRatio = 2.3;
@@ -261,6 +261,8 @@ var State = {
     poster = createGraphics(pageW, pageH);
     draw();
   }
+
+
 
 
 

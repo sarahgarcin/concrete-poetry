@@ -29,7 +29,8 @@ function activateForme(){
   else{
     clickCounter = 1;
   }
-  
+  // faire disparaître le menu contextuel pour les mots
+  // removeWordMenu();
 }
 
 function forme(){

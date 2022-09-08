@@ -15,6 +15,9 @@ function activateRepetition(){
 
   $('.gui-group.change-size').css('display', 'none');
   $('.gui-group.change-case').css('display', 'block');
+
+  // faire disparaître le menu contextuel pour les mots
+  // removeWordMenu();
 }
 
 function repetition(){
@@ -25,7 +28,7 @@ function repetition(){
   for (let i = 0; i < nbOfRepet; i++) {
     newArr.push(originalText);
   }
-  State.text = newArr.join("");
+  State.text = newArr.join(" ");
    // calculer la taille de la typo
   let chars = State.text.split('');
   poster.textAlign(LEFT, TOP);
@@ -34,7 +37,7 @@ function repetition(){
   let lineHeight = fontSize * 1;
   State.fontSize = Math.floor(fontSize);
   State.lineHeight = lineHeight;
-  State.textWrap = "CHAR";
+  State.textWrap = "WORD";
   repetitionMode = false;
 }
 

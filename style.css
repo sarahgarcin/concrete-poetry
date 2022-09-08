@@ -63,8 +63,8 @@ canvas {
 
 #text-input{
   font-size: 40px;
-  width: calc((2480px/3.2) - 40px);
-  height: calc((1754px/3.2) - 40px);
+  width: calc((2480px/3.3) - 40px);
+  height: calc((1754px/3.3) - 40px);
   background: #FFF;
   padding: 20px;
   font-family: 'automatico', sans-serif;

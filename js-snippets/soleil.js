@@ -26,7 +26,7 @@ function activateSoleil(){
     soleilClickCounter = 10;
   }
 
-  displayLetterMenu();
+  // displayLetterMenu();
 
 }
 
@@ -67,12 +67,12 @@ function soleil(){
     poster.translate(State.textX + width/2, State.textY + height/2);
 
     // affiche la première lettre au milieu
-    if(jQuery.inArray(chars[0], selectedWord) !== -1){
-      poster.fill(255, 0, 0);
-    }
-    else{
-      poster.fill(State.textColor);
-    }
+    // if(inArrayCaseInsensitive(chars[0], selectedWord) !== -1){
+    //   poster.fill(255, 0, 0);
+    // }
+    // else{
+    //   poster.fill(State.textColor);
+    // }
     poster.text(chars[0], 0, 0);
     r = r + 20;
     for(var i = 1; i<chars.length; i++){
