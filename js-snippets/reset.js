@@ -24,6 +24,8 @@ function resetAll(){
     soleilMode = false,
     formeMode = false;
 
+    $('.gui-btn').removeClass('in-action');
+    $('.gui-textbtn').removeClass('in-action');
 
 
 }

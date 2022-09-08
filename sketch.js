@@ -224,7 +224,7 @@ var State = {
     //   State.text = State.text.toLowerCase();
     // }
     poster.push();
-    poster.translate(State.textX, State.textY);
+    poster.translate(State.textX + margin, State.textY + (margin*2));
     poster.text(State.text, 0, 0, width - (margin*10));
     poster.pop();
   }
@@ -232,7 +232,14 @@ var State = {
   function displayTextarea(){
     textInputField.show();
     // textInputField.position(212, 99);
-    $('#text-input').val(State.text);
+    // console.log(repetitionMode, abstractionMode, espacementMode);
+    
+    if($('.repetitiontwo-mode').hasClass('in-action') || $('.espacement-mode').hasClass('in-action') || $('.abstraction-mode').hasClass('in-action')){
+      $('#text-input').val(State.text);
+    }
+    else{
+      $('#text-input').val(originalText);
+    }
     $('#text-input').css({
       'font-family': 'automatico', 
       'line-height' : 1, 

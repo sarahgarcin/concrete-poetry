@@ -34,9 +34,10 @@ var abstractionCounter = 1;
     
     // State.text = originalText.replace(/.{4}/g, '$&\n');
     const regex = new RegExp(`.{${abstractionCounter}}`, 'g');
+    originalText = originalText.replace('\n', '');
     State.text = originalText.replace(regex, '$&\n');
     let cutText = State.text.split('\n');
-    console.log(cutText, cutText.length);
+    // console.log(cutText, cutText.length);
     // console.log(cutText);
     // let xPos = State.textX;
     // let yPos = State.textY;

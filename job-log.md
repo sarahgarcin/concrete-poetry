@@ -4,6 +4,23 @@
 
 ### DEBUG
 
+### ALL
+- parfois le réinitialise ne marche pas comme depuis abstraction
+- Gros debug
+- Clean code
+- Ne fonctionne pas sur Safari ?
+
+
+## Done v0.8
+--> la sélection d'un mot ou d'une lettre en rouge me cause trop de bug, j'ai virer cette fonction qui me parait trop compliqué par rapport aux manières d'interargir dans l'app
+--> Réinitialisation qui ne fonctionne pas ? 
+
+### ALL
+- ok - réinitialiser me garde aussi les options couleur texte rouge
+- ok - la fenêtre de dessin sur mon ordi est juste, et quand je laisse aussi la barre des instrument est trop petite, peut être la faire encore un poil plus petite ?
+- ok - problème quand on passe d'un mode qui enregistre le texte dans le textarea à un mode qui ne l'enregistre pas (exemple de répétition à Constellation) == enregistrer le texte original quelque part pour le réinitialiser à chaque fois…
+- ok - problème de marges dans plusieurs modes 
+
 #### Espacement 
 - ok- Bug quand on passe du textarea au movetext
 
@@ -19,30 +36,15 @@
 #### Permutation 
 - ~ Permutation selons les mots longs le texte sort de la fenêtre
 
-#### Grille
-- La grille aussi commence avec le texte coupé, et selon la taille du texte la fenêtre sort du browser. entre autre si je clique sur une lettre comme “r” il transforme en rouge toutes le lettres r, et la deuxième lettre r n’est pas influente
-- ok - si je passe au majuscule ne ma garde pas les mots en rouge
-
 #### Carrelage
 - ok - même problème au carrelage, et si je passe au majuscule ne ma garde pas les mots en rouge
 
+#### Grille
+- ok - La grille aussi commence avec le texte coupé, et selon la taille du texte la fenêtre sort du browser. entre autre si je clique sur une lettre comme “r” il transforme en rouge toutes le lettres r, et la deuxième lettre r n’est pas influente
+- ok - si je passe au majuscule ne ma garde pas les mots en rouge
+
 #### Forme
-- forme, si la croix, le a et le dunats on peut le faire un peu plus grand
-
-### ALL
-- problème quand on passe d'un mode qui enregistre le texte dans le textarea à un mode qui ne l'enregistre pas (exemple de répétition à Constellation) == enregistrer le texte original quelque part pour le réinitialiser à chaque fois…
-- problème de marges dans plusieurs modes 
-- ok - la fenêtre de dessin sur mon ordi est juste, et quand je laisse aussi la barre des instrument est trop petite, peut être la faire encore un poil plus petite ?
-- parfois le réinitialise ne marche pas comme depuis abstraction
-- ok - réinitialiser me garde aussi les options couleur texte rouge
-- Debug menu contextuel mot couleur 
-- Gros debug
-- Clean code
-- Ne fonctionne pas sur Safari ?
-
-
-## Done v0.8
---> la sélection d'un mot ou d'une lettre en rouge me cause trop de bug, j'ai virer cette fonction qui me parait trop compliqué par rapport aux manières d'interargir dans l'app
+- ok - forme, si la croix, le a et le dunats on peut le faire un peu plus grand
 
 ## Done v0.7
 

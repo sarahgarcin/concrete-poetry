@@ -90,7 +90,7 @@ function squareRepetition(){
 
   console.log(col, line);
   poster.push();
-  poster.translate(State.textX, State.textY);
+  poster.translate(State.textX + margin, State.textY + margin);
   for (let y = 0; y < (chars.length / line); y++) {
     for (let x = 0; x < (chars.length / col); x++) {
       squarePosX = x * squareSize;

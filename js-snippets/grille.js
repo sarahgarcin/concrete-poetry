@@ -48,7 +48,7 @@
     var counter = 0;
 
     poster.push();
-    poster.translate(State.textX, State.textY);
+    poster.translate(State.textX + margin, State.textY + (margin*3));
     for (let y = 0; y <= height - 100; y += gap) {
       for (let x = 0; x <= width - 130; x += gap) {
         let letter = chars[counter];
